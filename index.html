@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4ri Portfolio</title>
+  <!-- Load Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./css/styles.css">
+
+</head>
+<body class="dark">
+<!-- Custom Cursor -->
+<div class="custom-cursor cursor-outer"></div>
+<div class="custom-cursor cursor-inner"></div>
+
+<!-- Main Container -->
+<div class="container mx-auto p-4 md:p-8">
+
+  <!-- Header/Navigation -->
+  <header class="header">
+    <h1 class="logo page-link" data-page="home">LIRI.</h1>
+    <nav class="nav" id="main-nav">
+      <ul class="nav-list">
+        <li>
+          <a href="#about" class="page-link sections-link nav-link" data-page="about">
+            About
+            <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
+              <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="#projects" class="page-link sections-link nav-link" data-page="projects">
+            Projects
+            <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
+              <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="#design-system" class="page-link sections-link nav-link" data-page="design-system">
+            Design System
+            <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
+              <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
+            </svg>
+          </a>
+        </li>
+      </ul>
+      <button id="theme-toggle" class="theme-toggle-btn">
+        <svg id="moon-icon" class="icon-moon text-accent-color hidden" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        <svg id="sun-icon" class="icon-sun text-accent-color" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+      </button>
+      <a href="#contact" class="page-link lets-talk-button" data-page="contact">Let's talk <i class="fas fa-arrow-right ml-2"></i></a>
+
+    </nav>
+
+    <button class="hamburger md:hidden" id="hamburger-menu" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </header>
+
+  <!-- Page Content Sections -->
+  <main>
+    <!-- Home Page -->
+    <section id="home-page" class="page-content active">
+      <!-- FIX: Added min-h class for vertical centering, removed md:items-start -->
+      <div class="hero flex flex-col md:flex-row items-center md:items-stretch md:space-x-8 min-h-[calc(100vh-9rem)]">
+        <!-- FIX: Added classes for vertical centering -->
+        <div class="hero-left text-center md:text-left md:w-2/5 flex flex-col justify-center">
+          <div class="hero-text ">
+            <h2 class="hero-title">LIRI. a creative coder & designer</h2>
+            <span class="hero-subtitle">Designing and building </span>
+            <span class="hero-highlight">human-centered solutions. </span>
+            <span class="hero-subtitle">With 5+ years of experience in </span>
+            <span class="hero-highlight">UI/UX and creative front-end,</span>
+            <span class="hero-subtitle">I transform ideas into </span>
+            <span class="hero-highlight">high-usage </span>
+            <span class="hero-subtitle">products.</span>
+          </div>
+          <div class="hero-buttons ">
+            <a href="#projects" class="btn btn-outline page-link" data-page="projects">
+              View My Work
+            </a>
+            <!--                    <a href="#contact" class="page-link lets-talk-button" data-page="contact">Let's talk <i class="fas fa-arrow-right ml-2"></i></a>-->
+
+          </div>
+        </div>
+        <!-- FIX: Removed mt-8 for locked layout -->
+        <div class="hero-visual md:mt-0 md:w-3/5" id="hero-svg-container">
+          <svg id="hero-svg" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice"></svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Page -->
+    <section id="about-page" class="page-content hidden">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle mb-12 text-center max-w-3xl mx-auto">A creative coder and designer with 5+ years of experience building impactful digital solutions for global companies.</p>
+
+      <div class="max-w-3xl mx-auto space-y-6">
+        <p class="about-text">I design and build <span class="highlight-text">seamless digital experiences</span>. As a <span class="highlight-text">UI/UX Designer</span> with a background in creative front-end development, I've spent over <span class="highlight-text">5 years</span> crafting impactful products for major organizations like <span class="highlight-text">Volkswagen, Santander, and Pearson</span>.
+
+          My unique blend of skills in <span class="highlight-text">Figma, Lottie, Advanced CSS, and JavaScript</span> (React, Vue, and Angular) allows me to bridge the gap between design and engineering, ensuring every solution is both <span class="highlight-text">beautiful and functional</span>. I specialize in turning complex user needs into elegant solutions across industries like <span class="highlight-text">Education, Healthcare, and Social Media</span>. Off the clock, I enjoy inline skating and DIY projects. </p>
+        <p class="body-text about-text">I am a <span class="highlight-text">product-focused software engineer</span> who thrives on building <span class="highlight-text">impactful digital experiences</span>. My journey started with a deep-seated desire to help creators monetize their work easily and reliably.</p>
+        <p class="body-text about-text">As a <span class="highlight-text">founding member</span> of a social platform for content creators, I was responsible for both <span class="highlight-text">product design and front-end development</span> for our MVP. I conducted interviews, rapid prototyping, and iterative development to validate our ideas and attract our first users. My core mission was to address the major pain points of Brazilian creators, particularly around <span class="highlight-text">financial management and faster payouts</span>.</p>
+        <p class="body-text about-text">Through <span class="highlight-text">user research</span> and a hands-on development approach, I helped shape the platform from its earliest stage, focusing on creating a <span class="highlight-text">seamless and engaging experience</span> for both creators and their audiences. My work involved identifying opportunities to differentiate in a competitive market and executing on <span class="highlight-text">viable growth strategies</span> to expand our user base.</p>
+      </div>
+    </section>
+
+    <!-- Projects Page -->
+    <section id="projects-page" class="page-content hidden">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle mb-12 text-center max-w-3xl mx-auto">A curated collection of my most impactful work, showcasing my skills in design and development.</p>
+      <div class="grid grid-cols-1 gap-8 mb-12">
+        <!-- Project Card 5: FIAP HealthHub -->
+        <div class="project-card" data-project-id="5">
+          <div class="project-card-front">
+            <span class="project-logo"><img src="./assets/Fiap/fiapprojectLogo.png" alt="FIAP Logo"></span>
+            <h3 class="card-title">FIAP Startup Challenge: HealthHub</h3>
+          </div>
+          <div class="project-preview">
+            <div class="preview-left">
+              <h3 class="card-title">FIAP HealthHub</h3>
+              <p class="card-subtitle">Mobile-first platform for clinics and patients. 2nd place at FIAP Startup Challenge 2023. Focused on long-term care management.</p>
+            </div>
+            <div class="preview-right">
+              <img src="assets/Fiap/fiapprojectCover.png" alt="FIAP HealthHub"  onerror="this.src='https://placehold.co/600x400/1e1e1e/d3d3d3?text=Image+Error'">
+            </div>
+          </div>
+        </div>
+        <!-- Project Card 6: Nohs Somos -->
+        <div class="project-card" data-project-id="6">
+          <div class="project-card-front">
+            <span class="project-logo">
+              <img src="./assets/Nohs Somos/NohsSomosLogo.png" alt="Nohs Somos Logo">
+            </span>
+            <h3 class="card-title">Nohs Somos: LGBTQ Community Safety App</h3>
+          </div>
+          <div class="project-preview">
+            <div class="preview-left">
+              <h3 class="card-title">Nohs Somos</h3>
+              <p class="card-subtitle">Map-based app for LGBTQ community safety. Find and review safe spaces. Built for Nohs Somos, merged with TODXS.</p>
+            </div>
+            <div class="preview-right">
+              <img src="assets/Nohs%20Somos/NohsSomosCover.png" alt="TODXS & Nohs Somos"  onerror="this.src='https://placehold.co/600x400/1e1e1e/d3d3d3?text=Image+Error'">
+            </div>
+          </div>
+        </div>
+        <!-- Project Card 7: Creators Fit (Privi) -->
+        <div class="project-card" data-project-id="7">
+          <div class="project-card-front">
+            <span class="project-logo">
+              <img src="assets/CreatorsFit%20/PriviLogo.png" alt="Privi Logo">
+            </span>
+            <h3 class="card-title">Creators Fit (formerly Privi): Monetizing Content for Brazilian Influencers</h3>
+          </div>
+          <div class="project-preview">
+            <div class="preview-left">
+              <h3 class="card-title">Creators Fit (Privi)</h3>
+              <p class="card-subtitle">Platform for Brazilian creators to monetize exclusive content. Supports subscriptions, pay-per-view, and media uploads.</p>
+            </div>
+            <div class="preview-right">
+              <img src="./assets/CreatorsFit%20/CreatorsFitCover.png" alt="Creators Fit (Privi)"  onerror="this.src='https://placehold.co/600x400/1e1e1e/d3d3d3?text=Image+Error'">
+            </div>
+          </div>
+        </div>
+        <!-- Project Card 8: iLog -->
+        <div class="project-card" data-project-id="8">
+          <div class="project-card-front">
+            <span class="project-logo">iL</span>
+            <h3 class="card-title">iLog</h3>
+          </div>
+          <div class="project-preview">
+            <div class="preview-left">
+              <h3 class="card-title">iLog</h3>
+              <p class="card-subtitle">Logistics platform for fleet operations. Automates route planning and real-time tracking. Used by major LATAM companies.</p>
+            </div>
+            <div class="preview-right">
+              <img src="https://placehold.co/600x400/1e1e1e/d3d3d3?text=iLog+Dashboard" alt="iLog Dashboard Preview"  onerror="this.src='https://placehold.co/600x400/1e1e1e/d3d3d3?text=Image+Error'">
+            </div>
+          </div>
+        </div>
+        <!-- My Next Adventure Card -->
+        <div class="p-8 rounded-lg shadow-md border border-gray-700 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl flex flex-col justify-center items-center text-center">
+          <div class="w-24 h-24 mb-4 text-accent-color opacity-30">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="card-title text-accent-color mt-2">My Next Adventure</h3>
+          <p class="card-subtitle mt-2">This space is reserved for our next big project. Let's build something great together!</p>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="text-center p-8 border border-accent-color rounded-lg mt-8">
+        <h3 class="card-title">Got a project in mind?</h3>
+        <a href="#contact" class="btn btn-primary page-link" data-page="contact">Let's talk <i class="fas fa-arrow-right ml-2"></i></a>
+      </div>
+    </section>
+
+    <!-- Project Detail Page (Dynamically Populated) -->
+    <section id="project-detail-page" class="page-content hidden">
+      <a href="#projects" class="page-link text-lg text-accent-color mb-4 inline-block hover:underline" data-page="projects">
+        &larr; Back to Projects
+      </a>
+      <h2 id="project-title" class="section-title"></h2>
+      <p id="project-description" class="body-text mb-8"></p>
+
+      <h3 class="case-study-title">Technologies Used</h3>
+      <ul id="project-tech-list" class="tag-list-container body-text mb-8"></ul>
+
+      <!-- Main Case Study Content -->
+      <div id="case-study-content" class="case-study-section"></div>
+
+    </section>
+
+    <!-- Design System Page -->
+    <section id="design-system-page" class="case-study-section page-content hidden">
+      <h2 class="section-title">Design System</h2>
+      <p class="section-subtitle mb-12 text-center max-w-3xl mx-auto">A system of reusable components and guidelines that ensure design and code consistency across all projects.</p>
+
+      <div class="space-y-12">
+        <!-- Color Palette -->
+        <div>
+          <h3 class="case-study-title">Color Palette</h3>
+          <div class="color-swatch">
+            <div class="swatch-box" style="background:var(--primary-dark);"></div>
+            <div>
+              <p class="card-title">--primary-dark</p>
+              <p class="card-subtitle secondary-text">#101111</p>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="swatch-box" style="background:var(--primary-light); border:1px solid #e6e6e6"></div>
+            <div>
+              <p class="card-title">--primary-light</p>
+              <p class="card-subtitle secondary-text">#FDFDFD</p>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="swatch-box" style="background:var(--accent-color);"></div>
+            <div>
+              <p class="card-title">--accent-color</p>
+              <p class="card-subtitle secondary-text">#FF6B00</p>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="swatch-box" style="background:var(--secondary-text-dark);"></div>
+            <div>
+              <p class="card-title">--secondary-text-dark</p>
+              <p class="card-subtitle secondary-text">#A0A0A0</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Typography -->
+        <div>
+          <h3 class="case-study-title">Typography</h3>
+          <div class="space-y-4">
+            <div>
+              <p class="card-subtitle">Display / Brand</p>
+              <h1 class="hero-title anton-font">LIRI.</h1>
+            </div>
+            <div>
+              <p class="card-subtitle">Headlines</p>
+              <h2 class="card-title">H2 / card-title — 1.5rem</h2>
+              <h3 class="case-study-title">H3 / case-study-title — 1.2rem</h3>
+            </div>
+            <div>
+              <p class="card-subtitle">Body</p>
+              <p class="body-text">This is body text demonstrating the primary font (<em>Inter</em>) at the default size. Use this scale for readable paragraphs, microcopy, and annotations.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Components -->
+        <div>
+          <h3 class="case-study-title">Components</h3>
+          <div class="space-y-6">
+            <div>
+              <p class="card-subtitle">Buttons</p>
+              <div class="flex items-center gap-4">
+                <!-- Changed from <a> tag to <button> tag -->
+                <button class="btn btn-primary flex items-center">Primary (accent) <i class="fas fa-arrow-right ml-2"></i></button>
+                <!-- Changed from <a> tag to <button> tag -->
+                <button class="btn btn-outline">Outline</button>
+                <button class="lets-talk-button">Lets talk</button>
+              </div>
+            </div>
+
+            <div>
+              <p class="card-subtitle">Navigation (preview)</p>
+              <nav class="component-preview-box p-4">
+                <ul class="nav-list flex items-center gap-4">
+                  <li>
+                    <!-- Added onclick event to prevent navigation -->
+                    <a class="nav-link sections-link" href="#" onclick="event.preventDefault()">
+                      About
+                      <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
+                        <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <!-- Added onclick event to prevent navigation -->
+                    <a class="nav-link sections-link" href="#" onclick="event.preventDefault()">
+                      Projects
+                      <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
+                        <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <!-- Added onclick event to prevent navigation -->
+                    <a class="nav-link sections-link" href="#" onclick="event.preventDefault()">
+                      Design System
+                      <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
+                        <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
+                      </svg>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+
+            <div>
+              <p class="card-subtitle">Project Card (example)</p>
+              <div class="project-card" tabindex="0">
+                <div class="project-card-front">
+                  <span class="project-logo">EX</span>
+                  <h3 class="card-title">Example Project</h3>
+                </div>
+                <div class="project-preview">
+                  <div class="preview-left">
+                    <h3 class="card-title">Example Project</h3>
+                    <p class="card-subtitle">Short description of the project. Use this area to state problem, approach and impact.</p>
+                  </div>
+                  <div class="preview-right">
+                    <img src="https://placehold.co/600x400/1e1e1e/d3d3d3?text=Preview" alt="Preview"  onerror="this.src='https://placehold.co/600x400/1e1e1e/d3d3d3?text=Image+Error'">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <p class="card-subtitle">Tags & Tokens</p>
+              <div class="tag-list-container">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Figma</span>
+                <span class="tech-tag light">Design</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Animations & Interactions -->
+        <div>
+          <h3 class="case-study-title">Animations & Interactions</h3>
+          <div class="space-y-6">
+            <div>
+              <p class="card-subtitle">Custom Cursor</p>
+              <p class="body-text secondary-text">A custom dual-layer cursor follows mouse movement with smooth transitions. The outer ring expands on hover over interactive elements.</p>
+              <div class="component-preview-box text-center">
+                <p class="body-text">Move your mouse around to see the custom cursor in action</p>
+              </div>
+            </div>
+
+            <div>
+              <p class="card-subtitle">Navigation Hover Animation</p>
+              <p class="body-text secondary-text">SVG path animation draws an organic line beneath navigation links on hover (--transition-slow: 0.5s).</p>
+              <div class="component-preview-box">
+                <a href="#" class="nav-link sections-link text-lg" onclick="event.preventDefault()">
+                  Hover over me
+                  <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
+                    <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <p class="card-subtitle">Card Hover Transform</p>
+              <p class="body-text secondary-text">Cards translate upward and scale slightly on hover with enhanced shadow (--transform-translate-hover + --transform-scale-hover).</p>
+              <div style="max-width:320px;">
+                <div class="card">
+                  <h4 class="card-title">Interactive Card</h4>
+                  <p class="card-subtitle">Hover to see the lift effect</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <p class="card-subtitle">Project Card Flip Interaction</p>
+              <p class="body-text secondary-text">Hovering reveals detailed preview overlay with opacity fade and content transition. The front card fades to 0.15 opacity while preview appears.</p>
+              <p class="body-text secondary-text text-xs mt-2"><em>See example in Project Card section above</em></p>
+            </div>
+
+            <div>
+              <p class="card-subtitle">Theme Toggle Transition</p>
+              <p class="body-text secondary-text">Smooth color transitions across all components (--transition-normal: 0.3s). Icon scales on hover with transform: scale(1.1).</p>
+              <div class="component-preview-box text-center">
+                <p class="body-text">Use the theme toggle in the header to see smooth color transitions</p>
+              </div>
+            </div>
+
+            <div>
+              <p class="card-subtitle">SVG Hero Animation</p>
+              <p class="body-text secondary-text">Interactive SVG shapes respond to mouse movement with physics-based repulsion. Circles move away from cursor position using requestAnimationFrame.</p>
+              <p class="body-text secondary-text text-xs mt-2"><em>See this in action on the Home page hero section</em></p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact-page" class="case-study-section page-content hidden">
+      <h2 class="section-title">Let's talk</h2>
+      <div class="max-w-xl mx-auto">
+        <p class="text-lg text-center secondary-text mb-8">You can find me on these platforms. Let's connect!</p>
+
+        <!-- Remove the form -->
+        <!-- <form id="contact-form" class="space-y-6"> ... </form> -->
+        <!-- <div id="form-message" class="mt-4 text-center hidden"></div> -->
+
+        <!-- Moved the social links up and added new ones -->
+        <div class="mt-8 text-center">
+          <p class="secondary-text">Connect with me</p>
+          <div class="flex justify-center space-x-6 mt-4 text-3xl">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent-color transition-colors duration-300" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent-color transition-colors duration-300" aria-label="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://www.figma.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent-color transition-colors duration-300" aria-label="Figma">
+              <i class="fab fa-figma"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent-color transition-colors duration-300" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- JavaScript -->
+<script src="./js/script.js"></script>
+</body>
+</html>
+
