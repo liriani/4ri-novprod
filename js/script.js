@@ -1,5 +1,5 @@
 // ============================================================================
-// CUSTOM CURSOR - Runs immediately (not waiting for DOMContentLoaded)
+// CUSTOM CURSOR - Runs immediately
 // ============================================================================
 const cursorOuter = document.querySelector('.cursor-outer');
 const cursorInner = document.querySelector('.cursor-inner');
@@ -21,7 +21,6 @@ if (cursorOuter && cursorInner) {
         });
     });
 
-    // Add hover effect for interactive elements after DOM loads
     document.addEventListener('DOMContentLoaded', () => {
         const interactiveElements = document.querySelectorAll('a, button, .project-card, .page-link, .theme-toggle-btn');
         interactiveElements.forEach(el => {
@@ -40,8 +39,8 @@ if (cursorOuter && cursorInner) {
 // ============================================================================
 document.addEventListener('DOMContentLoaded', () => {
     const projects = {
-        '1': {
-            title: 'Creators Fit (formerly Privi)',
+    '1': {
+    title: 'Creators Fit (formerly Privi)',
     description: 'A comprehensive case study on a mobile banking app redesign, focusing on user-centered design and accessibility improvements.',
     image: 'https://placehold.co/600x400/1e1e1e/d3d3d3?text=Project+1',
     tech: ['Figma', 'User Research', 'Usability Testing'],
