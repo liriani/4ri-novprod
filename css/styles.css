@@ -1,5 +1,4 @@
-
-    /* =========================================================================
+/* =========================================================================
        1. CSS Variables & Configuration
        ========================================================================= */
 
@@ -89,6 +88,11 @@ body {
     overflow-x: hidden;
     transition: background-color var(--transition-normal), color var(--transition-normal);
     cursor: none;
+}
+
+/* Utility Classes */
+.max-w-card-demo {
+    max-width: 320px;
 }
 
 /* Remove default list styles */
@@ -1037,7 +1041,7 @@ img, video {
     }
 
     .hero-visual {
-        width: 60%; /* Changed from 50% to 60% */
+        width: 60%;
         margin-top: 0;
     }
 
@@ -1097,6 +1101,23 @@ img, video {
     border: 1px solid rgba(0,0,0,0.06);
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     overflow: hidden;
+}
+
+.swatch-box.swatch-primary-dark {
+    background: var(--primary-dark);
+}
+
+.swatch-box.swatch-primary-light {
+    background: var(--primary-light);
+    border: 1px solid #e6e6e6;
+}
+
+.swatch-box.swatch-accent {
+    background: var(--accent-color);
+}
+
+.swatch-box.swatch-secondary {
+    background: var(--secondary-text-dark);
 }
 
 .dark .color-swatch {
@@ -1483,7 +1504,6 @@ img, video {
     width: 100%; /* Full width */
     height: 6px; /* Match line height */
     background: var(--primary-dark); /* Overlay with page background */
-    bottom: 0;
     z-index: 1;
     transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
@@ -1558,3 +1578,253 @@ img, video {
     /* 9. Ensure transform-origin is set to right */
     transform-origin: right;
 }
+
+/* =========================================================================
+   3D Animated Highlight Card Game
+   ========================================================================= */
+
+.highlight-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    height: 400px;
+    perspective: 1200px;
+}
+
+.highlight-card-game {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transform-style: preserve-3d;
+}
+
+.highlight-card {
+    position: relative;
+    width: 300px;
+    height: 100%;
+    padding: 0;
+    border-radius: 1.5rem;
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 10px 30px rgba(255, 107, 0, 0.15);
+    cursor: pointer;
+    backface-visibility: hidden;
+    transform-origin: center;
+    perspective: 1000px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+.highlight-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.card-front {
+    z-index: 2;
+    transform: rotateY(0deg);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    justify-content: flex-start;
+}
+
+.card-design {
+    border-color: var(--accent-color);
+    border-width: 3px;
+    transform: rotateY(-5deg);
+    z-index: 10;
+}
+
+.card-design .card-front {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+}
+
+.card-design .card-back {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+}
+
+.card-code {
+    border-color: var(--accent-color);
+    transform: rotateY(0deg);
+    z-index: 20;
+}
+
+.card-code .card-front {
+    background: linear-gradient(135deg, var(--accent-color) 0%, #ff8c3a 100%);
+    color: var(--primary-light);
+}
+
+.card-code .card-back {
+    background: linear-gradient(135deg, var(--accent-color) 0%, #ff8c3a 100%);
+    color: var(--primary-light);
+}
+
+.card-sport {
+    border-color: var(--accent-color);
+    border-width: 3px;
+    transform: rotateY(5deg);
+    z-index: 30;
+}
+
+.card-sport .card-front {
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+}
+
+.card-sport .card-back {
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+}
+
+.dark .highlight-card {
+    border-color: var(--accent-color);
+}
+
+.dark .card-design .card-front {
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+}
+
+.dark .card-design .card-back {
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+}
+
+.dark .card-code .card-front {
+    background: linear-gradient(135deg, var(--accent-color) 0%, #ff8c3a 100%);
+    color: var(--primary-light);
+}
+
+.dark .card-code .card-back {
+    background: linear-gradient(135deg, var(--accent-color) 0%, #ff8c3a 100%);
+    color: var(--primary-light);
+}
+
+.dark .card-sport .card-front {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+}
+
+.dark .card-sport .card-back {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+}
+
+.highlight-card:hover {
+    z-index: 40;
+    box-shadow: 0 25px 70px rgba(255, 107, 0, 0.5);
+    transform: translateY(-10px) scale(1.05) rotateY(0deg) !important;
+}
+
+.highlight-card .icon-placeholder {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.highlight-card .card-topic {
+    font-family: var(--font-family-display), sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.highlight-card .topic-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    color: inherit;
+}
+
+.highlight-card .topic-list li {
+    padding: 0.25rem 0;
+}
+
+@media (max-width: 767px) {
+    .highlight-container {
+        flex-direction: column;
+        height: auto;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .highlight-card-game {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        position: static;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .highlight-card {
+        position: static;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+        transform: none !important;
+        box-shadow: 0 4px 12px rgba(255, 107, 0, 0.2);
+    }
+
+    .highlight-card:hover {
+        transform: translateY(-8px) scale(1.02) !important;
+        box-shadow: 0 10px 20px rgba(255, 107, 0, 0.4);
+    }
+
+    .highlight-card:hover .card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .card-design, .card-code, .card-sport {
+        border-width: 2px;
+    }
+}
+
+/* Tablet layout */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .highlight-card-game {
+        max-width: 700px;
+        gap: 1.5rem;
+    }
+
+    .highlight-card {
+        width: 240px;
+    }
+}
+
