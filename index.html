@@ -284,6 +284,56 @@
           <p class="secondary-text text-sm">Ready to build something amazing together? <span class="text-accent-color font-bold">Let's connect.</span></p>
         </div>
       </div>
+
+      <!-- Reveal Game CTA Modal (Hidden by default) -->
+      <div id="reveal-cta-modal-backdrop" class="reveal-modal-backdrop">
+        <!-- Confetti Elements -->
+        <div class="reveal-confetti" style="left: 5%;"></div>
+        <div class="reveal-confetti" style="left: 15%; animation-delay: 0.7s;"></div>
+        <div class="reveal-confetti" style="left: 25%; animation-delay: 1.4s;"></div>
+        <div class="reveal-confetti" style="left: 35%; animation-delay: 2.2s;"></div>
+        <div class="reveal-confetti" style="left: 45%; animation-delay: 0.1s;"></div>
+        <div class="reveal-confetti" style="left: 55%; animation-delay: 3.1s;"></div>
+        <div class="reveal-confetti" style="left: 65%; animation-delay: 1.6s;"></div>
+        <div class="reveal-confetti" style="left: 75%; animation-delay: 2.9s;"></div>
+        <div class="reveal-confetti" style="left: 85%; animation-delay: 0.4s;"></div>
+        <div class="reveal-confetti" style="left: 95%; animation-delay: 2.5s;"></div>
+
+        <div id="reveal-cta-modal-content" class="reveal-modal-content">
+          <!-- Close Button -->
+          <button onclick="window.closeRevealModal()"
+                  class="reveal-modal-close"
+                  aria-label="Close modal">
+            ×
+          </button>
+
+          <!-- Icon Container -->
+          <div class="mb-6 flex justify-center" id="reveal-modal-icon">
+            <!-- Icon will be rendered by JS -->
+          </div>
+
+          <!-- Title -->
+          <h2 class="text-white text-2xl sm:text-3xl font-extrabold mb-3 uppercase tracking-wide text-center">
+            MISSION COMPLETE
+          </h2>
+          <h3 class="text-accent-color text-xl sm:text-2xl font-bold mb-4 uppercase tracking-wide text-center">
+            ACCESS GRANTED
+          </h3>
+
+          <!-- Description -->
+          <p class="secondary-text text-base sm:text-lg mx-auto max-w-md mb-8 text-center" style="line-height: 1.6;">
+            Congratulations on completing the challenge! This demonstrates the curiosity and attention to detail I bring to every project. If you're looking for someone who builds delightful, detailed, and results-focused products, your search ends here.
+          </p>
+
+          <!-- CTA Button -->
+          <div class="text-center">
+            <a href="mailto:liriani@gmail.com?subject=Portfolio%20Card%20Game%20-%20Let's%20Connect&body=Hi%20Liriani,%0D%0A%0D%0AI%20completed%20your%20About%20Me%20card%20challenge%20and%20was%20impressed%20by%20your%20portfolio.%20I'd%20love%20to%20discuss%20opportunities%20to%20collaborate.%0D%0A%0D%0ABest%20regards"
+               class="inline-block bg-accent-color text-white font-bold py-3 px-8 rounded-full shadow-lg hover:opacity-90 transition uppercase tracking-wider">
+                Let's Talk
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Projects Page -->
