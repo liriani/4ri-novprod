@@ -258,6 +258,32 @@
 
         </div>
       </div>
+
+      <!-- New: Interactive Reveal Card Game Section -->
+      <div class="reveal-game-section max-w-6xl mx-auto mt-16">
+        <header class="text-center mb-10">
+          <h3 class="case-study-title mb-4">Discover More About Me</h3>
+          <p class="secondary-text text-sm mb-4">Click cards to reveal more about my work and passions</p>
+          <div class="flex justify-center items-center gap-4">
+            <div id="reveal-status" class="inline-block text-xs font-bold tracking-widest border border-accent-color text-accent-color px-3 py-1 rounded">
+              0/6 REVEALED
+            </div>
+            <button id="reveal-reset-button" class="hidden text-xs font-bold tracking-widest bg-accent-color text-white px-3 py-1 rounded hover:opacity-90 transition">
+              RESET
+            </button>
+          </div>
+        </header>
+
+        <div id="reveal-card-grid" class="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+          <!-- Cards will be rendered here by JavaScript -->
+        </div>
+
+        <!-- CTA Card at the bottom, hidden until all cards are revealed -->
+        <div id="reveal-cta-card" class="hidden max-w-lg mx-auto mt-10 p-6 rounded-xl border-2 border-accent-color text-center cursor-pointer hover:shadow-[0_0_20px_rgba(255,107,0,0.5)] transition">
+          <p class="card-title mb-2">Thanks for exploring!</p>
+          <p class="secondary-text text-sm">Ready to build something amazing together? <span class="text-accent-color font-bold">Let's connect.</span></p>
+        </div>
+      </div>
     </section>
 
     <!-- Projects Page -->
@@ -833,6 +859,7 @@
 
 <!-- JavaScript -->
 <script src="./js/script.js"></script>
+<script src="./js/reveal-game.js"></script>
 </body>
 </html>
 

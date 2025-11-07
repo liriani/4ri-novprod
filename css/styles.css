@@ -1826,3 +1826,168 @@ img, video {
     }
 }
 
+/* =========================================================================
+   Interactive Reveal Card Game - Fixed Version (No Conflicts)
+   ========================================================================= */
+
+/* Main container with proper spacing */
+.reveal-game-section {
+    margin-top: 6rem;
+    margin-bottom: 4rem;
+    padding: 2rem 1rem;
+}
+
+/* Grid layout - prevents squeezing */
+#reveal-card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 3-column layout on larger screens */
+@media (min-width: 768px) {
+    #reveal-card-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+}
+
+/* Perspective container - maintains aspect ratio */
+.reveal-game-section .reveal-perspective-1000 {
+    perspective: 1000px;
+    width: 100%;
+    position: relative;
+}
+
+/* Card inner - USE MIN-HEIGHT not HEIGHT to prevent squeezing */
+.reveal-game-section .reveal-card-inner {
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+/* Flipped state */
+.reveal-game-section .reveal-card-inner.is-flipped {
+    transform: rotateY(180deg);
+}
+
+/* Card faces - flexible height */
+.reveal-game-section .reveal-card-face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 400px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 0.75rem;
+    padding: 2rem 1.5rem;
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 10px 30px rgba(255, 107, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Prevent box-sizing issues */
+.reveal-game-section .reveal-card-face * {
+    box-sizing: border-box;
+}
+
+/* Theme-specific backgrounds */
+.dark .reveal-game-section .reveal-card-face {
+    background-color: var(--primary-dark);
+}
+
+.light .reveal-game-section .reveal-card-face {
+    background-color: var(--primary-light);
+}
+
+/* Back face rotation */
+.reveal-game-section .reveal-card-back {
+    transform: rotateY(180deg);
+}
+
+/* Z-index management */
+.reveal-game-section .reveal-card-inner {
+    z-index: 1;
+}
+
+.reveal-game-section .reveal-card-inner:hover {
+    z-index: 10;
+}
+
+/* Text wrapping to prevent overflow */
+.reveal-game-section .reveal-card-face p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Keyframe for pixel pop animation */
+@keyframes reveal-pixel-pop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    80% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Pixel dot animation */
+.reveal-game-section .reveal-pixel-dot {
+    animation-name: reveal-pixel-pop;
+    animation-duration: 0.15s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: backwards;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 640px) {
+    .reveal-game-section {
+        margin-top: 4rem;
+        padding: 1rem 0.5rem;
+    }
+
+    #reveal-card-grid {
+        gap: 1rem;
+        grid-template-columns: 1fr;
+    }
+
+    .reveal-game-section .reveal-card-inner {
+        min-height: 350px;
+    }
+
+    .reveal-game-section .reveal-card-face {
+        min-height: 350px;
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 641px) and (max-width: 767px) {
+    #reveal-card-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+
+    .reveal-game-section .reveal-card-inner {
+        min-height: 380px;
+    }
+
+    .reveal-game-section .reveal-card-face {
+        min-height: 380px;
+    }
+}
