@@ -1827,7 +1827,7 @@ img, video {
 }
 
 /* =========================================================================
-   Interactive Reveal Card Game - Fixed Version (No Conflicts)
+   Interactive Reveal Card Game - Project Card Style (No Conflicts)
    ========================================================================= */
 
 /* Main container with proper spacing */
@@ -1868,7 +1868,8 @@ img, video {
     min-height: 400px;
     transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform-style: preserve-3d;
-    cursor: pointer;
+    cursor: none; /* Hide default cursor but allow clicks */
+    pointer-events: auto; /* CRITICAL: Ensure clicks work */
 }
 
 /* Flipped state */
@@ -1876,7 +1877,7 @@ img, video {
     transform: rotateY(180deg);
 }
 
-/* Card faces - flexible height */
+/* Card faces - BASE STYLES */
 .reveal-game-section .reveal-card-face {
     position: absolute;
     top: 0;
@@ -1885,33 +1886,49 @@ img, video {
     min-height: 400px;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    border-radius: 0.75rem;
+    border-radius: var(--border-radius-sm);
     padding: 2rem 1.5rem;
-    border: 2px solid var(--accent-color);
-    box-shadow: 0 10px 30px rgba(255, 107, 0, 0.2);
+    border: 1px solid var(--border-color-dark);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    transition: all var(--transition-normal);
+    pointer-events: auto; /* Ensure face elements can receive clicks */
+}
+
+/* FRONT FACE - Dark/mysterious to indicate "click to reveal" */
+.reveal-game-section .reveal-card-face:not(.reveal-card-back) {
+    background: var(--primary-dark);
+    border: 2px solid var(--accent-color);
+}
+
+/* Hover state on front - indicate clickability */
+.reveal-game-section .reveal-card-inner:hover .reveal-card-face:not(.reveal-card-back) {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px rgba(255, 107, 0, 0.4);
+}
+
+/* BACK FACE - Bright orange to show revealed state */
+.reveal-game-section .reveal-card-back {
+    background: var(--accent-color);
+    border: 1px solid var(--border-color-dark);
+    transform: rotateY(180deg);
+}
+
+/* Light theme adjustments */
+.light .reveal-game-section .reveal-card-face:not(.reveal-card-back) {
+    background: var(--primary-dark);
+    border: 2px solid var(--accent-color);
+}
+
+.light .reveal-game-section .reveal-card-back {
+    background: var(--accent-color);
 }
 
 /* Prevent box-sizing issues */
 .reveal-game-section .reveal-card-face * {
     box-sizing: border-box;
-}
-
-/* Theme-specific backgrounds */
-.dark .reveal-game-section .reveal-card-face {
-    background-color: var(--primary-dark);
-}
-
-.light .reveal-game-section .reveal-card-face {
-    background-color: var(--primary-light);
-}
-
-/* Back face rotation */
-.reveal-game-section .reveal-card-back {
-    transform: rotateY(180deg);
 }
 
 /* Z-index management */
@@ -1923,6 +1940,107 @@ img, video {
     z-index: 10;
 }
 
+/* Center circle icon container - matches project card logo style */
+.reveal-game-section .reveal-icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Icon inside circle */
+.reveal-game-section .reveal-icon-circle svg {
+    width: 40px;
+    height: 40px;
+}
+
+/* Icon size for FontAwesome */
+.reveal-game-section .reveal-icon-circle i {
+    font-size: 2rem;
+}
+
+/* Front face (unrevealed) - icon color */
+.reveal-game-section .reveal-card-face:not(.reveal-card-back) .reveal-icon-circle i {
+    color: var(--accent-color);
+}
+
+/* Back face (revealed) - icon color */
+.reveal-game-section .reveal-card-back .reveal-icon-circle i {
+    color: var(--accent-color);
+}
+
+/* Text content styling */
+.reveal-game-section .reveal-card-title {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: 0.01em;
+}
+
+/* Front face (unrevealed) - orange title on dark background */
+.reveal-game-section .reveal-card-face:not(.reveal-card-back) .reveal-card-title {
+    color: var(--accent-color);
+}
+
+/* Back face (revealed) - dark title on orange background */
+.reveal-game-section .reveal-card-back .reveal-card-title {
+    color: var(--primary-dark);
+}
+
+/* Description text on back face */
+.reveal-game-section .reveal-card-back p {
+    font-size: 0.875rem;
+    color: var(--primary-dark);
+    opacity: 0.9;
+    text-align: center;
+    line-height: 1.6;
+    max-width: 280px;
+}
+
+/* Light theme adjustments */
+.light .reveal-game-section .reveal-card-face:not(.reveal-card-back) .reveal-card-title {
+    color: var(--accent-color);
+}
+
+.light .reveal-game-section .reveal-card-back .reveal-card-title {
+    color: var(--primary-dark);
+}
+
+/* Corner labels styling */
+.reveal-game-section .reveal-corner-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* Front face corner labels - orange on dark background */
+.reveal-game-section .reveal-card-face:not(.reveal-card-back) .reveal-corner-label {
+    color: var(--accent-color);
+    opacity: 0.9;
+}
+
+/* Back face corner labels - dark on orange background */
+.reveal-game-section .reveal-card-back .reveal-corner-label {
+    color: var(--primary-dark);
+    opacity: 0.7;
+}
+
+/* Light theme corner labels */
+.light .reveal-game-section .reveal-card-face:not(.reveal-card-back) .reveal-corner-label {
+    color: var(--accent-color);
+}
+
+.light .reveal-game-section .reveal-card-back .reveal-corner-label {
+    color: var(--primary-dark);
+}
+
 /* Text wrapping to prevent overflow */
 .reveal-game-section .reveal-card-face p {
     word-wrap: break-word;
@@ -1930,28 +2048,32 @@ img, video {
     hyphens: auto;
 }
 
-/* Keyframe for pixel pop animation */
-@keyframes reveal-pixel-pop {
+/* Corner labels styling */
+.reveal-game-section .reveal-corner-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    opacity: 0.7;
+}
+
+/* Keyframe for icon pop animation */
+@keyframes reveal-icon-pop {
     0% {
-        transform: scale(0);
+        transform: scale(0) rotate(-180deg);
         opacity: 0;
     }
-    80% {
-        transform: scale(1.1);
-        opacity: 1;
+    60% {
+        transform: scale(1.2) rotate(10deg);
     }
     100% {
-        transform: scale(1);
+        transform: scale(1) rotate(0deg);
         opacity: 1;
     }
 }
 
-/* Pixel dot animation */
-.reveal-game-section .reveal-pixel-dot {
-    animation-name: reveal-pixel-pop;
-    animation-duration: 0.15s;
-    animation-timing-function: ease-out;
-    animation-fill-mode: backwards;
+/* Icon animation */
+.reveal-game-section .reveal-icon-animated {
+    animation: reveal-icon-pop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 /* Mobile responsive adjustments */
@@ -1974,6 +2096,16 @@ img, video {
         min-height: 350px;
         padding: 1.5rem 1rem;
     }
+
+    .reveal-game-section .reveal-icon-circle {
+        width: 64px;
+        height: 64px;
+    }
+
+    .reveal-game-section .reveal-icon-circle svg {
+        width: 32px;
+        height: 32px;
+    }
 }
 
 /* Tablet adjustments */
@@ -1989,5 +2121,15 @@ img, video {
 
     .reveal-game-section .reveal-card-face {
         min-height: 380px;
+    }
+
+    .reveal-game-section .reveal-icon-circle {
+        width: 72px;
+        height: 72px;
+    }
+
+    .reveal-game-section .reveal-icon-circle svg {
+        width: 36px;
+        height: 36px;
     }
 }
