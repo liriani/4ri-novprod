@@ -1827,6 +1827,105 @@ img, video {
 }
 
 /* =========================================================================
+   Home Page Card Pile - Clickable to About (No Conflicts)
+   ========================================================================= */
+
+/* Main section container */
+.home-card-pile-section {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
+/* Card pile wrapper */
+.home-card-pile-wrapper {
+    width: 100%;
+    height: 320px;
+}
+
+/* Card pile container */
+.home-card-pile {
+    width: 280px;
+    height: 240px;
+    max-width: 90vw;
+}
+
+/* Individual pile cards - created by JS */
+.home-pile-card {
+    position: absolute;
+    width: 140px;
+    height: 200px;
+    background: linear-gradient(135deg, var(--accent-color) 0%, #ff8c3a 100%);
+    border: 2px solid var(--primary-light);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 10px 30px rgba(255, 107, 0, 0.3);
+    cursor: pointer;
+    transition: transform 100ms ease-out;
+    will-change: transform;
+}
+
+.light .home-pile-card {
+    background: linear-gradient(135deg, var(--accent-color) 0%, #ff8c3a 100%);
+    border-color: var(--primary-dark);
+}
+
+/* Card content styling */
+.home-pile-card-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    user-select: none;
+    pointer-events: none;
+}
+
+.home-pile-card-icon {
+    font-size: 1.75rem;
+    color: var(--primary-light);
+    margin-bottom: 0.5rem;
+}
+
+.home-pile-card-text {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--primary-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    .home-card-pile-section {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .home-card-pile-wrapper {
+        height: 280px;
+    }
+
+    .home-card-pile {
+        width: 240px;
+        height: 200px;
+    }
+
+    .home-pile-card {
+        width: 120px;
+        height: 180px;
+    }
+
+    .home-pile-card-icon {
+        font-size: 1.5rem;
+    }
+
+    .home-pile-card-text {
+        font-size: 0.65rem;
+    }
+}
+
+/* =========================================================================
    Interactive Reveal Card Game - Project Card Style (No Conflicts)
    ========================================================================= */
 
