@@ -360,5 +360,49 @@ function closeRevealModal() {
 window.closeRevealModal = closeRevealModal;
 
 // ============================================================================
+// SPLASH SCREEN INITIALIZATION
+// ============================================================================
+
+/**
+ * Initialize the splash screen for the reveal game
+ * Shows a stacked card cover that transitions to the game grid
+ */
+function initRevealGameSplash() {
+    const splashScreen = document.getElementById('reveal-splash-screen');
+    const gameContent = document.getElementById('reveal-game-content');
+
+    if (!splashScreen || !gameContent) {
+        console.warn('Splash screen or game content not found');
+        return;
+    }
+
+    // Start game on click
+    splashScreen.addEventListener('click', startRevealGame);
+
+    function startRevealGame() {
+        // Hide splash screen
+        splashScreen.classList.add('hidden');
+
+        // Show game content after brief delay
+        setTimeout(() => {
+            gameContent.classList.add('active');
+        }, 300);
+
+        // Remove splash screen from DOM after animation
+        setTimeout(() => {
+            splashScreen.style.display = 'none';
+        }, 800);
+    }
+}
+
+// Initialize splash screen when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initRevealGameSplash);
+} else {
+    // DOM already loaded
+    initRevealGameSplash();
+}
+
+// ============================================================================
 // UPDATE RENDER GRID TO SHOW MODAL
 // ============================================================================

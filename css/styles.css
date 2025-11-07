@@ -2300,12 +2300,159 @@ body.reveal-modal-open {
         font-size: 1.5rem;
     }
 
-    .reveal-modal-content h3 {
-        font-size: 1.25rem;
-    }
-
     .reveal-modal-content p {
         font-size: 0.875rem;
     }
 }
 
+/* =========================================================================
+   Reveal Game - Splash Screen / Cover (No Conflicts)
+   ========================================================================= */
+
+/* Splash screen container - centered full view */
+.reveal-splash-screen {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 2rem;
+    cursor: pointer;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal-splash-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.9);
+}
+
+/* Stack of cards effect */
+.reveal-card-stack {
+    position: relative;
+    width: 280px;
+    height: 420px;
+    transition: all 0.3s ease;
+}
+
+.reveal-splash-screen:hover .reveal-card-stack {
+    transform: scale(1.05);
+}
+
+/* Individual stacked cards */
+.reveal-stacked-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-dark);
+    border: 2px solid var(--accent-color);
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.light .reveal-stacked-card {
+    background: var(--primary-light);
+    border-color: var(--accent-color);
+}
+
+/* Stack positioning - slight offsets */
+.reveal-stacked-card:nth-child(1) {
+    transform: rotate(-3deg) translateY(0px);
+    z-index: 3;
+}
+
+.reveal-stacked-card:nth-child(2) {
+    transform: rotate(2deg) translateY(-5px);
+    z-index: 2;
+}
+
+.reveal-stacked-card:nth-child(3) {
+    transform: rotate(-1deg) translateY(-10px);
+    z-index: 1;
+}
+
+/* Hover effect - cards spread slightly */
+.reveal-splash-screen:hover .reveal-stacked-card:nth-child(1) {
+    transform: rotate(-5deg) translateY(-10px) translateX(-5px);
+}
+
+.reveal-splash-screen:hover .reveal-stacked-card:nth-child(2) {
+    transform: rotate(3deg) translateY(-5px);
+}
+
+.reveal-splash-screen:hover .reveal-stacked-card:nth-child(3) {
+    transform: rotate(-2deg) translateY(0px) translateX(5px);
+}
+
+/* Content on splash cards */
+.reveal-splash-content {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.reveal-splash-title {
+    font-family: var(--font-family-display), sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+    letter-spacing: 0.05em;
+}
+
+.reveal-splash-hint {
+    font-size: var(--font-size-xs);
+    color: var(--secondary-text-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.8;
+}
+
+.light .reveal-splash-hint {
+    color: var(--secondary-text-light);
+}
+
+/* Icon on splash card */
+.reveal-splash-icon {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+/* Game content wrapper - initially hidden */
+.reveal-game-content {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease 0.3s;
+    transform: translateY(20px);
+}
+
+.reveal-game-content.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    .reveal-card-stack {
+        width: 240px;
+        height: 360px;
+    }
+
+    .reveal-splash-screen {
+        min-height: 400px;
+    }
+
+    .reveal-splash-title {
+        font-size: 1.5rem;
+    }
+
+    .reveal-splash-icon {
+        font-size: 2.5rem;
+    }
+}
