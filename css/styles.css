@@ -2133,3 +2133,179 @@ img, video {
         height: 36px;
     }
 }
+
+/* =========================================================================
+   Reveal Game Modal - Celebration Modal (No Conflicts)
+   ========================================================================= */
+
+/* Prevent scrolling when modal is active */
+body.reveal-modal-open {
+    overflow: hidden;
+}
+
+/* Modal Backdrop */
+.reveal-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.reveal-modal-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Modal Content Box */
+.reveal-modal-content {
+    position: relative;
+    max-width: 600px;
+    margin: 0 1rem;
+    padding: 3rem 2rem;
+    background-color: var(--primary-dark);
+    border: 2px solid var(--accent-color);
+    border-radius: 1rem;
+    transform: scale(0.8);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease;
+}
+
+.reveal-modal-backdrop.active .reveal-modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Light theme modal */
+.light .reveal-modal-content {
+    background-color: var(--primary-light);
+    border-color: var(--accent-color);
+}
+
+/* Close Button */
+.reveal-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: none;
+    color: var(--accent-color);
+    transition: opacity 0.3s ease;
+    padding: 0.25rem 0.5rem;
+}
+
+.reveal-modal-close:hover {
+    opacity: 0.7;
+}
+
+/* Confetti Animation */
+@keyframes reveal-confetti-fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.reveal-confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-color);
+    opacity: 0;
+    animation: reveal-confetti-fall 4s linear infinite;
+}
+
+/* Different colors and delays for confetti */
+.reveal-confetti:nth-child(2n) {
+    background-color: #ff6347;
+    animation-delay: 0.5s;
+    left: 10%;
+}
+
+.reveal-confetti:nth-child(3n) {
+    background-color: #3cb371;
+    animation-delay: 1.2s;
+    left: 20%;
+}
+
+.reveal-confetti:nth-child(4n) {
+    background-color: #4682b4;
+    animation-delay: 2.1s;
+    left: 30%;
+}
+
+.reveal-confetti:nth-child(5n) {
+    background-color: #ffd700;
+    animation-delay: 0.9s;
+    left: 40%;
+}
+
+.reveal-confetti:nth-child(6n) {
+    background-color: #ff69b4;
+    animation-delay: 3.5s;
+    left: 50%;
+}
+
+.reveal-confetti:nth-child(7n) {
+    background-color: #00ffff;
+    animation-delay: 1.8s;
+    left: 60%;
+}
+
+.reveal-confetti:nth-child(8n) {
+    background-color: #9400d3;
+    animation-delay: 0.2s;
+    left: 70%;
+}
+
+.reveal-confetti:nth-child(9n) {
+    background-color: var(--accent-color);
+    animation-delay: 2.7s;
+    left: 80%;
+}
+
+.reveal-confetti:nth-child(10n) {
+    background-color: #ff6347;
+    animation-delay: 1.4s;
+    left: 90%;
+}
+
+.reveal-modal-backdrop.active .reveal-confetti {
+    opacity: 1;
+}
+
+/* Modal responsive */
+@media (max-width: 640px) {
+    .reveal-modal-content {
+        padding: 2rem 1.5rem;
+        margin: 0 1rem;
+    }
+
+    .reveal-modal-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .reveal-modal-content h3 {
+        font-size: 1.25rem;
+    }
+
+    .reveal-modal-content p {
+        font-size: 0.875rem;
+    }
+}
+
