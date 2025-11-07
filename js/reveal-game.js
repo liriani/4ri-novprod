@@ -61,6 +61,10 @@ function getRevealedCardCount() {
  * Resets the reveal game state
  */
 function resetRevealCards() {
+    // Close modal if open
+    closeRevealModal();
+
+    // Reset all cards
     revealCardsState = revealCardsState.map(state => ({
         ...state,
         isFlipped: false,
@@ -227,6 +231,13 @@ function renderRevealGrid() {
     ctaCard.classList.toggle('hidden', !allRevealed);
     resetButton.classList.toggle('hidden', !allRevealed);
 
+    // Show modal when all cards are revealed
+    if (allRevealed) {
+        setTimeout(() => {
+            showRevealModal();
+        }, 800); // Delay to let the last card flip animation finish
+    }
+
     grid.innerHTML = '';
 
     revealCardsState.forEach((state, index) => {
@@ -256,3 +267,98 @@ if (revealAboutPage) {
 // Add click handler for reset button
 document.getElementById('reveal-reset-button')?.addEventListener('click', resetRevealCards);
 
+// ============================================================================
+// REVEAL GAME MODAL FUNCTIONS
+// ============================================================================
+
+/**
+ * Creates a heart pixel icon for the modal
+ */
+function createHeartPixelIcon() {
+    const heartPixels = [
+        [0, 1, 1, 0, 1, 1, 0],
+        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1],
+        [0, 1, 1, 1, 1, 1, 0],
+        [0, 0, 1, 1, 1, 0, 0],
+        [0, 0, 0, 1, 0, 0, 0]
+    ];
+
+    // Create SVG container
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    const size = 10;
+    const rows = heartPixels.length;
+    const cols = heartPixels[0].length;
+
+    svg.setAttribute("width", cols * size);
+    svg.setAttribute("height", rows * size);
+    svg.setAttribute("viewBox", `0 0 ${cols * size} ${rows * size}`);
+    svg.style.display = "inline-block";
+
+    // Create pixels
+    heartPixels.forEach((row, rowIndex) => {
+        row.forEach((pixel, colIndex) => {
+            if (pixel === 1) {
+                const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                const cx = colIndex * size + size / 2;
+                const cy = rowIndex * size + size / 2;
+
+                circle.setAttribute("cx", cx);
+                circle.setAttribute("cy", cy);
+                circle.setAttribute("r", size / 2.5);
+                circle.setAttribute("fill", "var(--accent-color)");
+
+                // Add animation
+                circle.style.animation = "reveal-icon-pop 0.15s ease-out backwards";
+                circle.style.animationDelay = `${(rowIndex * cols + colIndex) * 0.03}s`;
+
+                svg.appendChild(circle);
+            }
+        });
+    });
+
+    return svg;
+}
+
+/**
+ * Shows the modal when all cards are revealed
+ */
+function showRevealModal() {
+    const modalBackdrop = document.getElementById('reveal-cta-modal-backdrop');
+    const modalIconContainer = document.getElementById('reveal-modal-icon');
+
+    if (!modalBackdrop || !modalIconContainer) {
+        console.warn('Modal elements not found');
+        return;
+    }
+
+    // Clear and add heart icon
+    modalIconContainer.innerHTML = '';
+    modalIconContainer.appendChild(createHeartPixelIcon());
+
+    // Show modal with animation
+    modalBackdrop.classList.add('active');
+    document.body.classList.add('reveal-modal-open');
+}
+
+/**
+ * Closes the modal
+ */
+function closeRevealModal() {
+    const modalBackdrop = document.getElementById('reveal-cta-modal-backdrop');
+
+    if (modalBackdrop) {
+        modalBackdrop.classList.remove('active');
+        document.body.classList.remove('reveal-modal-open');
+    }
+
+    // Optionally reset the game
+    // resetRevealCards();
+}
+
+// Make closeRevealModal available globally
+window.closeRevealModal = closeRevealModal;
+
+// ============================================================================
+// UPDATE RENDER GRID TO SHOW MODAL
+// ============================================================================
