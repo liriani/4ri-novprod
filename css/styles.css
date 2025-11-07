@@ -233,7 +233,7 @@ img, video {
 .section-subtitle {
     font-size: 1.125rem;
     line-height: 1.75rem;
-    color: var(--text-secondary);
+    color: var(--primary-dark);
 }
 
 .hero-title {
@@ -2319,7 +2319,6 @@ body.reveal-modal-open {
     margin: 0 auto;
     max-width: 1200px;
     padding: 2rem;
-    cursor: pointer;
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
@@ -2329,105 +2328,91 @@ body.reveal-modal-open {
     transform: scale(0.9);
 }
 
-/* Stack of cards effect */
-.reveal-card-stack {
-    position: relative;
-    width: 280px;
-    height: 420px;
-    transition: all 0.3s ease;
-}
-
-.reveal-splash-screen:hover .reveal-card-stack {
-    transform: scale(1.05);
-}
-
-/* Individual stacked cards */
-.reveal-stacked-card {
-    position: absolute;
+/* Card pile wrapper */
+.reveal-card-pile-wrapper {
     width: 100%;
-    height: 100%;
-    background: var(--primary-dark);
+    height: 320px;
+}
+
+/* Card pile container */
+.reveal-card-pile {
+    width: 384px;
+    height: 280px;
+    max-width: 90vw;
+}
+
+/* Individual pile cards - created by JS */
+.reveal-pile-card {
+    position: absolute;
+    width: 160px;
+    height: 220px;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, #1a1b1b 100%);
     border: 2px solid var(--accent-color);
     border-radius: var(--border-radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 120ms linear;
+    will-change: transform;
 }
 
-.light .reveal-stacked-card {
-    background: var(--primary-light);
+.light .reveal-pile-card {
+    background: linear-gradient(135deg, var(--primary-light) 0%, #f0f0f0 100%);
     border-color: var(--accent-color);
 }
 
-/* Stack positioning - slight offsets */
-.reveal-stacked-card:nth-child(1) {
-    transform: rotate(-3deg) translateY(0px);
-    z-index: 3;
-}
-
-.reveal-stacked-card:nth-child(2) {
-    transform: rotate(2deg) translateY(-5px);
-    z-index: 2;
-}
-
-.reveal-stacked-card:nth-child(3) {
-    transform: rotate(-1deg) translateY(-10px);
-    z-index: 1;
-}
-
-/* Hover effect - cards spread slightly */
-.reveal-splash-screen:hover .reveal-stacked-card:nth-child(1) {
-    transform: rotate(-5deg) translateY(-10px) translateX(-5px);
-}
-
-.reveal-splash-screen:hover .reveal-stacked-card:nth-child(2) {
-    transform: rotate(3deg) translateY(-5px);
-}
-
-.reveal-splash-screen:hover .reveal-stacked-card:nth-child(3) {
-    transform: rotate(-2deg) translateY(0px) translateX(5px);
-}
-
-/* Content on splash cards */
-.reveal-splash-content {
+/* Card content styling */
+.reveal-pile-card-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
     text-align: center;
-    padding: 1.5rem;
+    user-select: none;
+    pointer-events: none;
 }
 
-.reveal-splash-title {
-    font-family: var(--font-family-display), sans-serif;
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
+.reveal-pile-card-icon {
+    font-size: 2rem;
     color: var(--accent-color);
+    margin-bottom: 0.5rem;
+}
+
+.reveal-pile-card-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
-.reveal-splash-hint {
-    font-size: var(--font-size-xs);
-    color: var(--secondary-text-dark);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.8;
-}
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    .reveal-card-pile-wrapper {
+        height: 280px;
+    }
 
-.light .reveal-splash-hint {
-    color: var(--secondary-text-light);
-}
+    .reveal-card-pile {
+        width: 288px;
+        height: 224px;
+    }
 
-/* Icon on splash card */
-.reveal-splash-icon {
-    font-size: 3rem;
-    color: var(--accent-color);
-    margin-bottom: 1rem;
+    .reveal-splash-screen {
+        min-height: 400px;
+    }
+
+    .reveal-pile-card {
+        width: 140px;
+        height: 200px;
+    }
 }
 
 /* Game content wrapper - initially hidden */
 .reveal-game-content {
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.6s ease 0.3s;
+    transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
     transform: translateY(20px);
 }
 
@@ -2435,24 +2420,4 @@ body.reveal-modal-open {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
-}
-
-/* Mobile adjustments */
-@media (max-width: 767px) {
-    .reveal-card-stack {
-        width: 240px;
-        height: 360px;
-    }
-
-    .reveal-splash-screen {
-        min-height: 400px;
-    }
-
-    .reveal-splash-title {
-        font-size: 1.5rem;
-    }
-
-    .reveal-splash-icon {
-        font-size: 2.5rem;
-    }
 }
