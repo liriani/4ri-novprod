@@ -16,17 +16,17 @@ const revealCardIcons = {
 };
 
 const revealInitialCardsData = [
-    { id: 1, type: "PROCESS", nvlCode: "NVL-101", icon: revealCardIcons.approach,
+    { id: 1, type: "PROCESS", nvlCode: "LIRI.", icon: revealCardIcons.approach,
        question: "What's my approach?", description: "User-first thinking combined with data-driven decisions." },
-    { id: 2, type: "AESTHETIC", nvlCode: "NVL-102", icon: revealCardIcons.style,
+    { id: 2, type: "AESTHETIC", nvlCode: "LIRI.", icon: revealCardIcons.style,
        question: "What's my style?", description: "Clean, minimal interfaces with delightful micro-interactions." },
-    { id: 3, type: "TECH", nvlCode: "NVL-103", icon: revealCardIcons.build,
+    { id: 3, type: "TECH", nvlCode: "LIRI.", icon: revealCardIcons.build,
        question: "What do I build?", description: "Scalable web apps with React, TypeScript, and modern tooling." },
-    { id: 4, type: "SKILL", nvlCode: "NVL-104", icon: revealCardIcons.learn,
+    { id: 4, type: "SKILL", nvlCode: "LIRI.", icon: revealCardIcons.learn,
        question: "What motivates me?", description: "A constant drive to learn new frameworks and design patterns.", categoryLabel: "LEARN" },
-    { id: 5, type: "COLLAB", nvlCode: "NVL-105", icon: revealCardIcons.work,
+    { id: 5, type: "COLLAB", nvlCode: "LIRI.", icon: revealCardIcons.work,
        question: "How do I work?", description: "Cross-functional collaboration with designers and engineers." },
-    { id: 6, type: "GOAL", nvlCode: "NVL-106", icon: revealCardIcons.impact,
+    { id: 6, type: "GOAL", nvlCode: "LIRI.", icon: revealCardIcons.impact,
        question: "What's my goal?", description: "To create products that solve real problems for large user bases.", categoryLabel: "IMPACT" },
 ];
 
