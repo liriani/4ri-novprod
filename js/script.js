@@ -319,6 +319,12 @@ After testing initial design alternatives, we refined the product through two it
 }
 }
 
+    // Expose global navigation helper for external scripts (hero pile cards)
+    window.handlePageChange = function(pageId) {
+        window.location.hash = pageId;
+        showPage(pageId);
+    };
+
     // Project Detail Page Logic
     const projectCards = document.querySelectorAll('.project-card');
 
@@ -626,5 +632,4 @@ After testing initial design alternatives, we refined the product through two it
 });
 });
 }
-
 });

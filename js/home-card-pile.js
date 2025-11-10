@@ -69,6 +69,14 @@ function initHomeCardPile() {
             }
         });
 
+        el.addEventListener('click', () => {
+            if (window.handlePageChange) {
+                window.handlePageChange('about');
+            } else {
+                location.hash = '#about';
+            }
+        });
+
         pile.appendChild(el);
         cards.push(el);
         velocities.set(el, { vx: 0, vy: 0 });
