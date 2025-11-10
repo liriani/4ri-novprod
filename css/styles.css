@@ -72,6 +72,11 @@
     --z-modal: 1100;
     --z-header: 1200;
     --z-cursor: 9999;
+
+    /* Shared pattern card variables */
+    --pattern-card-width: 140px;
+    --pattern-card-height: 200px;
+    --pattern-card-radius: var(--border-radius-md);
 }
 
 /* =========================================================================
@@ -562,7 +567,7 @@ img, video {
     background: var(--primary-dark);
     border: 1px solid var(--border-color-light);
     border-radius: var(--border-radius-md);
-    box-shadow: 0 4px 24px var(--shadow-light);
+    /*box-shadow: 0 4px 24px var(--shadow-light);*/
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-xl);
     transition: box-shadow var(--transition-normal),
@@ -1887,8 +1892,8 @@ img, video {
   left: 50%; top: 50%;
   margin-left: -70px; margin-top: -100px; /* center offset */
   width: 140px; height: 200px;
-  background: linear-gradient(135deg, var(--accent-color) 0%, #ff8c3a 100%);
-  border: 2px solid var(--primary-light);
+  background: var(--primary-dark); /* unify with About front face */
+  border: 2px solid var(--accent-color); /* match About border */
   border-radius: var(--border-radius-md);
   box-shadow: 0 10px 30px rgba(255,107,0,0.30);
   display: flex; align-items: center; justify-content: center;
@@ -1945,7 +1950,8 @@ img, video {
 .reveal-game-section .reveal-card-inner {
     position: relative;
     width: 100%;
-    min-height: 400px;
+    min-height: var(--pattern-card-height);
+    height: var(--pattern-card-height);
     transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform-style: preserve-3d;
     cursor: none;
@@ -1963,11 +1969,12 @@ img, video {
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 400px;
+    min-height: var(--pattern-card-height);
+    height: var(--pattern-card-height);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     border-radius: var(--border-radius-sm);
-    padding: 2rem 1.5rem;
+    padding: 1rem 0.75rem; /* compact padding */
     border: 1px solid var(--border-color-dark);
     display: flex;
     flex-direction: column;
@@ -2081,7 +2088,9 @@ img, video {
     opacity: 0.9;
     text-align: center;
     line-height: 1.6;
-    max-width: 280px;
+    max-height: 70px;
+    overflow: hidden;
+    margin: 0.25rem 0 0 0;
 }
 
 /* Light theme adjustments */
@@ -2169,22 +2178,22 @@ img, video {
     }
 
     .reveal-game-section .reveal-card-inner {
-        min-height: 350px;
+        min-height: var(--pattern-card-height);
+        height: var(--pattern-card-height);
     }
 
     .reveal-game-section .reveal-card-face {
-        min-height: 350px;
-        padding: 1.5rem 1rem;
+        min-height: var(--pattern-card-height);
+        height: var(--pattern-card-height);
     }
 
     .reveal-game-section .reveal-icon-circle {
-        width: 64px;
-        height: 64px;
+        width: 48px;
+        height: 48px;
     }
 
-    .reveal-game-section .reveal-icon-circle svg {
-        width: 32px;
-        height: 32px;
+    .reveal-game-section .reveal-icon-circle i {
+        font-size: 1.2rem;
     }
 }
 
