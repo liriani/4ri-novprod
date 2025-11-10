@@ -14,8 +14,15 @@ function initHomeCardPile() {
         return;
     }
 
-    const CARD_COUNT = 6; // Smaller pile for home page
+    // Physics constants
+    const CARD_COUNT = 6;
+    const FRICTION = 0.92;
+    const REPEL_STRENGTH = 40;
+    const REPEL_MULTIPLIER = 0.03; // Reduced from 0.05 for smoother movement
+    const MAX_DISTANCE = 120;
+
     const cards = [];
+    const velocities = new Map(); // Track velocity for each card
 
     // Simple text labels for About page CTA
     const labels = [
@@ -33,125 +40,118 @@ function initHomeCardPile() {
     // Create cards with randomized offset and rotation
     for (let i = 0; i < CARD_COUNT; i++) {
         const el = document.createElement('div');
-        el.className = 'home-pile-card';
+        el.className = 'home-pile-card page-link';
         el.setAttribute('role', 'button');
         el.setAttribute('tabindex', '0');
         el.setAttribute('aria-label', 'Navigate to About page');
+        el.setAttribute('data-page', 'about');
 
-        el.style.left = '50%';
-        el.style.top = '50%';
+        const offsetX = (Math.random() - 0.5) * 160; // wider scatter
+        const offsetY = (Math.random() - 0.5) * 120;
+        const rot = (Math.random() - 0.5) * 25;
 
-        const offsetX = Math.round((Math.random() * 80) - 40); // -40..40 (smaller range for home)
-        const offsetY = Math.round((Math.random() * 40) - 20); // -20..20
-        const rot = Math.round((Math.random() * 30) - 15);     // -15..15 deg
-
-        el.style.transform = `translate(-50%,-50%) translate(${offsetX}px, ${offsetY}px) rotate(${rot}deg)`;
-        el.style.zIndex = `${i}`;
-
-        el.dataset.baseX = offsetX;
-        el.dataset.baseY = offsetY;
         el.dataset.baseRot = rot;
+        el.style.zIndex = `${i}`;
+        el.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rot}deg)`;
 
-        // Card content with icon and text
         const content = document.createElement('div');
         content.className = 'home-pile-card-content';
         content.innerHTML = `
             <i class="fas ${icons[i]} home-pile-card-icon"></i>
             <div class="home-pile-card-text">${labels[i]}</div>
         `;
-
         el.appendChild(content);
 
-        // Click navigates to About page
-        el.addEventListener('click', navigateToAbout);
-
-        // Keyboard activation
         el.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                navigateToAbout();
+                el.click();
             }
         });
 
         pile.appendChild(el);
         cards.push(el);
+        velocities.set(el, { vx: 0, vy: 0 });
     }
 
-    // Navigate to About page function
-    function navigateToAbout() {
-        // Use the existing page navigation system
-        if (window.handlePageChange) {
-            window.handlePageChange('about');
-        } else {
-            // Fallback to hash navigation
-            window.location.hash = '#about';
-        }
+    // Physics loop using current transform matrix (avoids dataset drift)
+    function updatePhysics() {
+        cards.forEach(card => {
+            const vel = velocities.get(card);
+            vel.vx *= FRICTION;
+            vel.vy *= FRICTION;
+            const MAX_VELOCITY = 10;
+            vel.vx = Math.max(-MAX_VELOCITY, Math.min(MAX_VELOCITY, vel.vx));
+            vel.vy = Math.max(-MAX_VELOCITY, Math.min(MAX_VELOCITY, vel.vy));
+
+            // Read current translation from matrix
+            const matrix = new DOMMatrixReadOnly(getComputedStyle(card).transform);
+            let tx = matrix.m41;
+            let ty = matrix.m42;
+            // Apply velocity
+            tx += vel.vx;
+            ty += vel.vy;
+
+            // Snap very small velocities to zero to stop micro-jitter
+            if (Math.abs(vel.vx) < 0.005) vel.vx = 0;
+            if (Math.abs(vel.vy) < 0.005) vel.vy = 0;
+
+            const rot = card.dataset.baseRot;
+            card.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot}deg)`;
+        });
+        requestAnimationFrame(updatePhysics);
     }
 
-    // Mouse avoidance: cards move away from cursor
+    setTimeout(updatePhysics, 50);
+
+    // Mouse avoidance with dead-zone & softened force near center
+    let lastMouseMove = 0;
     pile.addEventListener('mousemove', (e) => {
+        const now = performance.now();
+        if (now - lastMouseMove < 16) return; // throttle ~60fps
+        lastMouseMove = now;
+
         const rect = pile.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const mouseX = e.clientX - cx;
-        const mouseY = e.clientY - cy;
+        const mx = e.clientX - rect.left;
+        const my = e.clientY - rect.top;
 
-        cards.forEach((el) => {
-            const baseX = parseFloat(el.dataset.baseX);
-            const baseY = parseFloat(el.dataset.baseY);
-            const baseRot = parseFloat(el.dataset.baseRot);
+        cards.forEach(card => {
+            const cardRect = card.getBoundingClientRect();
+            const cx = cardRect.left + cardRect.width / 2 - rect.left;
+            const cy = cardRect.top + cardRect.height / 2 - rect.top;
+            const dx = mx - cx;
+            const dy = my - cy;
+            let dist = Math.hypot(dx, dy);
 
-            // Get card center position
-            const cardRect = el.getBoundingClientRect();
-            const cardCenterX = (cardRect.left + cardRect.right) / 2 - cx;
-            const cardCenterY = (cardRect.top + cardRect.bottom) / 2 - cy;
+            // Dead-zone: if inside the card area, reduce force drastically
+            const DEAD_ZONE_RADIUS = 70; // roughly card half-diagonal
+            if (dist < DEAD_ZONE_RADIUS) {
+                // Scale distance up to soften force
+                dist = DEAD_ZONE_RADIUS + (dist / DEAD_ZONE_RADIUS) * 10; // gentle push
+            }
 
-            // Distance from cursor to card center
-            const dx = cardCenterX - mouseX;
-            const dy = cardCenterY - mouseY;
-            const dist = Math.hypot(dx, dy);
+            const strength = Math.max(0, 1 - dist / MAX_DISTANCE);
+            if (strength <= 0) return;
 
-            // Increased effect radius and stronger repulsion
-            const maxEffect = 150; // Same as About page
-            const effect = Math.max(0, Math.min(1, (maxEffect - dist) / maxEffect));
+            const repel = REPEL_STRENGTH * strength;
+            const angle = Math.atan2(dy, dx);
+            // Force direction opposite of cursor -> card vector
+            const pushX = -Math.cos(angle) * repel * REPEL_MULTIPLIER;
+            const pushY = -Math.sin(angle) * repel * REPEL_MULTIPLIER;
 
-            // Stronger movement with exponential falloff
-            const intensity = Math.pow(effect, 0.7);
-            const moveX = dx * 0.4 * intensity;
-            const moveY = dy * 0.3 * intensity;
-            const rot = baseRot + moveX * 0.15;
-
-            // Smoother transition
-            el.style.transition = 'transform 100ms ease-out';
-            el.style.transform = `translate(-50%,-50%) translate(${baseX + moveX}px, ${baseY + moveY}px) rotate(${rot}deg)`;
+            const vel = velocities.get(card);
+            vel.vx += pushX;
+            vel.vy += pushY;
         });
     });
 
-    pile.addEventListener('mouseleave', () => {
-        cards.forEach((el) => {
-            const baseX = el.dataset.baseX;
-            const baseY = el.dataset.baseY;
-            const baseRot = el.dataset.baseRot;
-
-            // Smoother spring-like return
-            el.style.transition = 'transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1)';
-            el.style.transform = `translate(-50%,-50%) translate(${baseX}px, ${baseY}px) rotate(${baseRot}deg)`;
-        });
-    });
-
-    // Entrance animation
+    // Entrance fade only (no transform overwrite)
     requestAnimationFrame(() => {
-        cards.forEach((el, i) => {
-            el.style.opacity = '0';
-            el.style.transform += ' scale(0.98)';
+        cards.forEach((card, i) => {
+            card.style.opacity = '0';
             setTimeout(() => {
-                el.style.transition = 'opacity 300ms ease, transform 300ms ease';
-                el.style.opacity = '1';
-                // restore exact base transform after fade
-                const baseX = el.dataset.baseX;
-                const baseY = el.dataset.baseY;
-                const baseRot = el.dataset.baseRot;
-                el.style.transform = `translate(-50%,-50%) translate(${baseX}px, ${baseY}px) rotate(${baseRot}deg)`;
+                card.style.transition = 'opacity 300ms ease';
+                card.style.opacity = '1';
             }, 60 * i);
         });
     });
@@ -164,4 +164,3 @@ if (document.readyState === 'loading') {
     // DOM already loaded
     initHomeCardPile();
 }
-

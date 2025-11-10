@@ -1830,6 +1830,16 @@ img, video {
    Home Page Card Pile - Clickable to About (No Conflicts)
    ========================================================================= */
 
+/* Subtle pulse animation for cards */
+@keyframes home-card-pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
 /* Main section container */
 .home-card-pile-section {
     margin-top: 3rem;
@@ -1852,6 +1862,10 @@ img, video {
 /* Individual pile cards - created by JS */
 .home-pile-card {
     position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -70px; /* Half of width (140px / 2) */
+    margin-top: -100px; /* Half of height (200px / 2) */
     width: 140px;
     height: 200px;
     background: linear-gradient(135deg, var(--accent-color) 0%, #ff8c3a 100%);
@@ -1859,9 +1873,18 @@ img, video {
     border-radius: var(--border-radius-md);
     box-shadow: 0 10px 30px rgba(255, 107, 0, 0.3);
     cursor: pointer;
-    transition: transform 100ms ease-out;
     will-change: transform;
 }
+
+/* Hover effect - add glow */
+.home-pile-card:hover {
+    box-shadow: 0 15px 40px rgba(255, 107, 0, 0.5), 0 0 20px rgba(255, 107, 0, 0.4);
+}
+
+/* Removed pulse animation to avoid transform conflicts with JS physics */
+/* .home-pile-card.pulse-ready:hover {
+    animation: home-card-pulse 2s ease-in-out;
+} */
 
 .light .home-pile-card {
     background: linear-gradient(135deg, var(--accent-color) 0%, #ff8c3a 100%);
@@ -1914,6 +1937,8 @@ img, video {
     .home-pile-card {
         width: 120px;
         height: 180px;
+        margin-left: -60px; /* Half of mobile width (120px / 2) */
+        margin-top: -90px; /* Half of mobile height (180px / 2) */
     }
 
     .home-pile-card-icon {
