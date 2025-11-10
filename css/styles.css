@@ -1848,106 +1848,62 @@ img, video {
 
 /* Card pile wrapper */
 .home-card-pile-wrapper {
+    position: relative;
     width: 100%;
     height: 320px;
 }
 
-/* Card pile container */
-.home-card-pile {
-    width: 280px;
-    height: 240px;
-    max-width: 90vw;
-}
-
-/* Individual pile cards - created by JS */
-.home-pile-card {
+/* Subtle message hidden under the cards */
+.home-pile-easter {
     position: absolute;
     left: 50%;
-    top: 50%;
-    margin-left: -70px; /* Half of width (140px / 2) */
-    margin-top: -100px; /* Half of height (200px / 2) */
-    width: 140px;
-    height: 200px;
-    background: linear-gradient(135deg, var(--accent-color) 0%, #ff8c3a 100%);
-    border: 2px solid var(--primary-light);
-    border-radius: var(--border-radius-md);
-    box-shadow: 0 10px 30px rgba(255, 107, 0, 0.3);
-    cursor: pointer;
-    will-change: transform;
-}
-
-/* Hover effect - add glow */
-.home-pile-card:hover {
-    box-shadow: 0 15px 40px rgba(255, 107, 0, 0.5), 0 0 20px rgba(255, 107, 0, 0.4);
-}
-
-/* Removed pulse animation to avoid transform conflicts with JS physics */
-/* .home-pile-card.pulse-ready:hover {
-    animation: home-card-pulse 2s ease-in-out;
-} */
-
-.light .home-pile-card {
-    background: linear-gradient(135deg, var(--accent-color) 0%, #ff8c3a 100%);
-    border-color: var(--primary-dark);
-}
-
-/* Card content styling */
-.home-pile-card-content {
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    text-align: center;
-    user-select: none;
+    transform: translateX(-50%);
+    z-index: -9999;
     pointer-events: none;
-}
-
-.home-pile-card-icon {
-    font-size: 1.75rem;
-    color: var(--primary-light);
-    margin-bottom: 0.5rem;
-}
-
-.home-pile-card-text {
-    font-size: 0.7rem;
+    user-select: none;
+    font-family: var(--font-family-display), sans-serif;
     font-weight: 700;
-    color: var(--primary-light);
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-size: 0.9rem;
+    color: var(--secondary-text-dark);
+    opacity: 0.25;
 }
 
-/* Mobile adjustments */
+.light .home-pile-easter {
+    color: var(--secondary-text-light);
+    opacity: 0.2;
+}
+
 @media (max-width: 767px) {
-    .home-card-pile-section {
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-    }
+    .home-card-pile-wrapper { height: 280px; }
+    .home-pile-easter { font-size: 0.8rem; top: 0.25rem; }
+}
 
-    .home-card-pile-wrapper {
-        height: 280px;
-    }
-
-    .home-card-pile {
-        width: 240px;
-        height: 200px;
-    }
-
-    .home-pile-card {
-        width: 120px;
-        height: 180px;
-        margin-left: -60px; /* Half of mobile width (120px / 2) */
-        margin-top: -90px; /* Half of mobile height (180px / 2) */
-    }
-
-    .home-pile-card-icon {
-        font-size: 1.5rem;
-    }
-
-    .home-pile-card-text {
-        font-size: 0.65rem;
-    }
+/* Reinstate Home Pile Card visual styles (were removed, causing only icon/text to show) */
+.home-card-pile { width: 280px; height: 240px; max-width: 90vw; position: relative; }
+.home-pile-card {
+  position: absolute;
+  left: 50%; top: 50%;
+  margin-left: -70px; margin-top: -100px; /* center offset */
+  width: 140px; height: 200px;
+  background: linear-gradient(135deg, var(--accent-color) 0%, #ff8c3a 100%);
+  border: 2px solid var(--primary-light);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 10px 30px rgba(255,107,0,0.30);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; will-change: transform; overflow: hidden;
+}
+.light .home-pile-card { border-color: var(--primary-dark); }
+.home-pile-card-content { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; pointer-events:none; user-select:none; padding:0.75rem; text-align:center; }
+.home-pile-card-icon { font-size:1.9rem; color: var(--primary-light); margin-bottom:0.5rem; line-height:1; }
+.home-pile-card-text { font-size:0.72rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color: var(--primary-light); }
+.home-pile-card:hover { box-shadow:0 15px 40px rgba(255,107,0,0.50), 0 0 20px rgba(255,107,0,0.40); }
+@media (max-width:767px){
+  .home-card-pile { width:240px; height:200px; }
+  .home-pile-card { width:120px; height:180px; margin-left:-60px; margin-top:-90px; }
+  .home-pile-card-icon { font-size:1.6rem; }
+  .home-pile-card-text { font-size:0.62rem; }
 }
 
 /* =========================================================================
