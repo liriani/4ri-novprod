@@ -351,132 +351,16 @@ function closeRevealModal() {
     // resetRevealCards();
 }
 
-// Make closeRevealModal available globally
 window.closeRevealModal = closeRevealModal;
 
-// ============================================================================
-// SPLASH SCREEN INITIALIZATION
-// ============================================================================
-
-/**
- * Initialize the splash screen for the reveal game
- * Creates a dynamic card pile with mouse avoidance effect
- */
 function initRevealGameSplash() {
     const splashScreen = document.getElementById('reveal-splash-screen');
     const gameContent = document.getElementById('reveal-game-content');
-    const pile = document.getElementById('reveal-card-pile');
 
-    if (!splashScreen || !gameContent || !pile) {
+    if (!splashScreen || !gameContent) {
         console.warn('Splash screen elements not found');
         return;
     }
-
-    const CARD_COUNT = 8;
-    const cards = [];
-
-    const icons = ['fa-lightbulb', 'fa-palette', 'fa-code', 'fa-graduation-cap', 'fa-users', 'fa-rocket', 'fa-star', 'fa-heart'];
-
-    for (let i = 0; i < CARD_COUNT; i++) {
-        const el = document.createElement('div');
-        el.className = 'reveal-pile-card';
-        el.setAttribute('role', 'button');
-        el.setAttribute('tabindex', '0');
-        el.setAttribute('aria-label', 'Click to start reveal game');
-
-        el.style.left = '50%';
-        el.style.top = '50%';
-
-        const offsetX = Math.round((Math.random() * 120) - 60);
-        const offsetY = Math.round((Math.random() * 60) - 30);
-        const rot = Math.round((Math.random() * 40) - 20);
-
-        el.style.transform = `translate(-50%,-50%) translate(${offsetX}px, ${offsetY}px) rotate(${rot}deg)`;
-        el.style.zIndex = `${i}`;
-
-        el.dataset.baseX = offsetX;
-        el.dataset.baseY = offsetY;
-        el.dataset.baseRot = rot;
-
-        const content = document.createElement('div');
-        content.className = 'reveal-pile-card-content';
-        content.innerHTML = `
-            <i class="fas ${icons[i % icons.length]} reveal-pile-card-icon"></i>
-            <div class="reveal-pile-card-text">Discover</div>
-        `;
-
-        el.appendChild(content);
-
-        el.addEventListener('click', startRevealGame);
-
-        el.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                startRevealGame();
-            }
-        });
-
-        pile.appendChild(el);
-        cards.push(el);
-    }
-
-    pile.addEventListener('mousemove', (e) => {
-        const rect = pile.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const mouseX = e.clientX - cx;
-        const mouseY = e.clientY - cy;
-
-        cards.forEach((el) => {
-            const baseX = parseFloat(el.dataset.baseX);
-            const baseY = parseFloat(el.dataset.baseY);
-            const baseRot = parseFloat(el.dataset.baseRot);
-
-            const cardRect = el.getBoundingClientRect();
-            const cardCenterX = (cardRect.left + cardRect.right) / 2 - cx;
-            const cardCenterY = (cardRect.top + cardRect.bottom) / 2 - cy;
-
-            const dx = cardCenterX - mouseX;
-            const dy = cardCenterY - mouseY;
-            const dist = Math.hypot(dx, dy);
-
-            const maxEffect = 150;
-            const effect = Math.max(0, Math.min(1, (maxEffect - dist) / maxEffect));
-
-            const intensity = Math.pow(effect, 0.7);
-            const moveX = dx * 0.4 * intensity;
-            const moveY = dy * 0.3 * intensity;
-            const rot = baseRot + moveX * 0.15;
-            el.style.transition = 'transform 100ms ease-out';
-            el.style.transform = `translate(-50%,-50%) translate(${baseX + moveX}px, ${baseY + moveY}px) rotate(${rot}deg)`;
-        });
-    });
-
-    pile.addEventListener('mouseleave', () => {
-        cards.forEach((el) => {
-            const baseX = el.dataset.baseX;
-            const baseY = el.dataset.baseY;
-            const baseRot = el.dataset.baseRot;
-
-            el.style.transition = 'transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1)';
-            el.style.transform = `translate(-50%,-50%) translate(${baseX}px, ${baseY}px) rotate(${baseRot}deg)`;
-        });
-    });
-
-    requestAnimationFrame(() => {
-        cards.forEach((el, i) => {
-            el.style.opacity = '0';
-            el.style.transform += ' scale(0.98)';
-            setTimeout(() => {
-                el.style.transition = 'opacity 300ms ease, transform 300ms ease';
-                el.style.opacity = '1';
-                const baseX = el.dataset.baseX;
-                const baseY = el.dataset.baseY;
-                const baseRot = el.dataset.baseRot;
-                el.style.transform = `translate(-50%,-50%) translate(${baseX}px, ${baseY}px) rotate(${baseRot}deg)`;
-            }, 60 * i);
-        });
-    });
 
     function startRevealGame() {
         splashScreen.classList.add('hidden');
@@ -489,6 +373,19 @@ function initRevealGameSplash() {
             splashScreen.style.display = 'none';
         }, 800);
     }
+
+    createCardPile({
+        containerId: 'reveal-card-pile',
+        cardCount: 8,
+        labels: ['Discover', 'Explore', 'Reveal', 'Learn', 'Find Out', 'Click Me', 'Start', 'Begin'],
+        icons: ['fa-lightbulb', 'fa-palette', 'fa-code', 'fa-graduation-cap', 'fa-users', 'fa-rocket', 'fa-star', 'fa-heart'],
+        onClick: startRevealGame,
+        cardClass: 'reveal-pile-card',
+        contentClass: 'reveal-pile-card-content',
+        iconClass: 'reveal-pile-card-icon',
+        textClass: 'reveal-pile-card-text',
+        ariaLabel: 'Click to start reveal game'
+    });
 }
 
 if (document.readyState === 'loading') {
