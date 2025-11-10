@@ -362,28 +362,26 @@ function initRevealGameSplash() {
         return;
     }
 
+    let started = false;
     function startRevealGame() {
+        if (started) return;
+        started = true;
         splashScreen.classList.add('hidden');
-
-        setTimeout(() => {
-            gameContent.classList.add('active');
-        }, 300);
-
-        setTimeout(() => {
-            splashScreen.style.display = 'none';
-        }, 800);
+        setTimeout(() => { gameContent.classList.add('active'); }, 300);
+        setTimeout(() => { splashScreen.style.display = 'none'; }, 800);
     }
 
+    const { LABELS, ICONS } = window.CARD_PILE_CONTENT || { LABELS: [], ICONS: [] };
     createCardPile({
         containerId: 'reveal-card-pile',
-        cardCount: 8,
-        labels: ['Discover', 'Explore', 'Reveal', 'Learn', 'Find Out', 'Click Me', 'Start', 'Begin'],
-        icons: ['fa-lightbulb', 'fa-palette', 'fa-code', 'fa-graduation-cap', 'fa-users', 'fa-rocket', 'fa-star', 'fa-heart'],
+        cardCount: LABELS.length,
+        labels: LABELS,
+        icons: ICONS,
         onClick: startRevealGame,
-        cardClass: 'reveal-pile-card',
-        contentClass: 'reveal-pile-card-content',
-        iconClass: 'reveal-pile-card-icon',
-        textClass: 'reveal-pile-card-text',
+        cardClass: 'home-pile-card',
+        contentClass: 'home-pile-card-content',
+        iconClass: 'home-pile-card-icon',
+        textClass: 'home-pile-card-text',
         ariaLabel: 'Click to start reveal game'
     });
 }
@@ -393,4 +391,3 @@ if (document.readyState === 'loading') {
 } else {
     initRevealGameSplash();
 }
-

@@ -1,13 +1,14 @@
 // Home Page Card Pile - Navigate to About Page
 
 function initHomeCardPile() {
+    const { LABELS, ICONS } = window.CARD_PILE_CONTENT || { LABELS: ['About Me','Learn More','My Story','Discover','Click Here','Explore'], ICONS: ['fa-user','fa-heart','fa-star','fa-lightbulb','fa-compass','fa-rocket'] };
     createCardPile({
         containerId: 'home-card-pile',
-        cardCount: 6,
-        labels: ['About Me', 'Learn More', 'My Story', 'Discover', 'Click Here', 'Explore'],
-        icons: ['fa-user', 'fa-heart', 'fa-star', 'fa-lightbulb', 'fa-compass', 'fa-rocket'],
+        cardCount: LABELS.length,
+        labels: LABELS,
+        icons: ICONS,
         onClick: () => {
-            if (window.handlePageChange) {
+            if (typeof window.handlePageChange === 'function') {
                 window.handlePageChange('about');
             } else {
                 location.hash = '#about';
