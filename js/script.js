@@ -1,20 +1,15 @@
-// ============================================================================
-// CUSTOM CURSOR - Runs immediately
-// ============================================================================
+// Custom Cursor
 const cursorOuter = document.querySelector('.cursor-outer');
 const cursorInner = document.querySelector('.cursor-inner');
 
-// Initialize cursor position
 let cursorMouseX = 0;
 let cursorMouseY = 0;
 
-// Only run if cursors exist (i.e., not on mobile)
 if (cursorOuter && cursorInner) {
     document.addEventListener('mousemove', (e) => {
         cursorMouseX = e.clientX;
         cursorMouseY = e.clientY;
 
-        // Use requestAnimationFrame for smoother animation
         requestAnimationFrame(() => {
             cursorOuter.style.transform = `translate(${cursorMouseX - cursorOuter.clientWidth / 2}px, ${cursorMouseY - cursorOuter.clientHeight / 2}px)`;
             cursorInner.style.transform = `translate(${cursorMouseX - cursorInner.clientWidth / 2}px, ${cursorMouseY - cursorInner.clientHeight / 2}px)`;
@@ -290,24 +285,17 @@ After testing initial design alternatives, we refined the product through two it
     // Reset scroll position for new page
     window.scrollTo(0, 0);
 
-    // --- Text Reveal Logic ---
-    // Check if we are on the 'about' page to trigger text reveal
     if (pageId === 'about') {
     const highlights = activePage.querySelectorAll('.highlight-text');
     highlights.forEach((span, index) => {
-    // Remove old class to allow re-triggering
     span.classList.remove('auto-reveal');
-
-    // Force reflow to restart animation if user clicks back
     void span.offsetWidth;
 
-    // Add class with a delay
     setTimeout(() => {
     span.classList.add('auto-reveal');
-}, index * 200); // 200ms stagger
+}, index * 200);
 });
 } else {
-    // Clean up classes when leaving the page
     const aboutPage = document.getElementById('about-page');
     if (aboutPage) {
     aboutPage.querySelectorAll('.highlight-text').forEach(span => {
@@ -315,7 +303,6 @@ After testing initial design alternatives, we refined the product through two it
 });
 }
 }
-    // --- End Text Reveal Logic ---
 }
 }
 
@@ -440,40 +427,21 @@ After testing initial design alternatives, we refined the product through two it
     link.addEventListener('click', (e) => {
     e.preventDefault();
     const pageId = link.dataset.page;
-    // Update URL hash
     window.location.hash = pageId;
     showPage(pageId);
 });
 });
 
     projectCards.forEach(card => {
-    // Only add click listeners to cards that have a data-project-id
     if (card.dataset.projectId) {
     card.addEventListener('click', () => {
     const projectId = card.dataset.projectId;
-    // Update URL hash for project
     window.location.hash = `project-${projectId}`;
     showProjectDetails(projectId);
 });
 }
 });
 
-    // Contact Form Submission Logic
-    // FIX: Comment out this block to prevent the error
-    /*
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) { // Add a check to prevent errors if form doesn't exist
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            // Simulate form submission
-            setTimeout(() => {
-                showModal('Message Sent!', 'Thanks for reaching out! I will get back to you as soon as possible.');
-                contactForm.reset();
-            }, 1000);
-        });
-    }
-    */
 
     // Modal Logic
     const messageModal = document.getElementById('message-modal');

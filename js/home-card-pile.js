@@ -1,11 +1,5 @@
-// ============================================================================
-// HOME PAGE CARD PILE - Navigate to About Page (No Conflicts)
-// ============================================================================
+// Home Page Card Pile - Navigate to About Page
 
-/**
- * Initialize the home page card pile
- * Creates a dynamic card pile with mouse avoidance effect that navigates to About
- */
 function initHomeCardPile() {
     const pile = document.getElementById('home-card-pile');
 
@@ -14,17 +8,15 @@ function initHomeCardPile() {
         return;
     }
 
-    // Physics constants
     const CARD_COUNT = 6;
     const FRICTION = 0.92;
     const REPEL_STRENGTH = 40;
-    const REPEL_MULTIPLIER = 0.03; // Reduced from 0.05 for smoother movement
+    const REPEL_MULTIPLIER = 0.03;
     const MAX_DISTANCE = 120;
 
     const cards = [];
-    const velocities = new Map(); // Track velocity for each card
+    const velocities = new Map();
 
-    // Simple text labels for About page CTA
     const labels = [
         'About Me',
         'Learn More',
@@ -34,10 +26,8 @@ function initHomeCardPile() {
         'Explore'
     ];
 
-    // Icons for variety
     const icons = ['fa-user', 'fa-heart', 'fa-star', 'fa-lightbulb', 'fa-compass', 'fa-rocket'];
 
-    // Create cards with randomized offset and rotation
     for (let i = 0; i < CARD_COUNT; i++) {
         const el = document.createElement('div');
         el.className = 'home-pile-card page-link';
@@ -46,7 +36,7 @@ function initHomeCardPile() {
         el.setAttribute('aria-label', 'Navigate to About page');
         el.setAttribute('data-page', 'about');
 
-        const offsetX = (Math.random() - 0.5) * 160; // wider scatter
+        const offsetX = (Math.random() - 0.5) * 160;
         const offsetY = (Math.random() - 0.5) * 120;
         const rot = (Math.random() - 0.5) * 25;
 
@@ -82,7 +72,6 @@ function initHomeCardPile() {
         velocities.set(el, { vx: 0, vy: 0 });
     }
 
-    // Physics loop using current transform matrix (avoids dataset drift)
     function updatePhysics() {
         cards.forEach(card => {
             const vel = velocities.get(card);
@@ -92,15 +81,12 @@ function initHomeCardPile() {
             vel.vx = Math.max(-MAX_VELOCITY, Math.min(MAX_VELOCITY, vel.vx));
             vel.vy = Math.max(-MAX_VELOCITY, Math.min(MAX_VELOCITY, vel.vy));
 
-            // Read current translation from matrix
             const matrix = new DOMMatrixReadOnly(getComputedStyle(card).transform);
             let tx = matrix.m41;
             let ty = matrix.m42;
-            // Apply velocity
             tx += vel.vx;
             ty += vel.vy;
 
-            // Snap very small velocities to zero to stop micro-jitter
             if (Math.abs(vel.vx) < 0.005) vel.vx = 0;
             if (Math.abs(vel.vy) < 0.005) vel.vy = 0;
 
@@ -112,11 +98,10 @@ function initHomeCardPile() {
 
     setTimeout(updatePhysics, 50);
 
-    // Mouse avoidance with dead-zone & softened force near center
     let lastMouseMove = 0;
     pile.addEventListener('mousemove', (e) => {
         const now = performance.now();
-        if (now - lastMouseMove < 16) return; // throttle ~60fps
+        if (now - lastMouseMove < 16) return;
         lastMouseMove = now;
 
         const rect = pile.getBoundingClientRect();
@@ -131,11 +116,9 @@ function initHomeCardPile() {
             const dy = my - cy;
             let dist = Math.hypot(dx, dy);
 
-            // Dead-zone: if inside the card area, reduce force drastically
-            const DEAD_ZONE_RADIUS = 70; // roughly card half-diagonal
+            const DEAD_ZONE_RADIUS = 70;
             if (dist < DEAD_ZONE_RADIUS) {
-                // Scale distance up to soften force
-                dist = DEAD_ZONE_RADIUS + (dist / DEAD_ZONE_RADIUS) * 10; // gentle push
+                dist = DEAD_ZONE_RADIUS + (dist / DEAD_ZONE_RADIUS) * 10;
             }
 
             const strength = Math.max(0, 1 - dist / MAX_DISTANCE);
@@ -143,7 +126,6 @@ function initHomeCardPile() {
 
             const repel = REPEL_STRENGTH * strength;
             const angle = Math.atan2(dy, dx);
-            // Force direction opposite of cursor -> card vector
             const pushX = -Math.cos(angle) * repel * REPEL_MULTIPLIER;
             const pushY = -Math.sin(angle) * repel * REPEL_MULTIPLIER;
 
@@ -153,7 +135,6 @@ function initHomeCardPile() {
         });
     });
 
-    // Entrance fade only (no transform overwrite)
     requestAnimationFrame(() => {
         cards.forEach((card, i) => {
             card.style.opacity = '0';
@@ -165,10 +146,8 @@ function initHomeCardPile() {
     });
 }
 
-// Initialize home card pile when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initHomeCardPile);
 } else {
-    // DOM already loaded
     initHomeCardPile();
 }
