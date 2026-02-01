@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursor Test</title>
+    <style>
+        body {
+            background: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .cursor-outer {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 107, 0, 0.5);
+            /*border-radius: 50%;*/
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.2s ease;
+            opacity: 0;
+        }
+
+        .cursor-inner {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: #ff6b00;
+            /*border-radius: 50%;*/
+            pointer-events: none;
+            z-index: 10000;
+            transition: all 0.1s ease;
+            opacity: 0;
+        }
+
+        .cursor-outer.link-hover {
+            transform: scale(1.5);
+            border-color: #ff6b00;
+            background: rgba(255, 107, 0, 0.1);
+        }
+
+        .test-button {
+            background: #ff6b00;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            /*border-radius: 8px;*/
+            cursor: pointer;
+            margin: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .test-link {
+            color: #ff6b00;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin: 1rem;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-outer"></div>
+    <div class="cursor-inner"></div>
+
+    <h1>Cursor Test Page</h1>
+    <p>Move your mouse around to see the custom cursor. Hover over the interactive elements below:</p>
+
+    <button class="test-button">Test Button</button>
+    <a href="#" class="test-link">Test Link</a>
+
+    <div id="dynamic-content">
+        <h3>Dynamic content will be added here...</h3>
+    </div>
+
+    <script type="module">
+        // Initialize cursor
+        function initializeCursor() {
+            const cursorOuter = document.querySelector('.cursor-outer');
+            const cursorInner = document.querySelector('.cursor-inner');
+
+            if (!cursorOuter || !cursorInner) {
+                console.warn('Cursor elements not found');
+                return;
+            }
+
+            let cursorMouseX = 0;
+            let cursorMouseY = 0;
+            let isMouseMoving = false;
+
+            // Mouse movement tracking
+            document.addEventListener('mousemove', (e) => {
+                cursorMouseX = e.clientX;
+                cursorMouseY = e.clientY;
+
+                if (!isMouseMoving) {
+                    isMouseMoving = true;
+                    cursorOuter.style.opacity = '1';
+                    cursorInner.style.opacity = '1';
+                }
+
+                requestAnimationFrame(() => {
+                    // Position cursors centered on mouse coordinates
+                    cursorOuter.style.left = `${cursorMouseX - 20}px`; // 20px = half width
+                    cursorOuter.style.top = `${cursorMouseY - 20}px`;  // 20px = half height
+                    cursorInner.style.left = `${cursorMouseX - 4}px`;  // 4px = half width
+                    cursorInner.style.top = `${cursorMouseY - 4}px`;   // 4px = half height
+                });
+            });
+
+            // Hide cursor when mouse leaves the viewport
+            document.addEventListener('mouseleave', () => {
+                cursorOuter.style.opacity = '0';
+                cursorInner.style.opacity = '0';
+            });
+
+            // Function to add hover effects to interactive elements
+            function addCursorHoverEffects() {
+                // Remove existing listeners first to avoid duplicates
+                document.querySelectorAll('[data-cursor-listener]').forEach(el => {
+                    el.removeAttribute('data-cursor-listener');
+                });
+
+                // Select all interactive elements including dynamically generated ones
+                const interactiveElements = document.querySelectorAll('a, button, .project-card, .page-link, .theme-toggle-btn, input, textarea, select, [role="button"], .cursor-pointer, .btn, .test-button, .test-link');
+
+                interactiveElements.forEach(el => {
+                    // Mark as having listener to avoid duplicates
+                    el.setAttribute('data-cursor-listener', 'true');
+
+                    el.addEventListener('mouseenter', () => {
+                        cursorOuter.classList.add('link-hover');
+                    });
+
+                    el.addEventListener('mouseleave', () => {
+                        cursorOuter.classList.remove('link-hover');
+                    });
+                });
+            }
+
+            // Initial setup
+            addCursorHoverEffects();
+
+            // Watch for dynamic content changes
+            const observer = new MutationObserver((mutations) => {
+                let shouldRefresh = false;
+                mutations.forEach(mutation => {
+                    if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                        shouldRefresh = true;
+                    }
+                });
+
+                if (shouldRefresh) {
+                    setTimeout(addCursorHoverEffects, 100);
+                }
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+
+            // Expose function globally for manual re-initialization
+            window.refreshCursorEffects = addCursorHoverEffects;
+        }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeCursor();
+
+            // Add dynamic content after 2 seconds to test observer
+            setTimeout(() => {
+                const dynamicContent = document.getElementById('dynamic-content');
+                dynamicContent.innerHTML += '<button class="test-button">Dynamic Button</button>';
+                console.log('Added dynamic content');
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

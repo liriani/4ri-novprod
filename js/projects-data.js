@@ -26,6 +26,84 @@ export const projectsData = [
       problem: 'Healthcare clinics struggled with patient management and long-term care coordination. Existing solutions were either too complex or lacked mobile optimization for both patients and healthcare providers.',
       process: 'We conducted interviews with healthcare professionals and patients, analyzed existing workflows, created user personas, and developed a mobile-first platform that streamlined clinic operations while improving patient engagement.',
       impact: 'Achieved 2nd place at FIAP Startup Challenge 2023. The platform reduced appointment scheduling time by 60% and improved patient engagement scores by 40% during beta testing with partner clinics.'
+    },
+    detailedCaseStudy: {
+      subtitle: "A mobile-first ecosystem connecting long-term patients with clinics, reducing appointment absences by 40%.",
+      caseNumber: "005",
+      meta: {
+        role: "Product Designer",
+        timeline: "3 Weeks (Sprint)",
+        team: "2 Devs, 1 PM, 1 Designer",
+        recognition: "2nd Place Startup Challenge"
+      },
+      heroImage: "./assets/fiap/cover.png",
+      sections: [
+        {
+          id: "context",
+          number: "01",
+          title: "The Context",
+          headline: "The Disconnection in Healthcare",
+          content: `
+            <p>In Brazil's public health system (SUS), scheduling appointments for long-term treatments is a bureaucratic nightmare. Patients often miss critical dates due to lack of reminders, while clinics suffer from high no-show rates.</p>
+            <p class="mt-4">Our challenge during the FIAP Startup Challenge was to create a digital solution that bridged this gap within 3 weeks.</p>
+          `,
+          stats: [
+            { value: "40%", label: "NO-SHOW RATE", description: "Clinics report high absenteeism due to forgotten dates." },
+            { value: "72h", label: "WAIT TIME", description: "Average time to reschedule a missed appointment." }
+          ]
+        },
+        {
+          id: "discovery",
+          number: "02",
+          title: "Discovery",
+          headline: "Mapping the Patient Journey",
+          content: `
+            <p>We interviewed 10 patients and 3 clinic administrators. The core insight was surprising: it wasn't that patients didn't <em>want</em> to go, it was that the physical appointment cards were often lost or damaged.</p>
+          `,
+          images: [
+            { src: "./assets/fiap/patientpersona.png", caption: "FIG 1. THE PAIN POINTS IN THE CURRENT ANALOG JOURNEY" }
+          ]
+        },
+        {
+          id: "solution",
+          number: "03",
+          title: "The Solution",
+          headline: "A Unified Digital Hub",
+          content: `
+            <p class="big-text">We designed HealthHub: a centralized app that digitizes the "Caderneta de Vacinação" (Vaccination Card) and automates reminders via WhatsApp integration.</p>
+          `,
+          features: [
+            {
+              title: "Automated Reminders",
+              description: "Instead of relying on push notifications (which users often disable), we integrated with WhatsApp API to send reminders 24h before the appointment.",
+              image: "./assets/fiap/appointmenthistory.png"
+            },
+            {
+              title: "Digital History",
+              description: "A permanent, cloud-based record of all procedures, accessible via QR Code for doctors, ensuring data portability.",
+              image: "./assets/fiap/healthinformation.png"
+            }
+          ]
+        },
+        {
+          id: "impact",
+          number: "04",
+          title: "The Impact",
+          headline: "Results & Takeaways",
+          content: `
+            <p>The prototype was pitched to a panel of investors and health professionals, securing <strong>2nd place</strong> in the Startup Challenge. The feedback highlighted the scalability of the WhatsApp integration as a key differentiator.</p>
+            <div class="mt-12 p-8 bg-gray-900 border-l-4 border-accent-color">
+              <p class="font-mono text-accent-color text-sm mb-4">LESSON LEARNED</p>
+              <p class="text-xl italic text-white">"Accessibility isn't just about contrast ratios; it's about meeting users where they already are. WhatsApp was a better channel than a standalone app notification."</p>
+            </div>
+          `
+        }
+      ],
+      nextProject: {
+        id: 6,
+        title: "Nohs Somos",
+        url: "#project-6"
+      }
     }
   },
   {

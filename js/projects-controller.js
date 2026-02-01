@@ -70,19 +70,59 @@ export class ProjectsController {
     const detail = createProjectDetail(project);
 
     if (detail) {
-      // Update page content
-      document.getElementById('project-title').textContent = detail.title;
-      document.getElementById('project-description').textContent = detail.description;
-      document.getElementById('project-tech-list').innerHTML = detail.techList;
-      document.getElementById('case-study-content').innerHTML = detail.caseStudyContent;
+      if (detail.isDetailedCaseStudy) {
+        // For detailed case studies, replace the entire content
+        this.projectDetailPage.innerHTML = `
+          <a href="#projects" class="page-link text-lg text-accent-color mb-4 inline-block hover:underline" data-page="projects">
+            &larr; Back to Projects
+          </a>
+          ${detail.caseStudyContent}
+        `;
 
-      // Initialize tab functionality
-      this.initializeProjectTabs();
+        // Initialize detailed case study navigation
+        initializeCaseStudyNavigation();
+      } else {
+        // For regular case studies, restore original structure if needed
+        this.restoreOriginalStructure();
+
+        // Use the original structure
+        document.getElementById('project-title').textContent = detail.title;
+        document.getElementById('project-description').textContent = detail.description;
+        document.getElementById('project-tech-list').innerHTML = detail.techList;
+        document.getElementById('case-study-content').innerHTML = detail.caseStudyContent;
+
+        // Initialize tab functionality
+        this.initializeProjectTabs();
+      }
 
       // Refresh cursor effects for new elements
       if (window.refreshCursorEffects) {
         window.refreshCursorEffects();
       }
+    }
+  }
+
+  /**
+   * Restore the original project detail page structure
+   */
+  restoreOriginalStructure() {
+    const originalStructure = `
+      <a href="#projects" class="page-link text-lg text-accent-color mb-4 inline-block hover:underline" data-page="projects">
+        &larr; Back to Projects
+      </a>
+      <h2 id="project-title" class="section-title"></h2>
+      <p id="project-description" class="body-text mb-8"></p>
+
+      <h3 class="case-study-title">Technologies Used</h3>
+      <ul id="project-tech-list" class="tag-list-container body-text mb-8"></ul>
+
+      <!-- Main Case Study Content -->
+      <div id="case-study-content" class="case-study-section"></div>
+    `;
+
+    // Only restore if the current content doesn't have the expected structure
+    if (!document.getElementById('project-title')) {
+      this.projectDetailPage.innerHTML = originalStructure;
     }
   }
 
@@ -145,7 +185,16 @@ export class ProjectsController {
    * @param {Event} e - Click event
    */
   handleProjectCardClick(e) {
-    const projectId = e.currentTarget.dataset.projectId;
+    const card = e.currentTarget;
+
+    // Check if card has external case study (onclick attribute)
+    if (card.hasAttribute('onclick')) {
+      // External case study - onclick attribute will handle the navigation
+      return;
+    }
+
+    // Internal project detail
+    const projectId = card.dataset.projectId;
     if (projectId) {
       this.renderProjectDetail(projectId);
 

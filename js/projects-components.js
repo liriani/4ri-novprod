@@ -15,8 +15,20 @@ export function createProjectCard(project) {
     ? `<img src="${project.logo}" alt="${project.logoAlt}">`
     : project.logo;
 
+  // Define case study URLs for projects that have standalone pages
+  const caseStudyUrls = {
+    5: './cases/fiap-healthhub.html',
+    6: './cases/nohs-somos.html',
+    7: './cases/creators-fit.html'
+  };
+
+  const hasExternalCaseStudy = caseStudyUrls[project.id];
+  const cardAction = hasExternalCaseStudy
+    ? `onclick="window.open('${caseStudyUrls[project.id]}', '_blank')"`
+    : `data-project-id="${project.id}"`;
+
   return `
-    <div class="project-card" data-project-id="${project.id}">
+    <div class="project-card" ${cardAction}>
       <div class="project-card-front">
         <span class="project-logo">${logoElement}</span>
         <h3 class="card-title">${project.title}</h3>
@@ -25,6 +37,7 @@ export function createProjectCard(project) {
         <div class="preview-left">
           <h3 class="card-title">${project.shortTitle}</h3>
           <p class="card-subtitle">${project.description}</p>
+          ${hasExternalCaseStudy ? '<p class="text-accent-color text-sm font-mono mt-2">VIEW FULL CASE STUDY →</p>' : ''}
         </div>
         <div class="preview-right">
           <img src="${project.cover}" alt="${project.coverAlt}">
@@ -73,6 +86,19 @@ export function createCallToAction() {
 export function createProjectDetail(project) {
   if (!project) return null;
 
+  // Check if project has detailed case study
+  if (project.detailedCaseStudy) {
+    const detailedContent = createDetailedCaseStudy(project);
+    return {
+      title: project.title,
+      description: project.description,
+      techList: '',
+      caseStudyContent: detailedContent,
+      isDetailedCaseStudy: true
+    };
+  }
+
+  // Fallback to regular case study format
   // Create technology list
   const techList = project.tech.map(tech => `<li class="tech-tag">${tech}</li>`).join('');
 
@@ -215,7 +241,8 @@ export function createProjectDetail(project) {
     title: project.title,
     description: project.description,
     techList,
-    caseStudyContent
+    caseStudyContent,
+    isDetailedCaseStudy: false
   };
 }
 
