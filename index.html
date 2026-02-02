@@ -869,45 +869,21 @@
                 <div class="component-preview-box p-6 flex items-center justify-center" style="min-height: 340px;">
                   <div class="flip-wrapper" style="width: 280px;">
                     <div class="flip-inner">
-                      <!-- SIDE A: COVER -->
+                      <!-- FRONT: Cover -->
                       <div class="flip-face cover">
                         <div class="flex justify-between">
                           <span class="corner-label text-accent pl-2">LOCKED</span>
                         </div>
-
                         <div class="flex flex-col items-center justify-center h-full">
-                          <div class="w-16 h-16 rounded-full border border-gray-800 flex items-center justify-center mb-4">
-                            <i class="fa-solid fa-lock text-xl text-gray-500"></i>
-                          </div>
+                          <i class="fa-solid fa-lock text-xl text-gray-500"></i>
                           <h3 class="font-display text-2xl tracking-widest text-gray-500">CLASSIFIED</h3>
                         </div>
-
-                        <div class="w-full text-center border-t border-gray-800 pt-4">
-                          <p class="font-mono text-[10px] text-orange-500 animate-pulse">[ CLICK TO DECRYPT ]</p>
-                        </div>
                       </div>
-
-                      <!-- SIDE B: CONTENT -->
-                      <div class="flip-face content game-card vertical group">
-                        <div class="flex justify-between w-full">
-                          <span class="corner-label text-accent">DATA_01</span>
-                          <span class="corner-label">// UNLOCKED</span>
-                        </div>
-
+                      <!-- BACK: Content -->
+                      <div class="flip-face content">
                         <div class="text-center mt-4">
-                          <div class="mb-6 opacity-80">
-                            <i class="fa-solid fa-eye text-5xl"></i>
-                          </div>
-                          <h2 class="font-display text-4xl mb-2">Insight</h2>
-                          <div class="w-8 h-0.5 bg-[var(--accent)] mx-auto mb-4"></div>
-                          <p class="font-mono text-xs text-[var(--text-muted)]">
-                            Data revealed successfully.
-                          </p>
-                        </div>
-
-                        <div class="flex justify-between w-full items-end">
-                          <span class="corner-label">SECURE</span>
-                          <i class="fa-solid fa-check text-accent"></i>
+                          <i class="fa-solid fa-eye text-5xl"></i>
+                          <h2 class="font-display text-4xl">Insight</h2>
                         </div>
                       </div>
                     </div>
@@ -919,58 +895,26 @@
               <div>
                 <p class="text-xs secondary-text mb-2 font-mono">CODE</p>
                 <div class="component-preview-box p-4 overflow-auto" style="max-height: 340px;">
-              <pre class="text-xs"><code>&lt;!-- Vertical Flip Wrapper --&gt;
+              <pre class="text-xs"><code>&lt;!-- Flip Wrapper --&gt;
 &lt;div class="flip-wrapper"&gt;
     &lt;div class="flip-inner"&gt;
-
-        &lt;!-- SIDE A: COVER --&gt;
+        &lt;!-- FRONT: Cover --&gt;
         &lt;div class="flip-face cover"&gt;
             &lt;div class="flex justify-between"&gt;
                 &lt;span class="corner-label text-accent pl-2"&gt;LOCKED&lt;/span&gt;
             &lt;/div&gt;
-
             &lt;div class="flex flex-col items-center justify-center h-full"&gt;
-                &lt;div class="w-16 h-16 rounded-full border border-gray-800
-                     flex items-center justify-center mb-4"&gt;
-                    &lt;i class="fa-solid fa-lock text-xl text-gray-500"&gt;&lt;/i&gt;
-                &lt;/div&gt;
-                &lt;h3 class="font-display text-2xl tracking-widest text-gray-500"&gt;
-                    CLASSIFIED
-                &lt;/h3&gt;
-            &lt;/div&gt;
-
-            &lt;div class="w-full text-center border-t border-gray-800 pt-4"&gt;
-                &lt;p class="font-mono text-[10px] text-orange-500 animate-pulse"&gt;
-                    [ CLICK TO DECRYPT ]
-                &lt;/p&gt;
+                &lt;i class="fa-solid fa-lock text-xl text-gray-500"&gt;&lt;/i&gt;
+                &lt;h3 class="font-display text-2xl tracking-widest text-gray-500"&gt;CLASSIFIED&lt;/h3&gt;
             &lt;/div&gt;
         &lt;/div&gt;
-
-        &lt;!-- SIDE B: CONTENT --&gt;
-        &lt;div class="flip-face content game-card vertical group"&gt;
-            &lt;!-- Standard Vertical Card Content --&gt;
-            &lt;div class="flex justify-between w-full"&gt;
-                &lt;span class="corner-label text-accent"&gt;DATA_01&lt;/span&gt;
-                &lt;span class="corner-label"&gt;// UNLOCKED&lt;/span&gt;
-            &lt;/div&gt;
-
+        &lt;!-- BACK: Content --&gt;
+        &lt;div class="flip-face content"&gt;
             &lt;div class="text-center mt-4"&gt;
-                &lt;div class="mb-6 opacity-80"&gt;
-                    &lt;i class="fa-solid fa-eye text-5xl"&gt;&lt;/i&gt;
-                &lt;/div&gt;
-                &lt;h2 class="font-display text-4xl mb-2"&gt;Insight&lt;/h2&gt;
-                &lt;div class="w-8 h-0.5 bg-[var(--accent)] mx-auto mb-4"&gt;&lt;/div&gt;
-                &lt;p class="font-mono text-xs text-[var(--text-muted)]"&gt;
-                    Data revealed successfully.
-                &lt;/p&gt;
-            &lt;/div&gt;
-
-            &lt;div class="flex justify-between w-full items-end"&gt;
-                &lt;span class="corner-label"&gt;SECURE&lt;/span&gt;
-                &lt;i class="fa-solid fa-check text-accent"&gt;&lt;/i&gt;
+                &lt;i class="fa-solid fa-eye text-5xl"&gt;&lt;/i&gt;
+                &lt;h2 class="font-display text-4xl"&gt;Insight&lt;/h2&gt;
             &lt;/div&gt;
         &lt;/div&gt;
-
     &lt;/div&gt;
 &lt;/div&gt;</code></pre>
                 </div>

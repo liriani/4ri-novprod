@@ -27,7 +27,7 @@ function createCardPile(config) {
 
     for (let i = 0; i < cardCount; i++) {
         const el = document.createElement('div');
-        el.className = cardClass;
+        el.className = `${cardClass} game-card vertical group`;
         el.setAttribute('role', 'button');
         el.setAttribute('tabindex', '0');
         el.setAttribute('aria-label', ariaLabel);
@@ -35,6 +35,8 @@ function createCardPile(config) {
         el.style.position = 'absolute';
         el.style.left = '50%';
         el.style.top = '50%';
+        el.style.minHeight = '320px';
+        el.style.width = '280px';
         const tx = (Math.random() - 0.5) * 160;
         const ty = (Math.random() - 0.5) * 120;
         const rot = (Math.random() - 0.5) * 25;
@@ -43,10 +45,39 @@ function createCardPile(config) {
         el.dataset.rot = rot;
         el.style.zIndex = `${i}`;
         el.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot}deg)`;
-        const content = document.createElement('div');
-        content.className = contentClass;
-        content.innerHTML = `<i class="fas ${icons[i % icons.length]} ${iconClass}"></i><div class="${textClass}">${labels[i % labels.length]}</div>`;
-        el.appendChild(content);
+
+        // Build Design System vertical card structure
+        const topMeta = document.createElement('div');
+        topMeta.className = 'flex justify-between w-full';
+        topMeta.innerHTML = `
+            <span class="corner-label text-accent">CARD_${String(i + 1).padStart(2, '0')}</span>
+            <span class="corner-label">// CLICK ME</span>
+        `;
+
+        const mainContent = document.createElement('div');
+        mainContent.className = 'text-center mt-4';
+        mainContent.innerHTML = `
+            <div class="mb-6 opacity-80 group-hover:opacity-100 text-[var(--text-main)]">
+                <i class="fa-solid ${icons[i % icons.length]} text-5xl"></i>
+            </div>
+            <h2 class="font-display text-4xl mb-2">${labels[i % labels.length]}</h2>
+            <div class="w-8 h-0.5 bg-[var(--accent)] mx-auto mb-4"></div>
+            <p class="font-mono text-xs text-[var(--text-muted)]">
+                Click to navigate
+            </p>
+        `;
+
+        const footerMeta = document.createElement('div');
+        footerMeta.className = 'flex justify-between w-full items-end';
+        footerMeta.innerHTML = `
+            <span class="corner-label">EST. 2024</span>
+            <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0"></i>
+        `;
+
+        el.appendChild(topMeta);
+        el.appendChild(mainContent);
+        el.appendChild(footerMeta);
+
         el.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); onClick(); }});
         el.addEventListener('click', onClick, { passive: true });
         pile.appendChild(el); cards.push(el); velocities.set(el,{vx:0,vy:0});
