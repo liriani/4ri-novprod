@@ -24,7 +24,7 @@
 <div class="container mx-auto p-4 md:p-8">
 
   <!-- Header/Navigation -->
-  <header class="header">
+  <header class="header" id="site-header">
     <h1 class="logo page-link" data-page="home">LIRI.</h1>
     <nav class="nav" id="main-nav">
       <ul class="nav-list">
@@ -156,11 +156,6 @@
           </div>
         </div>
 
-        <!-- CTA Card at the bottom, hidden until all cards are revealed -->
-        <div id="reveal-cta-card" class="hidden max-w-lg mx-auto mt-10 p-6 rounded-xl border-2 border-accent-color text-center cursor-pointer hover:shadow-[0_0_20px_rgba(255,107,0,0.5)] transition">
-          <p class="card-title mb-2">Thanks for exploring!</p>
-          <p class="secondary-text text-sm">Ready to build something amazing together? <span class="text-accent-color font-bold">Let's connect.</span></p>
-        </div>
       </div>
 
       <!-- Reveal Game CTA Modal (Hidden by default) -->
@@ -281,23 +276,18 @@
             </div>
           </div>
         </div>
-        <!-- My Next Adventure Card -->
-        <div class="p-8 rounded-lg shadow-md border border-gray-700 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl flex flex-col justify-center items-center text-center">
+        <!-- Got a Project in Mind? Card -->
+        <div class="p-8 rounded-lg shadow-md border border-gray-700 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl flex flex-col justify-center items-center text-center cursor-pointer page-link" data-page="contact">
           <div class="w-24 h-24 mb-4 text-accent-color opacity-30">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          <h3 class="card-title text-accent-color mt-2">My Next Adventure</h3>
+          <h3 class="card-title text-accent-color mt-2">Got a project in mind?</h3>
           <p class="card-subtitle mt-2">This space is reserved for our next big project. Let's build something great together!</p>
         </div>
       </div>
 
-      <!-- Call to Action -->
-      <div class="text-center p-8 border border-accent-color rounded-lg mt-8">
-        <h3 class="card-title">Got a project in mind?</h3>
-        <a href="#contact" class="btn btn-primary page-link" data-page="contact">Let's talk <i class="fas fa-arrow-right ml-2"></i></a>
-      </div>
     </section>
 
     <!-- Project Detail Page (Dynamically Populated) -->
@@ -392,7 +382,7 @@
               <nav class="component-preview-box p-4">
                 <ul class="nav-list flex items-center gap-4">
                   <li>
-                    <a class="nav-link sections-link" href="#" onclick="event.preventDefault()">
+                    <a class="nav-link sections-link" href="#">
                       About
                       <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
                         <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
@@ -400,7 +390,7 @@
                     </a>
                   </li>
                   <li>
-                    <a class="nav-link sections-link" href="#" onclick="event.preventDefault()">
+                    <a class="nav-link sections-link" href="#">
                       Projects
                       <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
                         <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
@@ -408,7 +398,7 @@
                     </a>
                   </li>
                   <li>
-                    <a class="nav-link sections-link" href="#" onclick="event.preventDefault()">
+                    <a class="nav-link sections-link" href="#">
                       Design System
                       <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
                         <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
@@ -606,12 +596,41 @@
               <p class="card-subtitle">Navigation Hover Animation</p>
               <p class="body-text secondary-text">SVG path animation draws an organic line beneath navigation links on hover (--transition-slow: 0.5s).</p>
               <div class="component-preview-box">
-                <a href="#" class="nav-link sections-link text-lg" onclick="event.preventDefault()">
+                <a href="#" class="nav-link sections-link text-lg">
                   Hover over me
                   <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
                     <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
                   </svg>
                 </a>
+              </div>
+            </div>
+
+            <div>
+              <p class="card-subtitle">Text + Link States (Static)</p>
+              <p class="body-text secondary-text mb-4">Use these as a visual reference for default, hover and focus styles. No JavaScript required.</p>
+              <div class="component-preview-box">
+                <div class="space-y-4">
+                  <div>
+                    <p class="text-xs secondary-text mb-2">Default link</p>
+                    <a href="#" class="nav-link sections-link">Case link example</a>
+                  </div>
+                  <div>
+                    <p class="text-xs secondary-text mb-2">Primary button</p>
+                    <a href="#" class="btn btn-primary">Primary CTA</a>
+                  </div>
+                  <div>
+                    <p class="text-xs secondary-text mb-2">Outline button</p>
+                    <a href="#" class="btn btn-outline">Secondary CTA</a>
+                  </div>
+                  <div>
+                    <p class="text-xs secondary-text mb-2">Focus ring check (Tab to focus)</p>
+                    <div class="flex flex-wrap items-center gap-3">
+                      <a href="#" class="btn btn-outline">Focusable Link</a>
+                      <button class="btn btn-primary" type="button">Focusable Button</button>
+                    </div>
+                    <p class="text-xs secondary-text mt-2">Tip: press <code>Tab</code> to see focus outlines.</p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -653,90 +672,141 @@
         <div>
           <h3 class="case-study-title">Border Radius</h3>
           <p class="body-text secondary-text mb-4">Consistent rounded corners for a cohesive, modern aesthetic.</p>
+
+          <!-- Corner visual examples -->
+          <div class="component-preview-box mb-6">
+            <div class="ds-radius-grid">
+              <div class="ds-radius-item">
+                <div class="ds-radius-swatch ds-radius-xs"></div>
+                <div class="ds-radius-meta">
+                  <span class="ds-radius-name">xs</span>
+                  <span class="ds-radius-value">--border-radius-xs: 0.25rem</span>
+                </div>
+              </div>
+              <div class="ds-radius-item">
+                <div class="ds-radius-swatch ds-radius-sm"></div>
+                <div class="ds-radius-meta">
+                  <span class="ds-radius-name">sm</span>
+                  <span class="ds-radius-value">--border-radius-sm: 0.5rem</span>
+                </div>
+              </div>
+              <div class="ds-radius-item">
+                <div class="ds-radius-swatch ds-radius-md"></div>
+                <div class="ds-radius-meta">
+                  <span class="ds-radius-name">md</span>
+                  <span class="ds-radius-value">--border-radius-md: 1rem</span>
+                </div>
+              </div>
+              <div class="ds-radius-item">
+                <div class="ds-radius-swatch ds-radius-full"></div>
+                <div class="ds-radius-meta">
+                  <span class="ds-radius-name">full</span>
+                  <span class="ds-radius-value">--border-radius-full: 9999px</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New: FIAP-style Case Page Pattern (Static Preview) -->
+        <div>
+          <h3 class="case-study-title">Case Page Pattern (FIAP-style)</h3>
+          <p class="body-text secondary-text mb-4">Static preview of the shared case-page layout DNA (hero, meta grid, sticky nav, image, next project). Uses the same classes as real case pages.</p>
           <div class="component-preview-box">
-            <div class="grid md:grid-cols-2 gap-6">
-              <div>
-                <div class="p-4 bg-accent-color bg-opacity-20" style="border-radius: 0.25rem;">
-                  <p class="text-sm">--border-radius-xs: 0.25rem</p>
+            <div class="wrapper" style="padding-top: var(--spacing-lg); padding-bottom: var(--spacing-lg);">
+              <header>
+                <div class="mb-4">
+                  <span class="case-badge">CASE STUDY 000</span>
                 </div>
-              </div>
-              <div>
-                <div class="p-4 bg-accent-color bg-opacity-20" style="border-radius: 0.5rem;">
-                  <p class="text-sm">--border-radius-sm: 0.5rem</p>
+                <h1 class="case-hero-title" style="margin-top:0;">Sample<br>Case</h1>
+                <p class="case-subtitle">A short one-line subtitle that demonstrates the case page lead paragraph scale.</p>
+
+                <div class="meta-grid">
+                  <div class="meta-item">
+                    <label>My Role</label>
+                    <span>Designer</span>
+                  </div>
+                  <div class="meta-item">
+                    <label>Timeline</label>
+                    <span>2 Weeks</span>
+                  </div>
+                  <div class="meta-item">
+                    <label>Team</label>
+                    <span>2 Devs</span>
+                  </div>
+                  <div class="meta-item">
+                    <label>Recognition</label>
+                    <span style="color: var(--accent-color);">Highlight</span>
+                  </div>
                 </div>
+              </header>
+
+              <div class="case-hero-image" style="height: 220px; margin-top: var(--spacing-lg);">
+                <img src="https://placehold.co/1200x600/1a1a1a/444?text=Case+Hero+Image" alt="Case hero preview">
               </div>
-              <div>
-                <div class="p-4 bg-accent-color bg-opacity-20" style="border-radius: 1rem;">
-                  <p class="text-sm">--border-radius-md: 1rem</p>
+
+              <main class="content-grid" style="padding: var(--spacing-xl) 0;">
+                <aside class="hidden lg:block">
+                  <nav class="sticky-nav">
+                    <ul>
+                      <li><a href="#" class="active">01. The Context</a></li>
+                      <li><a href="#">02. Discovery</a></li>
+                      <li><a href="#">03. Solution</a></li>
+                      <li><a href="#">04. Impact</a></li>
+                    </ul>
+                  </nav>
+                </aside>
+
+                <article>
+                  <section class="case-section">
+                    <span class="chapter-number">01 / THE CONTEXT</span>
+                    <h2>Headline Example</h2>
+                    <div class="case-content">
+                      <p>This paragraph previews the case page body text styling and line height.</p>
+                    </div>
+
+                    <div class="stats-grid">
+                      <div class="stat-card">
+                        <div class="stat-value">40%</div>
+                        <div class="stat-label">NO-SHOW RATE</div>
+                        <div class="stat-description">Short stat descriptor used on the FIAP template.</div>
+                      </div>
+                      <div class="stat-card">
+                        <div class="stat-value">72h</div>
+                        <div class="stat-label">WAIT TIME</div>
+                        <div class="stat-description">Another stat card for layout consistency.</div>
+                      </div>
+                    </div>
+
+                    <div class="case-image-container">
+                      <img src="https://placehold.co/1200x600/1a1a1a/444?text=Case+Image" alt="Case image preview">
+                    </div>
+                    <div class="image-caption">FIG. Caption style used in case pages</div>
+
+                    <div class="feature-showcase">
+                      <div class="feature-grid">
+                        <div class="feature-content">
+                          <h3>Feature Title</h3>
+                          <p>Feature description preview for the two-column feature blocks.</p>
+                        </div>
+                        <div class="feature-image">
+                          <img src="https://placehold.co/800x600/1a1a1a/444?text=Feature+Image" alt="Feature preview">
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </article>
+              </main>
+
+              <footer class="next-project" style="padding: var(--spacing-xl) 0 0; margin-top: var(--spacing-xl);">
+                <span class="next-label">NEXT PROJECT IN ARCHIVE</span>
+                <a href="#" class="next-title">Next Case <span class="text-lg align-middle ml-2">↗</span></a>
+                <div class="next-navigation" style="display:flex; justify-content:center; gap:0.75rem; margin-top: var(--spacing-md); font-family: 'Space Mono', monospace; font-size: 0.85rem;">
+                  <span class="opacity-50">PREV</span>
+                  <span>/</span>
+                  <span class="opacity-50">NEXT</span>
                 </div>
-              </div>
-              <div>
-                <div class="p-4 bg-accent-color bg-opacity-20" style="border-radius: 9999px;">
-                  <p class="text-sm text-center">--border-radius-full: 9999px</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Shadows -->
-        <div>
-          <h3 class="case-study-title">Shadows</h3>
-          <p class="body-text secondary-text mb-4">Subtle shadow system for depth and hierarchy.</p>
-          <div class="component-preview-box">
-            <div class="grid md:grid-cols-3 gap-6">
-              <div class="p-6 rounded-lg" style="box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
-                <p class="text-sm">Light</p>
-                <p class="text-xs secondary-text">--shadow-light</p>
-              </div>
-              <div class="p-6 rounded-lg" style="box-shadow: 0 4px 6px rgba(0,0,0,0.15);">
-                <p class="text-sm">Medium</p>
-                <p class="text-xs secondary-text">--shadow-medium</p>
-              </div>
-              <div class="p-6 rounded-lg" style="box-shadow: 0 10px 25px rgba(0,0,0,0.18);">
-                <p class="text-sm">Heavy</p>
-                <p class="text-xs secondary-text">--shadow-heavy</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Transitions -->
-        <div>
-          <h3 class="case-study-title">Transitions</h3>
-          <p class="body-text secondary-text mb-4">Predefined timing functions for consistent animation feel.</p>
-          <div class="component-preview-box space-y-2">
-            <p class="body-text"><code>--transition-fast: 0.2s ease</code> - Quick feedback (buttons, toggles)</p>
-            <p class="body-text"><code>--transition-normal: 0.3s ease</code> - Standard interactions (hovers, focus)</p>
-            <p class="body-text"><code>--transition-slow: 0.5s ease</code> - Dramatic effects (nav animations, reveals)</p>
-          </div>
-        </div>
-
-        <!-- Accessibility -->
-        <div>
-          <h3 class="case-study-title">Accessibility Features</h3>
-          <div class="space-y-4">
-            <div>
-              <p class="card-subtitle">Focus States</p>
-              <p class="body-text secondary-text mb-4">All interactive elements have clear focus indicators for keyboard navigation.</p>
-              <div class="component-preview-box">
-                <button class="btn btn-primary">Tab to focus me</button>
-              </div>
-            </div>
-
-            <div>
-              <p class="card-subtitle">Color Contrast</p>
-              <p class="body-text secondary-text">WCAG AA compliant color combinations ensuring readability for all users.</p>
-            </div>
-
-            <div>
-              <p class="card-subtitle">Semantic HTML</p>
-              <p class="body-text secondary-text">Proper heading hierarchy, landmarks, and ARIA labels for screen reader compatibility.</p>
-            </div>
-
-            <div>
-              <p class="card-subtitle">Reduced Motion</p>
-              <p class="body-text secondary-text">Respects <code>prefers-reduced-motion</code> media query for users who prefer minimal animation.</p>
+              </footer>
             </div>
           </div>
         </div>
@@ -781,8 +851,8 @@
 <script src="./js/card-pile-content.js"></script>
 <script src="./js/card-pile-utils.js"></script>
 <script type="module" src="./js/script.js"></script>
-<script src="./js/reveal-game.js"></script>
-<script src="./js/home-card-pile.js"></script>
+<script type="module" src="./js/reveal-game.js"></script>
+<script type="module" src="./js/home-card-pile.js"></script>
 </body>
 </html>
 

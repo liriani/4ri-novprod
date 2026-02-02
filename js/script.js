@@ -3,6 +3,10 @@ import { getProjectById } from './projects-data.js';
 
 // Custom Cursor
 function initializeCursor() {
+    // Prevent multiple initializations (e.g., if scripts are re-run)
+    if (window.__cursorInitialized) return;
+    window.__cursorInitialized = true;
+
     const cursorOuter = document.querySelector('.cursor-outer');
     const cursorInner = document.querySelector('.cursor-inner');
 
@@ -11,46 +15,78 @@ function initializeCursor() {
         return;
     }
 
-    let cursorMouseX = 0;
-    let cursorMouseY = 0;
-    let isMouseMoving = false;
+    let mouseX = 0;
+    let mouseY = 0;
+    let outerX = 0;
+    let outerY = 0;
+    let visible = false;
+    let rafId = 0;
 
-    // Mouse movement tracking
-    document.addEventListener('mousemove', (e) => {
-        cursorMouseX = e.clientX;
-        cursorMouseY = e.clientY;
+    // Start hidden until first movement
+    cursorOuter.style.opacity = '0';
+    cursorInner.style.opacity = '0';
 
-        if (!isMouseMoving) {
-            isMouseMoving = true;
+    // Ensure cursor elements have a known starting position.
+    // IMPORTANT: do not set `transform` here; CSS owns transform for centering/scale.
+    cursorOuter.style.left = '-9999px';
+    cursorOuter.style.top = '-9999px';
+
+    cursorInner.style.left = '-9999px';
+    cursorInner.style.top = '-9999px';
+
+    const render = () => {
+        rafId = 0;
+
+        // Slight smoothing for the outer ring only (helps feel premium but still responsive)
+        outerX += (mouseX - outerX) * 0.25;
+        outerY += (mouseY - outerY) * 0.25;
+
+        // Position via left/top so CSS can use transform for scale without overriding translate
+        cursorOuter.style.left = `${outerX}px`;
+        cursorOuter.style.top = `${outerY}px`;
+
+        cursorInner.style.left = `${mouseX}px`;
+        cursorInner.style.top = `${mouseY}px`;
+    };
+
+    const scheduleRender = () => {
+        if (!rafId) rafId = requestAnimationFrame(render);
+    };
+
+    const onMouseMove = (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        if (!visible) {
+            visible = true;
             cursorOuter.style.opacity = '1';
             cursorInner.style.opacity = '1';
+            // First frame should sync instantly
+            outerX = mouseX;
+            outerY = mouseY;
         }
 
-        requestAnimationFrame(() => {
-            cursorOuter.style.transform = `translate(${cursorMouseX - cursorOuter.clientWidth / 2}px, ${cursorMouseY - cursorOuter.clientHeight / 2}px)`;
-            cursorInner.style.transform = `translate(${cursorMouseX - cursorInner.clientWidth / 2}px, ${cursorMouseY - cursorInner.clientHeight / 2}px)`;
-        });
-    });
+        scheduleRender();
+    };
 
-    // Hide cursor when mouse leaves the viewport
-    document.addEventListener('mouseleave', () => {
+    const onMouseLeave = () => {
+        visible = false;
         cursorOuter.style.opacity = '0';
         cursorInner.style.opacity = '0';
-    });
+    };
+
+    document.addEventListener('mousemove', onMouseMove, { passive: true });
+    document.addEventListener('mouseleave', onMouseLeave, { passive: true });
 
     // Function to add hover effects to interactive elements
     function addCursorHoverEffects() {
-        // Remove existing listeners first to avoid duplicates
-        document.querySelectorAll('[data-cursor-listener]').forEach(el => {
-            el.removeAttribute('data-cursor-listener');
-        });
-
         // Select all interactive elements including dynamically generated ones
         const interactiveElements = document.querySelectorAll('a, button, .project-card, .page-link, .theme-toggle-btn, input, textarea, select, [role="button"], .cursor-pointer, .btn');
 
         interactiveElements.forEach(el => {
-            // Mark as having listener to avoid duplicates
-            el.setAttribute('data-cursor-listener', 'true');
+            // Avoid stacking listeners
+            if (el.dataset.cursorListener === 'true') return;
+            el.dataset.cursorListener = 'true';
 
             el.addEventListener('mouseenter', () => {
                 cursorOuter.classList.add('link-hover');
@@ -70,20 +106,12 @@ function initializeCursor() {
         let shouldRefresh = false;
         mutations.forEach(mutation => {
             if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                // Check if any added nodes contain interactive elements
-                mutation.addedNodes.forEach(node => {
-                    if (node.nodeType === 1) { // Element node
-                        if (node.matches && (node.matches('a, button, .project-card, .page-link, .theme-toggle-btn, .btn') ||
-                            node.querySelector('a, button, .project-card, .page-link, .theme-toggle-btn, .btn'))) {
-                            shouldRefresh = true;
-                        }
-                    }
-                });
+                shouldRefresh = true;
             }
         });
 
         if (shouldRefresh) {
-            setTimeout(addCursorHoverEffects, 100); // Small delay to ensure elements are ready
+            setTimeout(addCursorHoverEffects, 50);
         }
     });
 
@@ -151,6 +179,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Reset scroll position for new page
             window.scrollTo(0, 0);
 
+            // Case pages (project detail) have their own top nav, so hide the global header there
+            document.body.classList.toggle('is-case-page', pageId === 'project-detail');
+
             if (pageId === 'about') {
                 const highlights = activePage.querySelectorAll('.highlight-text');
                 highlights.forEach((span, index) => {
@@ -203,7 +234,19 @@ document.addEventListener('DOMContentLoaded', () => {
     pageLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
+
+            // Support project navigation links inside dynamically-rendered case studies
+            // (e.g., PREV/NEXT footer uses href="#project-6")
+            const href = link.getAttribute('href') || '';
+            if (href.startsWith('#project-')) {
+                const projectId = href.replace('#project-', '');
+                window.location.hash = `project-${projectId}`;
+                showProjectDetails(projectId);
+                return;
+            }
+
             const pageId = link.dataset.page;
+            if (!pageId) return;
             window.location.hash = pageId;
             showPage(pageId);
         });
@@ -219,21 +262,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalCloseButton = document.getElementById('modal-close');
 
     function showModal(title, content) {
+        // Guard: modal might not exist if the contact form/modal was removed
+        if (!messageModal || !modalTitle || !modalContent) return;
         modalTitle.textContent = title;
         modalContent.textContent = content;
         messageModal.classList.remove('hidden');
     }
 
-    modalCloseButton.addEventListener('click', () => {
-        messageModal.classList.add('hidden');
-    });
-
-    // Close modal on outside click
-    messageModal.addEventListener('click', (e) => {
-        if (e.target === messageModal) {
+    // Only attach listeners if modal exists
+    if (messageModal && modalCloseButton) {
+        modalCloseButton.addEventListener('click', () => {
             messageModal.classList.add('hidden');
-        }
-    });
+        });
+
+        // Close modal on outside click
+        messageModal.addEventListener('click', (e) => {
+            if (e.target === messageModal) {
+                messageModal.classList.add('hidden');
+            }
+        });
+    }
 
     // Initial page load based on URL hash
     function handleHashChange() {
@@ -257,37 +305,40 @@ document.addEventListener('DOMContentLoaded', () => {
     // Interactive SVG animation logic for the hero section
     const svg = document.getElementById('hero-svg');
     const svgContainer = document.getElementById('hero-svg-container');
-    let mouseX = 0;
-    let mouseY = 0;
 
-    // Generate some random shapes
-    function createShape(type, count) {
-        const shapes = [];
-        for (let i = 0; i < count; i++) {
-            const shape = document.createElementNS('http://www.w3.org/2000/svg', type);
-            shapes.push(shape);
-            svg.appendChild(shape);
+    // Guard: if the hero SVG isn't present (or removed/refactored), skip the animation.
+    // This prevents runtime crashes that break navigation/cursor.
+    if (svg && svgContainer) {
+        let mouseX = 0;
+        let mouseY = 0;
+
+        // Generate some random shapes
+        function createShape(type, count) {
+            const shapes = [];
+            for (let i = 0; i < count; i++) {
+                const shape = document.createElementNS('http://www.w3.org/2000/svg', type);
+                shapes.push(shape);
+                svg.appendChild(shape);
+            }
+            return shapes;
         }
-        return shapes;
-    }
 
-    const circles = createShape('circle', 10);
-    // const lines = createShape('line', 5); // Lines are static, let's focus on interactive circles
+        const circles = createShape('circle', 10);
+        // const lines = createShape('line', 5); // Lines are static, let's focus on interactive circles
 
-    circles.forEach(circle => {
-        circle.setAttribute('r', Math.random() * 20 + 5);
-        circle.setAttribute('fill', `rgba(255, 107, 0, ${Math.random() * 0.4 + 0.1})`);
-        const x = Math.random() * 600;
-        const y = Math.random() * 400;
-        circle.setAttribute('cx', x);
-        circle.setAttribute('cy', y);
-        circle.dataset.initialX = x;
-        circle.dataset.initialY = y;
-        circle.dataset.vx = 0; // Velocity x
-        circle.dataset.vy = 0; // Velocity y
-    });
+        circles.forEach(circle => {
+            circle.setAttribute('r', Math.random() * 20 + 5);
+            circle.setAttribute('fill', `rgba(255, 107, 0, ${Math.random() * 0.4 + 0.1})`);
+            const x = Math.random() * 600;
+            const y = Math.random() * 400;
+            circle.setAttribute('cx', x);
+            circle.setAttribute('cy', y);
+            circle.dataset.initialX = x;
+            circle.dataset.initialY = y;
+            circle.dataset.vx = 0; // Velocity x
+            circle.dataset.vy = 0; // Velocity y
+        });
 
-    if(svgContainer) {
         svgContainer.addEventListener('mousemove', (e) => {
             const rect = svg.getBoundingClientRect();
             if (rect.width > 0 && rect.height > 0) {
@@ -300,53 +351,53 @@ document.addEventListener('DOMContentLoaded', () => {
             mouseX = -9999; // Move mouse "off-screen"
             mouseY = -9999;
         });
+
+        function animate() {
+            circles.forEach(circle => {
+                const initialX = parseFloat(circle.dataset.initialX);
+                const initialY = parseFloat(circle.dataset.initialY);
+                let cx = parseFloat(circle.getAttribute('cx'));
+                let cy = parseFloat(circle.getAttribute('cy'));
+                let vx = parseFloat(circle.dataset.vx);
+                let vy = parseFloat(circle.dataset.vy);
+
+                const dx = mouseX - cx;
+                const dy = mouseY - cy;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                // Repulsion force from mouse
+                let repelForce = 0;
+                if (dist < 150) { // Repel radius
+                    repelForce = (150 - dist) * 0.01;
+                }
+                const angle = Math.atan2(dy, dx);
+                vx -= Math.cos(angle) * repelForce;
+                vy -= Math.sin(angle) * repelForce;
+
+                // Spring force to return to origin
+                const springForce = 0.01;
+                vx += (initialX - cx) * springForce;
+                vy += (initialY - cy) * springForce;
+
+                // Damping
+                const damping = 0.95;
+                vx *= damping;
+                vy *= damping;
+
+                // Update position
+                cx += vx;
+                cy += vy;
+
+                circle.setAttribute('cx', cx);
+                circle.setAttribute('cy', cy);
+                circle.dataset.vx = vx;
+                circle.dataset.vy = vy;
+            });
+            requestAnimationFrame(animate);
+        }
+
+        animate();
     }
-
-    function animate() {
-        circles.forEach(circle => {
-            const initialX = parseFloat(circle.dataset.initialX);
-            const initialY = parseFloat(circle.dataset.initialY);
-            let cx = parseFloat(circle.getAttribute('cx'));
-            let cy = parseFloat(circle.getAttribute('cy'));
-            let vx = parseFloat(circle.dataset.vx);
-            let vy = parseFloat(circle.dataset.vy);
-
-            const dx = mouseX - cx;
-            const dy = mouseY - cy;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-
-            // Repulsion force from mouse
-            let repelForce = 0;
-            if (dist < 150) { // Repel radius
-                repelForce = (150 - dist) * 0.01;
-            }
-            const angle = Math.atan2(dy, dx);
-            vx -= Math.cos(angle) * repelForce;
-            vy -= Math.sin(angle) * repelForce;
-
-            // Spring force to return to origin
-            const springForce = 0.01;
-            vx += (initialX - cx) * springForce;
-            vy += (initialY - cy) * springForce;
-
-            // Damping
-            const damping = 0.95;
-            vx *= damping;
-            vy *= damping;
-
-            // Update position
-            cx += vx;
-            cy += vy;
-
-            circle.setAttribute('cx', cx);
-            circle.setAttribute('cy', cy);
-            circle.dataset.vx = vx;
-            circle.dataset.vy = vy;
-        });
-        requestAnimationFrame(animate);
-    }
-
-    animate();
 
     // Hamburger Menu Toggle Logic
     const hamburgerButton = document.getElementById('hamburger-menu');

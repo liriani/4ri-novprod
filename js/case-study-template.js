@@ -3,6 +3,8 @@
  * Generates detailed case study HTML layout
  */
 
+import { getAllProjects } from './projects-data.js';
+
 export function createDetailedCaseStudy(project) {
     if (!project.detailedCaseStudy) {
         return null; // Return null if no detailed case study data
@@ -10,14 +12,18 @@ export function createDetailedCaseStudy(project) {
 
     const caseData = project.detailedCaseStudy;
 
-    // Generate navigation items
-    const navigationHTML = caseData.sections.map((section, index) => `
-        <li>
-            <a href="#${section.id}" class="nav-link ${index === 0 ? 'active' : ''}" data-section="${section.id}">
-                ${section.number}. ${section.title}
-            </a>
-        </li>
-    `).join('');
+    // Small helper: compute prev/next among projects that have detailed case studies
+    const detailedProjects = getAllProjects().filter(p => p && p.detailedCaseStudy);
+    const currentIndex = detailedProjects.findIndex(p => p.id === project.id);
+    const prevProject = currentIndex > 0 ? detailedProjects[currentIndex - 1] : null;
+    const nextProject = currentIndex >= 0 && currentIndex < detailedProjects.length - 1 ? detailedProjects[currentIndex + 1] : null;
+
+    // Generate navigation items (FIAP-style labels: "01 / THE CONTEXT")
+    const navigationHTML = caseData.sections.map((section, index) => {
+        const number = section.number || String(index + 1).padStart(2, '0');
+        const title = (section.title || '').toUpperCase();
+        return `<a href="#${section.id}" class="toc-link ${index === 0 ? 'active' : ''}" data-section="${section.id}">${number} / ${title}</a>`;
+    }).join('');
 
     // Generate sections HTML
     const sectionsHTML = caseData.sections.map(section => {
@@ -81,14 +87,24 @@ export function createDetailedCaseStudy(project) {
         return sectionContent;
     }).join('');
 
+    const techTagsHTML = Array.isArray(project.tech)
+        ? project.tech.slice(0, 6).map(t => `<span class="case-summary-tag">${t}</span>`).join('')
+        : '';
+
     return `
         <div class="detailed-case-study">
+            <!-- Top Case Nav (matches reference) -->
+            <nav class="case-top-nav fixed top-0 w-full z-50 mix-blend-difference px-6 py-6 flex justify-between items-center text-white pointer-events-none">
+                <a href="#home" class="page-link font-bold text-xl pointer-events-auto" data-page="home" style="font-family: 'Anton';">LIRI.</a>
+                <a href="#projects" class="page-link pointer-events-auto font-mono text-xs uppercase hover:underline" data-page="projects">Close Case Study [X]</a>
+            </nav>
+
             <!-- Case Study Header -->
-            <header class="pt-32 pb-12">
+            <header class="pt-32 pb-12 wrapper">
                 <div class="mb-4">
                     <span class="case-badge">CASE STUDY ${caseData.caseNumber}</span>
                 </div>
-                <h1 class="case-hero-title">${project.title.replace(/\s+/g, '<br>')}</h1>
+                <h1 class="case-hero-title">${(project.shortTitle || project.title).replace(/\s+/g, '<br>')}</h1>
                 
                 <p class="case-subtitle">${caseData.subtitle}</p>
 
@@ -119,15 +135,19 @@ export function createDetailedCaseStudy(project) {
             </div>
 
             <!-- Main Content -->
-            <main class="content-grid">
+            <main class="wrapper content-grid">
                 
                 <!-- Sidebar Navigation (Desktop) -->
                 <aside class="hidden lg:block">
-                    <nav class="sticky-nav">
-                        <ul>
-                            ${navigationHTML}
-                        </ul>
-                    </nav>
+                    <div class="sticky-nav">
+                        <!-- Section Navigation -->
+                        <div class="sidebar-section mt-8 pt-8 border-t border-[#2d2d2d]">
+                            <span class="sidebar-label mb-4">Navigation</span>
+                            <nav id="case-nav">
+                                ${navigationHTML}
+                            </nav>
+                        </div>
+                    </div>
                 </aside>
 
                 <!-- Article Content -->
@@ -137,17 +157,17 @@ export function createDetailedCaseStudy(project) {
             </main>
 
             <!-- Footer / Next Project -->
-            <footer class="next-project">
+            <footer class="next-project wrapper">
                 <span class="next-label">NEXT PROJECT IN ARCHIVE</span>
-                <a href="${caseData.nextProject.url}" 
+                <a href="#project-${(nextProject || caseData.nextProject).id}" 
                    class="next-title page-link" 
-                   data-project-id="${caseData.nextProject.id}">
-                    ${caseData.nextProject.title} <span class="text-lg align-middle ml-2">↗</span>
+                   data-project-id="${(nextProject || caseData.nextProject).id}">
+                    ${(nextProject || caseData.nextProject).title} <span class="text-lg align-middle ml-2">↗</span>
                 </a>
                 <div class="next-navigation">
-                    <span>PREV</span>
+                    ${prevProject ? `<a href="#project-${prevProject.id}" class="page-link" data-project-id="${prevProject.id}">PREV</a>` : `<span class="opacity-50">PREV</span>`}
                     <span>/</span>
-                    <span>NEXT</span>
+                    ${nextProject ? `<a href="#project-${nextProject.id}" class="page-link" data-project-id="${nextProject.id}">NEXT</a>` : `<span class="opacity-50">NEXT</span>`}
                 </div>
             </footer>
         </div>
@@ -159,7 +179,7 @@ export function createDetailedCaseStudy(project) {
  */
 export function initializeCaseStudyNavigation() {
     // Handle sidebar navigation
-    const navLinks = document.querySelectorAll('.sticky-nav .nav-link');
+    const navLinks = document.querySelectorAll('.toc-link');
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
