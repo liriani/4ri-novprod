@@ -3354,4 +3354,87 @@ body.is-case-page #site-header {
     display: none !important;
 }
 
+/* =========================================================================
+   Design System - Border Radius Visual Examples
+   ========================================================================= */
+.ds-radius-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
 
+.ds-radius-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ds-radius-swatch {
+    width: 80px;
+    height: 80px;
+    background: var(--accent-color);
+    opacity: 0.9;
+    transition: opacity var(--transition-normal);
+    flex-shrink: 0;
+}
+
+.ds-radius-swatch:hover {
+    opacity: 1;
+}
+
+.ds-radius-xs {
+    border-radius: var(--border-radius-xs);
+}
+
+.ds-radius-sm {
+    border-radius: var(--border-radius-sm);
+}
+
+.ds-radius-md {
+    border-radius: var(--border-radius-md);
+}
+
+.ds-radius-full {
+    border-radius: var(--border-radius-full);
+}
+
+.ds-radius-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.ds-radius-name {
+    font-family: var(--font-family-display), sans-serif;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    color: var(--primary-light);
+}
+
+.light .ds-radius-name {
+    color: var(--primary-dark);
+}
+
+.ds-radius-value {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--secondary-text-dark);
+}
+
+.light .ds-radius-value {
+    color: var(--secondary-text-light);
+}
+
+/* Sidebar label helper for case study previews */
+.sidebar-label {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--secondary-text-dark);
+    letter-spacing: 0.05em;
+}
+
+.light .sidebar-label {
+    color: var(--secondary-text-light);
+}
