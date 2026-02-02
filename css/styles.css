@@ -1906,267 +1906,454 @@ html, body { cursor: none !important; }
     .home-pile-easter { font-size: 0.8rem; top: 0.25rem; }
 }
 
-/* Reinstate Home Pile Card visual styles (were removed, causing only icon/text to show) */
+/* Reinstate Home Pile Card visual styles with new vertical game card design */
 .home-card-pile { width: 280px; height: 240px; max-width: 90vw; position: relative; }
 .home-pile-card {
   position: absolute;
   left: 50%; top: 50%;
   margin-left: -70px; margin-top: -100px; /* center offset */
   width: 140px; height: 200px;
-  background: var(--primary-dark); /* unify with About front face */
-  border: 2px solid var(--accent-color); /* match About border */
+  background: var(--primary-dark);
+  border: 2px solid var(--accent-color);
   border-radius: var(--border-radius-md);
   box-shadow: 0 10px 30px rgba(255,107,0,0.30);
-  display: flex; align-items: center; justify-content: center;
-  cursor: none; will-change: transform; overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  cursor: none;
+  will-change: transform;
+  overflow: hidden;
+  padding: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.light .home-pile-card { border-color: var(--primary-dark); }
-.home-pile-card-content { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; pointer-events:none; user-select:none; padding:0.75rem; text-align:center; }
-.home-pile-card-icon { font-size:1.9rem; color: var(--primary-light); margin-bottom:0.5rem; line-height:1; }
-.home-pile-card-text { font-size:0.72rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color: var(--primary-light); }
-.home-pile-card:hover { box-shadow:0 15px 40px rgba(255,107,0,0.50), 0 0 20px rgba(255,107,0,0.40); }
+
+.light .home-pile-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid var(--primary-dark);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.home-pile-card-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    pointer-events: none;
+    user-select: none;
+    text-align: center;
+}
+
+/* Top meta section */
+.home-pile-card-meta-top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.5rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--secondary-text-dark);
+}
+
+.light .home-pile-card-meta-top {
+    color: var(--secondary-text-light);
+}
+
+/* Center content */
+.home-pile-card-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.home-pile-card-icon {
+    font-size: 1.8rem;
+    color: var(--primary-light);
+    line-height: 1;
+    opacity: 0.8;
+    transition: opacity var(--transition-normal);
+}
+
+.light .home-pile-card-icon {
+    color: var(--primary-dark);
+}
+
+.home-pile-card-text {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--primary-light);
+    margin-top: 0.25rem;
+}
+
+.light .home-pile-card-text {
+    color: var(--primary-dark);
+}
+
+.home-pile-card-divider {
+    width: 1.5rem;
+    height: 2px;
+    background: var(--accent-color);
+    margin: 0.25rem 0;
+}
+
+/* Bottom meta section */
+.home-pile-card-meta-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.5rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--secondary-text-dark);
+}
+
+.light .home-pile-card-meta-bottom {
+    color: var(--secondary-text-light);
+}
+
+.home-pile-card-arrow {
+    font-size: 0.75rem;
+    color: var(--accent-color);
+    transform: rotate(-45deg);
+    transition: transform var(--transition-normal);
+}
+
+/* Hover states */
+.home-pile-card:hover {
+    box-shadow: 0 15px 40px rgba(255,107,0,0.50), 0 0 20px rgba(255,107,0,0.40);
+}
+
+.light .home-pile-card:hover {
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+}
+
+.home-pile-card:hover .home-pile-card-icon {
+    opacity: 1;
+}
+
+.home-pile-card:hover .home-pile-card-arrow {
+    transform: rotate(0deg);
+}
+
 @media (max-width:767px){
   .home-card-pile { width:240px; height:200px; }
-  .home-pile-card { width:120px; height:180px; margin-left:-60px; margin-top:-90px; }
-  .home-pile-card-icon { font-size:1.6rem; }
-  .home-pile-card-text { font-size:0.62rem; }
+  .home-pile-card { width:120px; height:180px; margin-left:-60px; margin-top:-90px; padding: 0.75rem; }
+  .home-pile-card-icon { font-size:1.5rem; }
+  .home-pile-card-text { font-size:0.6rem; }
+  .home-pile-card-meta-top,
+  .home-pile-card-meta-bottom { font-size: 0.45rem; }
+  .home-pile-card-arrow { font-size: 0.65rem; }
 }
 
 /* =========================================================================
-   Interactive Reveal Card Game - Project Card Style (No Conflicts)
+   Interactive Reveal Card Game - Design System v1.3 Vertical Reveal (Flip)
    ========================================================================= */
 
-/* Main container with proper spacing */
+/* Main container */
 .reveal-game-section {
     margin-top: 6rem;
     margin-bottom: 4rem;
     padding: 2rem 1rem;
 }
 
-/* Grid layout - prevents squeezing */
+/* Grid layout */
 #reveal-card-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* 3-column layout on larger screens */
-@media (min-width: 768px) {
+@media (min-width: 640px) {
+    #reveal-card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
     #reveal-card-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
     }
 }
 
-/* Perspective container - maintains aspect ratio */
-.reveal-game-section .reveal-perspective-1000 {
+/* Flip Wrapper (Perspective Container) */
+.flip-wrapper {
     perspective: 1000px;
     width: 100%;
-    position: relative;
+    min-height: 320px;
 }
 
-/* Card inner - USE MIN-HEIGHT not HEIGHT to prevent squeezing */
-.reveal-game-section .reveal-card-inner {
+/* Flip Inner (3D Transform Container) */
+.flip-inner {
     position: relative;
     width: 100%;
-    min-height: var(--pattern-card-height);
-    height: var(--pattern-card-height);
-    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    min-height: 320px;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform-style: preserve-3d;
-    cursor: none;
-    pointer-events: auto;
+    cursor: pointer;
 }
 
 /* Flipped state */
-.reveal-game-section .reveal-card-inner.is-flipped {
+.flip-inner.is-flipped {
     transform: rotateY(180deg);
 }
 
-/* Card faces - BASE STYLES */
-.reveal-game-section .reveal-card-face {
+/* Flip Faces - Base Styles */
+.flip-face {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    min-height: var(--pattern-card-height);
-    height: var(--pattern-card-height);
+    min-height: 320px;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    border-radius: var(--border-radius-sm);
-    padding: 1rem 0.75rem; /* compact padding */
-    border: 1px solid var(--border-color-dark);
+    border-radius: var(--border-radius-md);
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
+    transition: all var(--transition-normal);
+}
+
+/* Cover Face (LOCKED/CLASSIFIED) */
+.flip-face.cover {
+    background: var(--primary-dark);
+    border: 2px solid var(--border-color-dark);
+}
+
+.flip-face.cover:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 24px rgba(255, 107, 0, 0.2);
+}
+
+.flip-face.cover .w-16 {
+    transition: all var(--transition-normal);
+}
+
+.flip-face.cover:hover .w-16 {
+    transform: scale(1.1);
+    border-color: var(--accent-color) !important;
+}
+
+.flip-face.cover:hover .fa-lock {
+    color: var(--accent-color) !important;
+}
+
+/* Content Face (Revealed) - Uses game-card styling */
+.flip-face.content {
+    background: var(--primary-dark);
+    border: 2px solid var(--accent-color);
+    transform: rotateY(180deg);
+    box-shadow: 0 8px 24px rgba(255, 107, 0, 0.3);
+}
+
+/* Game Card Base - Vertical Layout */
+.game-card.vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+/* Game Card - Horizontal Layout */
+.game-card.horizontal {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    position: relative;
+    border-radius: var(--border-radius-md);
+    border: 2px solid var(--border-color-dark);
+    background: var(--primary-dark);
+    transition: all var(--transition-normal);
+}
+
+.game-card.horizontal:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 24px rgba(255, 107, 0, 0.2);
+}
+
+/* Light theme - horizontal card */
+.light .game-card.horizontal {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.light .game-card.horizontal:hover {
+    border-color: var(--accent-color);
+}
+
+/* Icon column (horizontal card) */
+.icon-col {
+    display: flex;
     align-items: center;
     justify-content: center;
     transition: all var(--transition-normal);
-    pointer-events: auto; /* Ensure face elements can receive clicks */
 }
 
-/* FRONT FACE - Dark/mysterious to indicate "click to reveal" */
-.reveal-game-section .reveal-card-face:not(.reveal-card-back) {
-    background: var(--primary-dark);
-    border: 2px solid var(--accent-color);
-}
-
-/* Hover state on front - indicate clickability */
-.reveal-game-section .reveal-card-inner:hover .reveal-card-face:not(.reveal-card-back) {
-    border-color: var(--accent-color);
-    box-shadow: 0 0 20px rgba(255, 107, 0, 0.4);
-}
-
-/* BACK FACE - Bright orange to show revealed state */
-.reveal-game-section .reveal-card-back {
-    background: var(--accent-color);
-    border: 1px solid var(--border-color-dark);
-    transform: rotateY(180deg);
-}
-
-/* Light theme adjustments */
-.light .reveal-game-section .reveal-card-face:not(.reveal-card-back) {
-    background: var(--primary-dark);
-    border: 2px solid var(--accent-color);
-}
-
-.light .reveal-game-section .reveal-card-back {
-    background: var(--accent-color);
-}
-
-/* Prevent box-sizing issues */
-.reveal-game-section .reveal-card-face * {
-    box-sizing: border-box;
-}
-
-/* Z-index management */
-.reveal-game-section .reveal-card-inner {
-    z-index: 1;
-}
-
-.reveal-game-section .reveal-card-inner:hover {
-    z-index: 10;
-}
-
-/* Center circle icon container - matches project card logo style */
-.reveal-game-section .reveal-icon-circle {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: var(--primary-light);
-    color: var(--primary-dark);
+/* Content column (horizontal card) */
+.content-col {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    position: relative;
 }
 
-/* Icon inside circle */
-.reveal-game-section .reveal-icon-circle svg {
-    width: 40px;
-    height: 40px;
+/* Card border variable fallback */
+.bg-\[var\(--card-border\)\] {
+    background: var(--border-color-dark);
 }
 
-/* Icon size for FontAwesome */
-.reveal-game-section .reveal-icon-circle i {
-    font-size: 2rem;
+.light .bg-\[var\(--card-border\)\] {
+    background: rgba(0, 0, 0, 0.1);
 }
 
-/* Front face (unrevealed) - icon color */
-.reveal-game-section .reveal-card-face:not(.reveal-card-back) .reveal-icon-circle i {
-    color: var(--accent-color);
+/* Text color variables */
+.text-\[var\(--text-main\)\] {
+    color: var(--primary-light);
 }
 
-/* Back face (revealed) - icon color */
-.reveal-game-section .reveal-card-back .reveal-icon-circle i {
-    color: var(--accent-color);
-}
-
-/* Text content styling */
-.reveal-game-section .reveal-card-title {
-    font-size: var(--font-size-lg);
-    font-weight: 700;
-    text-align: center;
-    margin: 0 0 0.5rem 0;
-    letter-spacing: 0.01em;
-}
-
-/* Front face (unrevealed) - orange title on dark background */
-.reveal-game-section .reveal-card-face:not(.reveal-card-back) .reveal-card-title {
-    color: var(--accent-color);
-}
-
-/* Back face (revealed) - dark title on orange background */
-.reveal-game-section .reveal-card-back .reveal-card-title {
+.light .text-\[var\(--text-main\)\] {
     color: var(--primary-dark);
 }
 
-/* Description text on back face */
-.reveal-game-section .reveal-card-back p {
-    font-size: 0.875rem;
+.group-hover\:text-\[var\(--text-main\)\]:hover {
+    color: var(--primary-light);
+}
+
+.light .group:hover .group-hover\:text-\[var\(--text-main\)\] {
     color: var(--primary-dark);
-    opacity: 0.9;
-    text-align: center;
-    line-height: 1.6;
-    max-height: 70px;
-    overflow: hidden;
-    margin: 0.25rem 0 0 0;
+}
+
+/* Corner labels */
+.corner-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color var(--transition-normal);
+}
+
+.text-accent {
+    color: var(--accent-color);
+}
+
+/* Icon spin animation */
+@keyframes reveal-icon-spin {
+    0% {
+        transform: rotate(0deg) scale(0.8);
+        opacity: 0.5;
+    }
+    50% {
+        transform: rotate(180deg) scale(1.1);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Arrow rotation */
+.fa-arrow-right {
+    transition: transform var(--transition-normal);
+    color: var(--accent-color);
+}
+
+.-rotate-45 {
+    transform: rotate(-45deg);
+}
+
+.group:hover .group-hover\:rotate-0 {
+    transform: rotate(0deg);
+}
+
+.group:hover .group-hover\:opacity-100 {
+    opacity: 1;
+}
+
+/* Text muted variable fallback */
+.text-\[var\(--text-muted\)\] {
+    color: var(--secondary-text-dark);
+}
+
+.light .text-\[var\(--text-muted\)\] {
+    color: var(--secondary-text-light);
+}
+
+/* Accent variable fallback */
+.bg-\[var\(--accent\)\] {
+    background: var(--accent-color);
 }
 
 /* Light theme adjustments */
-.light .reveal-game-section .reveal-card-face:not(.reveal-card-back) .reveal-card-title {
-    color: var(--accent-color);
+.light .flip-face.cover {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.1);
 }
 
-.light .reveal-game-section .reveal-card-back .reveal-card-title {
-    color: var(--primary-dark);
+.light .flip-face.cover .border-gray-800 {
+    border-color: rgba(0, 0, 0, 0.2) !important;
 }
 
-/* Corner labels styling */
-.reveal-game-section .reveal-corner-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
+.light .flip-face.cover .text-gray-500 {
+    color: rgba(0, 0, 0, 0.5) !important;
 }
 
-/* Front face corner labels - orange on dark background */
-.reveal-game-section .reveal-card-face:not(.reveal-card-back) .reveal-corner-label {
-    color: var(--accent-color);
-    opacity: 0.9;
+.light .flip-face.cover:hover {
+    border-color: var(--accent-color);
 }
 
-/* Back face corner labels - dark on orange background */
-.reveal-game-section .reveal-card-back .reveal-corner-label {
-    color: var(--primary-dark);
-    opacity: 0.7;
+.light .flip-face.content {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: var(--accent-color);
 }
 
-/* Light theme corner labels */
-.light .reveal-game-section .reveal-card-face:not(.reveal-card-back) .reveal-corner-label {
-    color: var(--accent-color);
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .flip-wrapper {
+        min-height: 280px;
+    }
+
+    .flip-inner {
+        min-height: 280px;
+    }
+
+    .flip-face {
+        min-height: 280px;
+        padding: 1.25rem;
+    }
+    
+    .flip-face.content .text-4xl {
+        font-size: 2rem;
+    }
+    
+    .flip-face.content .text-5xl {
+        font-size: 3rem;
+    }
+
+    .game-card.vertical {
+        padding: 1.5rem;
+        gap: 1rem;
+    }
 }
 
-.light .reveal-game-section .reveal-card-back .reveal-corner-label {
-    color: var(--primary-dark);
-}
-
-/* Text wrapping to prevent overflow */
-.reveal-game-section .reveal-card-face p {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    hyphens: auto;
-}
-
-/* Corner labels styling */
-.reveal-game-section .reveal-corner-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--primary-dark);
-    opacity: 0.7;
-}
-
-/* Keyframe for icon pop animation */
+/* =========================================================================
+   Reveal Game Modal & CTA Styles
+   ========================================================================= *//* Keyframe for icon pop animation */
 @keyframes reveal-icon-pop {
     0% {
         transform: scale(0) rotate(-180deg);
@@ -3437,4 +3624,56 @@ body.is-case-page #site-header {
 
 .light .sidebar-label {
     color: var(--secondary-text-light);
+}
+
+/* =========================================================================
+   Corner Labels & Next Adventure Card
+   ========================================================================= */
+.corner-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color var(--transition-normal);
+}
+
+.next-adventure-card {
+    min-height: 320px;
+    position: relative;
+}
+
+.next-adventure-card .project-card-front {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 320px;
+    padding: 2rem;
+}
+
+.next-adventure-card:hover .fa-rocket {
+    opacity: 1;
+    animation: float 2s ease-in-out infinite;
+}
+
+.next-adventure-card:hover .fa-arrow-right {
+    transform: rotate(0deg) !important;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Light theme adjustments for corner labels */
+.light .corner-label {
+    opacity: 0.8;
+}
+
+.light .next-adventure-card:hover .corner-label {
+    opacity: 1;
 }
