@@ -116,6 +116,54 @@
             top: 2rem;
             height: fit-content;
         }
+        
+        .sidebar-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+        }
+        
+        .sidebar-label {
+            display: block;
+            font-family: var(--font-family-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--secondary-text-dark);
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+        
+        #case-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .toc-link {
+            display: block;
+            padding: 0.5rem 0 0.5rem 1.5rem;
+            color: var(--secondary-text-dark);
+            font-family: var(--font-family-mono);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            border-left: 1px solid var(--border-color-dark);
+        }
+        
+        .toc-link:hover,
+        .toc-link.active {
+            color: var(--accent-color);
+        }
+        
+        .toc-link.active::before {
+            content: '';
+            position: absolute;
+            left: -1px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: var(--accent-color);
+        }
 
         .sticky-nav ul {
             list-style: none;
@@ -275,14 +323,17 @@
 
         <!-- SIDEBAR (Desktop) -->
         <aside class="hidden lg:block">
-            <nav class="sticky-nav">
-                <ul>
-                    <li><a href="#context" class="active">01. The Context</a></li>
-                    <li><a href="#research">02. Research</a></li>
-                    <li><a href="#solution">03. The Solution</a></li>
-                    <li><a href="#impact">04. Impact</a></li>
-                </ul>
-            </nav>
+            <div class="sticky-nav">
+                <div class="sidebar-section mt-8 pt-8 border-t border-[#2d2d2d]">
+                    <span class="sidebar-label mb-4">Navigation</span>
+                    <nav id="case-nav">
+                        <a href="#context" class="toc-link active">01 / THE CONTEXT</a>
+                        <a href="#research" class="toc-link">02 / RESEARCH</a>
+                        <a href="#solution" class="toc-link">03 / THE SOLUTION</a>
+                        <a href="#impact" class="toc-link">04 / THE IMPACT</a>
+                    </nav>
+                </div>
+            </div>
         </aside>
 
         <!-- ARTICLE -->
@@ -391,7 +442,7 @@
     <script>
         // Simple navigation for smooth scrolling
         document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.sticky-nav a');
+            const navLinks = document.querySelectorAll('.toc-link');
             const sections = document.querySelectorAll('section');
 
             // Smooth scrolling for navigation links
@@ -425,7 +476,7 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const sectionId = entry.target.id;
-                        const correspondingLink = document.querySelector(`.sticky-nav a[href="#${sectionId}"]`);
+                        const correspondingLink = document.querySelector(`.toc-link[href="#${sectionId}"]`);
 
                         if (correspondingLink) {
                             navLinks.forEach(l => l.classList.remove('active'));
