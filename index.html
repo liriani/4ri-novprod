@@ -755,27 +755,32 @@
               <div>
                 <p class="text-xs secondary-text mb-2 font-mono">CODE</p>
                 <div class="component-preview-box p-4 overflow-auto" style="max-height: 320px;">
-                  <pre class="text-xs"><code>&lt;div class="game-card vertical group"&gt;
-  &lt;div class="flex justify-between w-full"&gt;
-    &lt;span class="corner-label text-accent"&gt;ID_01&lt;/span&gt;
-    &lt;span class="corner-label"&gt;// SYSTEM&lt;/span&gt;
-  &lt;/div&gt;
+                  <pre class="text-xs"><code>&lt;!-- Vertical Card Component --&gt;
+&lt;div class="game-card vertical group"&gt;
 
-  &lt;div class="text-center mt-4"&gt;
-    &lt;div class="mb-6 opacity-80 group-hover:opacity-100"&gt;
-      &lt;i class="fa-solid fa-cube text-5xl"&gt;&lt;/i&gt;
+    &lt;!-- Top Meta --&gt;
+    &lt;div class="flex justify-between w-full"&gt;
+        &lt;span class="corner-label text-accent"&gt;ID_01&lt;/span&gt;
+        &lt;span class="corner-label"&gt;// SYSTEM&lt;/span&gt;
     &lt;/div&gt;
-    &lt;h2 class="font-display text-4xl mb-2"&gt;Modules&lt;/h2&gt;
-    &lt;div class="w-8 h-0.5 bg-[var(--accent)] mx-auto mb-4"&gt;&lt;/div&gt;
-    &lt;p class="font-mono text-xs text-[var(--text-muted)]"&gt;
-      Standardized atomic units.
-    &lt;/p&gt;
-  &lt;/div&gt;
 
-  &lt;div class="flex justify-between w-full items-end"&gt;
-    &lt;span class="corner-label"&gt;EST. 2024&lt;/span&gt;
-    &lt;i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0"&gt;&lt;/i&gt;
-  &lt;/div&gt;
+    &lt;!-- Main Content --&gt;
+    &lt;div class="text-center mt-4"&gt;
+        &lt;div class="mb-6 opacity-80 group-hover:opacity-100 text-[var(--text-main)]"&gt;
+            &lt;i class="fa-solid fa-cube text-5xl"&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;h2 class="font-display text-4xl mb-2"&gt;Modules&lt;/h2&gt;
+        &lt;div class="w-8 h-0.5 bg-[var(--accent)] mx-auto mb-4"&gt;&lt;/div&gt;
+        &lt;p class="font-mono text-xs text-[var(--text-muted)]"&gt;
+            Standardized atomic units.
+        &lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Footer Meta --&gt;
+    &lt;div class="flex justify-between w-full items-end"&gt;
+        &lt;span class="corner-label"&gt;EST. 2024&lt;/span&gt;
+        &lt;i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0"&gt;&lt;/i&gt;
+    &lt;/div&gt;
 &lt;/div&gt;</code></pre>
                 </div>
               </div>
@@ -818,25 +823,34 @@
               <div>
                 <p class="text-xs secondary-text mb-2 font-mono">CODE</p>
                 <div class="component-preview-box p-4 overflow-auto" style="max-height: 180px;">
-                  <pre class="text-xs"><code>&lt;div class="game-card horizontal group"&gt;
-  &lt;div class="absolute bottom-0 left-0 w-full h-1
-       bg-[var(--card-border)]
-       group-hover:bg-[var(--accent)]"&gt;&lt;/div&gt;
+              <pre class="text-xs"><code>&lt;!-- Horizontal Card Component --&gt;
+&lt;div class="game-card horizontal group"&gt;
+    &lt;!-- Decoration Line --&gt;
+    &lt;div class="absolute bottom-0 left-0 w-full h-1
+         bg-[var(--card-border)]
+         group-hover:bg-[var(--accent)]
+         transition-colors"&gt;&lt;/div&gt;
 
-  &lt;div class="icon-col"&gt;
-    &lt;i class="fa-solid fa-fingerprint text-4xl"&gt;&lt;/i&gt;
-  &lt;/div&gt;
-
-  &lt;div class="content-col relative"&gt;
-    &lt;span class="corner-label absolute top-0 right-0"&gt;SEC_04&lt;/span&gt;
-    &lt;div&gt;
-      &lt;h3 class="font-display text-3xl"&gt;Access&lt;/h3&gt;
-      &lt;p class="font-mono text-xs text-[var(--accent)]"&gt;[ RESTRICTED ]&lt;/p&gt;
-      &lt;p class="text-sm text-[var(--text-muted)]"&gt;
-        Biometric authentication required.
-      &lt;/p&gt;
+    &lt;!-- Left: Icon --&gt;
+    &lt;div class="icon-col"&gt;
+        &lt;i class="fa-solid fa-fingerprint text-4xl
+           text-[var(--text-muted)]
+           group-hover:text-[var(--text-main)]"&gt;&lt;/i&gt;
     &lt;/div&gt;
-  &lt;/div&gt;
+
+    &lt;!-- Right: Content --&gt;
+    &lt;div class="content-col relative"&gt;
+        &lt;span class="corner-label absolute top-0 right-0"&gt;SEC_04&lt;/span&gt;
+        &lt;div&gt;
+            &lt;h3 class="font-display text-3xl mb-1"&gt;Access&lt;/h3&gt;
+            &lt;p class="font-mono text-xs text-[var(--accent)] mb-2"&gt;
+                [ RESTRICTED ]
+            &lt;/p&gt;
+            &lt;p class="text-sm text-[var(--text-muted)] font-light"&gt;
+                Biometric authentication required.
+            &lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
 &lt;/div&gt;</code></pre>
                 </div>
               </div>
@@ -905,36 +919,59 @@
               <div>
                 <p class="text-xs secondary-text mb-2 font-mono">CODE</p>
                 <div class="component-preview-box p-4 overflow-auto" style="max-height: 340px;">
-                  <pre class="text-xs"><code>&lt;div class="flip-wrapper"&gt;
-  &lt;div class="flip-inner"&gt;
-    &lt;!-- SIDE A: COVER --&gt;
-    &lt;div class="flip-face cover"&gt;
-      &lt;div class="flex justify-between"&gt;
-        &lt;span class="corner-label text-accent"&gt;LOCKED&lt;/span&gt;
-      &lt;/div&gt;
+              <pre class="text-xs"><code>&lt;!-- Vertical Flip Wrapper --&gt;
+&lt;div class="flip-wrapper"&gt;
+    &lt;div class="flip-inner"&gt;
 
-      &lt;div class="flex flex-col items-center justify-center h-full"&gt;
-        &lt;div class="w-16 h-16 rounded-full border border-gray-800
-             flex items-center justify-center mb-4"&gt;
-          &lt;i class="fa-solid fa-lock text-xl text-gray-500"&gt;&lt;/i&gt;
+        &lt;!-- SIDE A: COVER --&gt;
+        &lt;div class="flip-face cover"&gt;
+            &lt;div class="flex justify-between"&gt;
+                &lt;span class="corner-label text-accent pl-2"&gt;LOCKED&lt;/span&gt;
+            &lt;/div&gt;
+
+            &lt;div class="flex flex-col items-center justify-center h-full"&gt;
+                &lt;div class="w-16 h-16 rounded-full border border-gray-800
+                     flex items-center justify-center mb-4"&gt;
+                    &lt;i class="fa-solid fa-lock text-xl text-gray-500"&gt;&lt;/i&gt;
+                &lt;/div&gt;
+                &lt;h3 class="font-display text-2xl tracking-widest text-gray-500"&gt;
+                    CLASSIFIED
+                &lt;/h3&gt;
+            &lt;/div&gt;
+
+            &lt;div class="w-full text-center border-t border-gray-800 pt-4"&gt;
+                &lt;p class="font-mono text-[10px] text-orange-500 animate-pulse"&gt;
+                    [ CLICK TO DECRYPT ]
+                &lt;/p&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
-        &lt;h3 class="font-display text-2xl tracking-widest text-gray-500"&gt;
-          CLASSIFIED
-        &lt;/h3&gt;
-      &lt;/div&gt;
 
-      &lt;div class="w-full text-center border-t border-gray-800 pt-4"&gt;
-        &lt;p class="font-mono text-[10px] text-orange-500 animate-pulse"&gt;
-          [ CLICK TO DECRYPT ]
-        &lt;/p&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+        &lt;!-- SIDE B: CONTENT --&gt;
+        &lt;div class="flip-face content game-card vertical group"&gt;
+            &lt;!-- Standard Vertical Card Content --&gt;
+            &lt;div class="flex justify-between w-full"&gt;
+                &lt;span class="corner-label text-accent"&gt;DATA_01&lt;/span&gt;
+                &lt;span class="corner-label"&gt;// UNLOCKED&lt;/span&gt;
+            &lt;/div&gt;
 
-    &lt;!-- SIDE B: CONTENT --&gt;
-    &lt;div class="flip-face content game-card vertical group"&gt;
-      &lt;!-- Standard Vertical Card Content --&gt;
+            &lt;div class="text-center mt-4"&gt;
+                &lt;div class="mb-6 opacity-80"&gt;
+                    &lt;i class="fa-solid fa-eye text-5xl"&gt;&lt;/i&gt;
+                &lt;/div&gt;
+                &lt;h2 class="font-display text-4xl mb-2"&gt;Insight&lt;/h2&gt;
+                &lt;div class="w-8 h-0.5 bg-[var(--accent)] mx-auto mb-4"&gt;&lt;/div&gt;
+                &lt;p class="font-mono text-xs text-[var(--text-muted)]"&gt;
+                    Data revealed successfully.
+                &lt;/p&gt;
+            &lt;/div&gt;
+
+            &lt;div class="flex justify-between w-full items-end"&gt;
+                &lt;span class="corner-label"&gt;SECURE&lt;/span&gt;
+                &lt;i class="fa-solid fa-check text-accent"&gt;&lt;/i&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
     &lt;/div&gt;
-  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
                 </div>
               </div>
