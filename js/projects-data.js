@@ -9,6 +9,7 @@ export const projectsData = [
     title: "FIAP Startup Challenge: HealthHub",
     shortTitle: "FIAP HealthHub",
     description: "Mobile-first platform for clinics and patients. 2nd place at FIAP Startup Challenge 2023. Focused on long-term care management.",
+    caseStudyUrl: "./cases/fiap-healthhub.html",
     logo: "./assets/fiap/logo.png",
     logoAlt: "FIAP Logo",
     cover: "./assets/fiap/cover.png",
@@ -111,6 +112,7 @@ export const projectsData = [
     title: "Nohs Somos: LGBTQ Community Safety App",
     shortTitle: "Nohs Somos",
     description: "Map-based app for LGBTQ community safety. Find and review safe spaces. Built for Nohs Somos, merged with TODXS.",
+    caseStudyUrl: "./cases/nohs-somos.html",
     logo: "./assets/nohs-somos/logo.png",
     logoAlt: "Nohs Somos Logo",
     cover: "./assets/nohs-somos/cover.png",
@@ -134,6 +136,7 @@ export const projectsData = [
     title: "Creators Fit (formerly Privi): Monetizing Content for Brazilian Influencers",
     shortTitle: "Creators Fit (Privi)",
     description: "Platform for Brazilian creators to monetize exclusive content. Supports subscriptions, pay-per-view, and media uploads.",
+    caseStudyUrl: "./cases/creators-fit.html",
     logo: "./assets/creators-fit/logo.png",
     logoAlt: "Privi Logo",
     cover: "./assets/creators-fit/cover.png",
@@ -190,3 +193,93 @@ export function getAllProjects() {
 export function getProjectsCount() {
   return projectsData.length;
 }
+
+// ---------------------------------------------------------------------------
+// Normalization: ensure all projects have a FIAP-style detailedCaseStudy
+// so every case page uses the same template + styling.
+// ---------------------------------------------------------------------------
+
+function escapeHtml(str) {
+  return String(str || '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
+function buildDetailedCaseStudyFromCaseStudy(project) {
+  const context = project?.caseStudy?.context || {};
+  const subtitle = project?.description || '';
+
+  return {
+    subtitle,
+    caseNumber: String(project.id).padStart(3, '0'),
+    meta: {
+      role: context.role || 'Product Designer',
+      timeline: context.timeline || '—',
+      team: context.team || '—',
+      recognition: ''
+    },
+    heroImage: project.cover,
+    sections: [
+      {
+        id: 'context',
+        number: '01',
+        title: 'The Context',
+        headline: 'The Context',
+        content: `<p>${escapeHtml(project?.caseStudy?.problem || project?.description || '')}</p>`
+      },
+      {
+        id: 'discovery',
+        number: '02',
+        title: 'Discovery',
+        headline: 'Discovery & Research',
+        content: `<p>${escapeHtml(project?.caseStudy?.process || '')}</p>`,
+        images: Array.isArray(project.designs) && project.designs[0]
+          ? [{ src: project.designs[0].src, caption: project.designs[0].caption || 'FIG. Design artifact' }]
+          : []
+      },
+      {
+        id: 'solution',
+        number: '03',
+        title: 'The Solution',
+        headline: 'The Solution',
+        content: `<p class="big-text">${escapeHtml(project.shortTitle || project.title)}</p>`,
+        features: Array.isArray(project.designs)
+          ? project.designs.slice(1, 3).map((d, index) => ({
+              title: index === 0 ? 'Key Screen' : 'Key Flow',
+              description: d.caption || 'Design highlight',
+              image: d.src
+            }))
+          : []
+      },
+      {
+        id: 'impact',
+        number: '04',
+        title: 'The Impact',
+        headline: 'Results & Takeaways',
+        content: `<p>${escapeHtml(project?.caseStudy?.impact || '')}</p>`
+      }
+    ],
+    nextProject: null
+  };
+}
+
+(function normalizeProjectsData() {
+  // Determine nextProject references in ID order
+  const sorted = [...projectsData].sort((a, b) => a.id - b.id);
+
+  sorted.forEach((p, idx) => {
+    if (!p.detailedCaseStudy) {
+      p.detailedCaseStudy = buildDetailedCaseStudyFromCaseStudy(p);
+    }
+
+    const next = sorted[idx + 1] || sorted[0];
+    p.detailedCaseStudy.nextProject = {
+      id: next.id,
+      title: next.shortTitle || next.title,
+      url: `#project-${next.id}`
+    };
+  });
+})();

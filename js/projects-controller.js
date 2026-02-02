@@ -5,6 +5,7 @@
 
 import { getProjectById, getAllProjects } from './projects-data.js';
 import { createProjectsGrid, createCallToAction, createProjectDetail } from './projects-components.js';
+import { initializeCaseStudyNavigation } from './case-study-template.js';
 
 export class ProjectsController {
   constructor() {
@@ -185,23 +186,20 @@ export class ProjectsController {
    * @param {Event} e - Click event
    */
   handleProjectCardClick(e) {
-    const card = e.currentTarget;
-
-    // Check if card has external case study (onclick attribute)
-    if (card.hasAttribute('onclick')) {
-      // External case study - onclick attribute will handle the navigation
-      return;
-    }
-
-    // Internal project detail
-    const projectId = card.dataset.projectId;
+    const projectId = e.currentTarget.dataset.projectId;
     if (projectId) {
-      this.renderProjectDetail(projectId);
+      const project = getProjectById(projectId);
 
-      // Navigate to project detail page using the existing navigation system
-      window.location.hash = `project-${projectId}`;
-      if (window.showPage) {
-        window.showPage('project-detail');
+      // If project has a dedicated case study HTML file, navigate to it
+      if (project && project.caseStudyUrl) {
+        window.location.href = project.caseStudyUrl;
+      } else {
+        // Fallback to old inline detail view for projects without dedicated pages
+        this.renderProjectDetail(projectId);
+        window.location.hash = `project-${projectId}`;
+        if (window.showPage) {
+          window.showPage('project-detail');
+        }
       }
     }
   }
