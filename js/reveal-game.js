@@ -31,22 +31,6 @@ let revealCardsState = revealInitialCardsData.map(card => ({
     hasAnimated: false
 }));
 
-/**
- * Creates a FontAwesome icon element
- */
-function createRevealIcon(iconClass, isAnimating = false) {
-    const icon = document.createElement('i');
-    icon.className = `fas ${iconClass}`;
-    icon.style.fontSize = '2rem';
-    icon.style.color = 'var(--primary-dark)';
-
-    if (isAnimating) {
-        icon.classList.add('reveal-icon-animated');
-    }
-
-    return icon;
-}
-
 function getRevealedCardCount() {
     return revealCardsState.filter(c => c.isFlipped).length;
 }
@@ -71,120 +55,161 @@ function resetRevealCards() {
 window.resetRevealCards = resetRevealCards;
 
 /**
- * Renders a single reveal game card - PROJECT CARD STYLE
+ * Renders a single reveal game card - Design System v1.3 Vertical Reveal (Flip)
  */
 function renderRevealGameCard(cardState, index) {
     const { card, isFlipped, hasAnimated } = cardState;
 
-    // Create outer container
-    const cardWrapper = document.createElement('div');
-    cardWrapper.classList.add("reveal-perspective-1000");
+    // Flip Wrapper (Perspective)
+    const flipWrapper = document.createElement('div');
+    flipWrapper.classList.add("flip-wrapper");
 
-    // Create inner container
-    const cardInner = document.createElement('div');
-    cardInner.classList.add("reveal-card-inner");
-    cardInner.id = `reveal-card-inner-${index}`;
+    // Flip Inner
+    const flipInner = document.createElement('div');
+    flipInner.classList.add("flip-inner");
+    flipInner.id = `reveal-card-inner-${index}`;
 
     if (isFlipped) {
-        cardInner.classList.add('is-flipped');
+        flipInner.classList.add('is-flipped');
     }
 
-    // Click Handler - use addEventListener for better control
-    cardInner.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent event bubbling
+    // Click Handler - PRESERVED
+    flipInner.addEventListener('click', (e) => {
+        e.stopPropagation();
         handleRevealCardClick(index);
     });
 
-    // Touch support for mobile
-    cardInner.addEventListener('touchend', (e) => {
+    // Touch support - PRESERVED
+    flipInner.addEventListener('touchend', (e) => {
         e.preventDefault();
         e.stopPropagation();
         handleRevealCardClick(index);
     });
 
-    // === CARD FRONT (matches project-card-front) ===
-    const cardFront = document.createElement('div');
-    cardFront.classList.add("reveal-card-face");
+    // === SIDE A: COVER (HEAD) - LOCKED/CLASSIFIED ===
+    const coverFace = document.createElement('div');
+    coverFace.classList.add("flip-face", "cover");
 
-    // Icon circle container (matches project-logo)
+    // Top corner
+    const topCorner = document.createElement('div');
+    topCorner.className = 'flex justify-between';
+    const lockedLabel = document.createElement('span');
+    lockedLabel.className = 'corner-label text-accent pl-2';
+    lockedLabel.textContent = 'LOCKED';
+    topCorner.appendChild(lockedLabel);
+
+    // Center - Lock icon + CLASSIFIED
+    const centerContent = document.createElement('div');
+    centerContent.className = 'flex flex-col items-center justify-center h-full';
+
     const iconCircle = document.createElement('div');
-    iconCircle.classList.add('reveal-icon-circle');
-    iconCircle.appendChild(createRevealIcon(card.icon, false));
+    iconCircle.className = 'w-16 h-16 rounded-full border border-gray-800 flex items-center justify-center mb-4';
 
-    // Card title (matches project card-title)
-    const cardTitle = document.createElement('h3');
-    cardTitle.classList.add('reveal-card-title');
-    cardTitle.textContent = card.categoryLabel || card.type;
+    const lockIcon = document.createElement('i');
+    lockIcon.className = 'fa-solid fa-lock text-xl text-gray-500';
+    iconCircle.appendChild(lockIcon);
 
-    // Corner labels
-    const topLabel = document.createElement('div');
-    topLabel.classList.add('reveal-corner-label');
-    topLabel.style.position = 'absolute';
-    topLabel.style.top = '1rem';
-    topLabel.style.left = '1rem';
-    topLabel.textContent = card.nvlCode;
+    const classifiedTitle = document.createElement('h3');
+    classifiedTitle.className = 'font-display text-2xl tracking-widest text-gray-500';
+    classifiedTitle.textContent = 'CLASSIFIED';
 
-    const bottomLabel = document.createElement('div');
-    bottomLabel.classList.add('reveal-corner-label');
-    bottomLabel.style.position = 'absolute';
-    bottomLabel.style.bottom = '1rem';
-    bottomLabel.style.right = '1rem';
-    bottomLabel.style.textTransform = 'uppercase';
-    bottomLabel.style.letterSpacing = '0.05em';
-    bottomLabel.textContent = 'Click to reveal';
+    centerContent.appendChild(iconCircle);
+    centerContent.appendChild(classifiedTitle);
 
-    cardFront.appendChild(topLabel);
-    cardFront.appendChild(iconCircle);
-    cardFront.appendChild(cardTitle);
-    cardFront.appendChild(bottomLabel);
+    // Bottom - Decrypt message
+    const bottomBorder = document.createElement('div');
+    bottomBorder.className = 'w-full text-center border-t border-gray-800 pt-4';
 
-    // === CARD BACK (revealed state) ===
-    const cardBack = document.createElement('div');
-    cardBack.classList.add("reveal-card-face", "reveal-card-back");
+    const decryptMsg = document.createElement('p');
+    decryptMsg.className = 'font-mono text-[10px] text-orange-500 animate-pulse';
+    decryptMsg.textContent = '[ CLICK TO DECRYPT ]';
+    bottomBorder.appendChild(decryptMsg);
 
-    // Icon circle with animation on first flip
-    const backIconCircle = document.createElement('div');
-    backIconCircle.classList.add('reveal-icon-circle');
-    backIconCircle.appendChild(createRevealIcon(card.icon, isFlipped && !hasAnimated));
+    coverFace.appendChild(topCorner);
+    coverFace.appendChild(centerContent);
+    coverFace.appendChild(bottomBorder);
 
-    // Question
-    const question = document.createElement('p');
-    question.classList.add('reveal-card-title');
-    question.textContent = card.question;
+    // === SIDE B: CONTENT (FACE) - Standard Vertical Card ===
+    const contentFace = document.createElement('div');
+    contentFace.classList.add("flip-face", "content", "game-card", "vertical", "group");
+
+    // Top Meta
+    const topMeta = document.createElement('div');
+    topMeta.className = 'flex justify-between w-full';
+
+    const dataId = document.createElement('span');
+    dataId.className = 'corner-label text-accent';
+    dataId.textContent = `${card.type}_0${index + 1}`;
+
+    const systemLabel = document.createElement('span');
+    systemLabel.className = 'corner-label';
+    systemLabel.textContent = '// UNLOCKED';
+
+    topMeta.appendChild(dataId);
+    topMeta.appendChild(systemLabel);
+
+    // Main Content
+    const mainContent = document.createElement('div');
+    mainContent.className = 'text-center mt-4';
+
+    // Icon
+    const iconWrapper = document.createElement('div');
+    iconWrapper.className = 'mb-6 opacity-80 group-hover:opacity-100';
+
+    const revealedIcon = document.createElement('i');
+    revealedIcon.className = `fa-solid ${card.icon} text-5xl`;
+
+    // Animation on first flip - PRESERVED
+    if (isFlipped && !hasAnimated) {
+        revealedIcon.style.animation = 'reveal-icon-spin 0.6s ease-out';
+    }
+
+    iconWrapper.appendChild(revealedIcon);
+
+    // Title
+    const title = document.createElement('h2');
+    title.className = 'font-display text-4xl mb-2';
+    title.textContent = card.categoryLabel || card.type;
+
+    // Divider
+    const divider = document.createElement('div');
+    divider.className = 'w-8 h-0.5 bg-[var(--accent)] mx-auto mb-4';
 
     // Description
     const description = document.createElement('p');
+    description.className = 'font-mono text-xs text-[var(--text-muted)]';
     description.textContent = card.description;
 
-    // Back corner labels
-    const backTopLabel = document.createElement('div');
-    backTopLabel.classList.add('reveal-corner-label');
-    backTopLabel.style.position = 'absolute';
-    backTopLabel.style.top = '1rem';
-    backTopLabel.style.left = '1rem';
-    backTopLabel.textContent = card.nvlCode;
+    mainContent.appendChild(iconWrapper);
+    mainContent.appendChild(title);
+    mainContent.appendChild(divider);
+    mainContent.appendChild(description);
 
-    const backBottomLabel = document.createElement('div');
-    backBottomLabel.classList.add('reveal-corner-label');
-    backBottomLabel.style.position = 'absolute';
-    backBottomLabel.style.bottom = '1rem';
-    backBottomLabel.style.right = '1rem';
-    backBottomLabel.style.textTransform = 'uppercase';
-    backBottomLabel.style.letterSpacing = '0.05em';
-    backBottomLabel.textContent = card.categoryLabel || card.type;
+    // Footer Meta
+    const footerMeta = document.createElement('div');
+    footerMeta.className = 'flex justify-between w-full items-end';
 
-    cardBack.appendChild(backTopLabel);
-    cardBack.appendChild(backIconCircle);
-    cardBack.appendChild(question);
-    cardBack.appendChild(description);
-    cardBack.appendChild(backBottomLabel);
+    const yearLabel = document.createElement('span');
+    yearLabel.className = 'corner-label';
+    yearLabel.textContent = 'EST. 2024';
 
-    // Assemble
-    cardInner.appendChild(cardBack);
-    cardInner.appendChild(cardFront);
-    cardWrapper.appendChild(cardInner);
+    const arrow = document.createElement('i');
+    arrow.className = 'fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0';
 
-    return cardWrapper;
+    footerMeta.appendChild(yearLabel);
+    footerMeta.appendChild(arrow);
+
+    // Assemble content
+    contentFace.appendChild(topMeta);
+    contentFace.appendChild(mainContent);
+    contentFace.appendChild(footerMeta);
+
+    // Assemble flip (content first, then cover)
+    flipInner.appendChild(contentFace);
+    flipInner.appendChild(coverFace);
+    flipWrapper.appendChild(flipInner);
+
+    return flipWrapper;
 }
 
 /**
