@@ -212,17 +212,15 @@ function handleRevealCardClick(index) {
 function renderRevealGrid() {
     const grid = document.getElementById('reveal-card-grid');
     const statusElement = document.getElementById('reveal-status');
-    const ctaCard = document.getElementById('reveal-cta-card');
     const resetButton = document.getElementById('reveal-reset-button');
     const revealedCount = getRevealedCardCount();
 
-    if (!grid || !statusElement || !ctaCard || !resetButton) return;
+    if (!grid || !statusElement || !resetButton) return;
 
     statusElement.textContent = `${revealedCount}/${revealCardsState.length} REVEALED`;
 
     const allRevealed = revealedCount === revealCardsState.length;
 
-    ctaCard.classList.toggle('hidden', !allRevealed);
     resetButton.classList.toggle('hidden', !allRevealed);
 
     // Show modal when all cards are revealed

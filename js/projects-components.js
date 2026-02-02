@@ -4,6 +4,7 @@
  */
 
 import { projectsData } from './projects-data.js';
+import { createDetailedCaseStudy } from './case-study-template.js';
 
 /**
  * Creates a project card element
@@ -15,20 +16,8 @@ export function createProjectCard(project) {
     ? `<img src="${project.logo}" alt="${project.logoAlt}">`
     : project.logo;
 
-  // Define case study URLs for projects that have standalone pages
-  const caseStudyUrls = {
-    5: './cases/fiap-healthhub.html',
-    6: './cases/nohs-somos.html',
-    7: './cases/creators-fit.html'
-  };
-
-  const hasExternalCaseStudy = caseStudyUrls[project.id];
-  const cardAction = hasExternalCaseStudy
-    ? `onclick="window.open('${caseStudyUrls[project.id]}', '_blank')"`
-    : `data-project-id="${project.id}"`;
-
   return `
-    <div class="project-card" ${cardAction}>
+    <div class="project-card" data-project-id="${project.id}">
       <div class="project-card-front">
         <span class="project-logo">${logoElement}</span>
         <h3 class="card-title">${project.title}</h3>
@@ -37,7 +26,6 @@ export function createProjectCard(project) {
         <div class="preview-left">
           <h3 class="card-title">${project.shortTitle}</h3>
           <p class="card-subtitle">${project.description}</p>
-          ${hasExternalCaseStudy ? '<p class="text-accent-color text-sm font-mono mt-2">VIEW FULL CASE STUDY →</p>' : ''}
         </div>
         <div class="preview-right">
           <img src="${project.cover}" alt="${project.coverAlt}">
@@ -53,7 +41,6 @@ export function createProjectCard(project) {
  */
 export function createNextAdventureCard() {
   return `
-    <div class="p-8 rounded-lg shadow-md border border-gray-700 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl flex flex-col justify-center items-center text-center">
       <div class="w-24 h-24 mb-4 text-accent-color opacity-30">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
