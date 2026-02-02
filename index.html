@@ -708,137 +708,369 @@
           </div>
         </div>
 
-        <!-- New: FIAP-style Case Page Pattern (Static Preview) -->
+        <!-- Game Card Components -->
         <div>
-          <h3 class="case-study-title">Case Page Pattern (FIAP-style)</h3>
-          <p class="body-text secondary-text mb-4">Static preview of the shared case-page layout DNA (hero, meta grid, sticky nav, sections, next project). Uses the same classes as real case pages.</p>
+          <h3 class="case-study-title">Game Card Components</h3>
+          <p class="body-text secondary-text mb-4">Interactive card components used throughout the portfolio for engaging user interactions.</p>
 
-          <!-- Card Container for better presentation -->
-          <div class="p-6 border border-border-color-dark rounded-lg" style="background: rgba(0,0,0,0.2);">
-            <div class="wrapper" style="padding-top: var(--spacing-lg); padding-bottom: var(--spacing-lg);">
-              <header>
-                <div class="mb-4">
-                  <span class="case-badge">CASE STUDY 000</span>
+          <!-- Vertical Card -->
+          <div class="mb-8">
+            <p class="card-subtitle mb-4">01. Vertical Card</p>
+            <p class="body-text secondary-text text-sm mb-4">Centered layout with top/bottom meta and hover animations.</p>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <!-- Live Example -->
+              <div>
+                <p class="text-xs secondary-text mb-2 font-mono">LIVE PREVIEW</p>
+                <div class="component-preview-box p-6 flex items-center justify-center" style="min-height: 320px;">
+                  <div class="game-card vertical group" style="width: 280px; min-height: 320px;">
+                    <!-- Top Meta -->
+                    <div class="flex justify-between w-full">
+                      <span class="corner-label text-accent">ID_01</span>
+                      <span class="corner-label">// SYSTEM</span>
+                    </div>
+
+                    <!-- Main Content -->
+                    <div class="text-center mt-4">
+                      <div class="mb-6 opacity-80 group-hover:opacity-100 text-[var(--text-main)]">
+                        <i class="fa-solid fa-cube text-5xl"></i>
+                      </div>
+                      <h2 class="font-display text-4xl mb-2">Modules</h2>
+                      <div class="w-8 h-0.5 bg-[var(--accent)] mx-auto mb-4"></div>
+                      <p class="font-mono text-xs text-[var(--text-muted)]">
+                        Standardized atomic units.
+                      </p>
+                    </div>
+
+                    <!-- Footer Meta -->
+                    <div class="flex justify-between w-full items-end">
+                      <span class="corner-label">EST. 2024</span>
+                      <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0"></i>
+                    </div>
+                  </div>
                 </div>
-                <h1 class="case-hero-title" style="margin-top:0; font-size: clamp(2rem, 6vw, 4rem);">SAMPLE<br>CASE</h1>
-                <p class="case-subtitle">A mobile-first ecosystem connecting users with services, reducing friction by 40%.</p>
-
-                <div class="meta-grid" style="margin-top: 2rem;">
-                  <div class="meta-item">
-                    <label>My Role</label>
-                    <span>Product Designer</span>
-                  </div>
-                  <div class="meta-item">
-                    <label>Timeline</label>
-                    <span>2 Weeks (Sprint)</span>
-                  </div>
-                  <div class="meta-item">
-                    <label>Team</label>
-                    <span>2 Devs, 1 PM</span>
-                  </div>
-                  <div class="meta-item">
-                    <label>Recognition</label>
-                    <span style="color: var(--accent-color);">Design Award</span>
-                  </div>
-                </div>
-              </header>
-
-              <div class="case-hero-image" style="height: 220px; margin-top: var(--spacing-2xl);">
-                <img src="https://placehold.co/1200x600/1a1a1a/666?text=Case+Hero+Image" alt="Case hero preview">
               </div>
 
-              <main class="content-grid" style="padding: var(--spacing-2xl) 0;">
-                <!-- Sidebar Navigation (Desktop) -->
-                <aside class="hidden lg:block">
-                  <div class="sticky-nav">
-                    <div class="sidebar-section border-t border-border-color-dark pt-8 mt-8">
-                      <span class="sidebar-label mb-4" style="display: block; font-family: 'Space Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: var(--secondary-text-dark);">Navigation</span>
+              <!-- Code Snippet -->
+              <div>
+                <p class="text-xs secondary-text mb-2 font-mono">CODE</p>
+                <div class="component-preview-box p-4 overflow-auto" style="max-height: 320px;">
+                  <pre class="text-xs"><code>&lt;div class="game-card vertical group"&gt;
+  &lt;div class="flex justify-between w-full"&gt;
+    &lt;span class="corner-label text-accent"&gt;ID_01&lt;/span&gt;
+    &lt;span class="corner-label"&gt;// SYSTEM&lt;/span&gt;
+  &lt;/div&gt;
+
+  &lt;div class="text-center mt-4"&gt;
+    &lt;div class="mb-6 opacity-80 group-hover:opacity-100"&gt;
+      &lt;i class="fa-solid fa-cube text-5xl"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;h2 class="font-display text-4xl mb-2"&gt;Modules&lt;/h2&gt;
+    &lt;div class="w-8 h-0.5 bg-[var(--accent)] mx-auto mb-4"&gt;&lt;/div&gt;
+    &lt;p class="font-mono text-xs text-[var(--text-muted)]"&gt;
+      Standardized atomic units.
+    &lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class="flex justify-between w-full items-end"&gt;
+    &lt;span class="corner-label"&gt;EST. 2024&lt;/span&gt;
+    &lt;i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0"&gt;&lt;/i&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Horizontal Card -->
+          <div class="mb-8">
+            <p class="card-subtitle mb-4">02. Horizontal Card</p>
+            <p class="body-text secondary-text text-sm mb-4">Icon left, content right with bottom decoration line.</p>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <!-- Live Example -->
+              <div>
+                <p class="text-xs secondary-text mb-2 font-mono">LIVE PREVIEW</p>
+                <div class="component-preview-box p-6 flex items-center justify-center" style="min-height: 180px;">
+                  <div class="game-card horizontal group" style="width: 100%; max-width: 400px; min-height: 160px; position: relative;">
+                    <!-- Decoration Line -->
+                    <div class="absolute bottom-0 left-0 w-full h-1 bg-[var(--card-border)] group-hover:bg-[var(--accent)] transition-colors"></div>
+
+                    <!-- Left: Icon -->
+                    <div class="icon-col">
+                      <i class="fa-solid fa-fingerprint text-4xl text-[var(--text-muted)] group-hover:text-[var(--text-main)]"></i>
+                    </div>
+
+                    <!-- Right: Content -->
+                    <div class="content-col relative">
+                      <span class="corner-label absolute top-0 right-0">SEC_04</span>
+                      <div>
+                        <h3 class="font-display text-3xl mb-1">Access</h3>
+                        <p class="font-mono text-xs text-[var(--accent)] mb-2">[ RESTRICTED ]</p>
+                        <p class="text-sm text-[var(--text-muted)] font-light">Biometric authentication required.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Code Snippet -->
+              <div>
+                <p class="text-xs secondary-text mb-2 font-mono">CODE</p>
+                <div class="component-preview-box p-4 overflow-auto" style="max-height: 180px;">
+                  <pre class="text-xs"><code>&lt;div class="game-card horizontal group"&gt;
+  &lt;div class="absolute bottom-0 left-0 w-full h-1
+       bg-[var(--card-border)]
+       group-hover:bg-[var(--accent)]"&gt;&lt;/div&gt;
+
+  &lt;div class="icon-col"&gt;
+    &lt;i class="fa-solid fa-fingerprint text-4xl"&gt;&lt;/i&gt;
+  &lt;/div&gt;
+
+  &lt;div class="content-col relative"&gt;
+    &lt;span class="corner-label absolute top-0 right-0"&gt;SEC_04&lt;/span&gt;
+    &lt;div&gt;
+      &lt;h3 class="font-display text-3xl"&gt;Access&lt;/h3&gt;
+      &lt;p class="font-mono text-xs text-[var(--accent)]"&gt;[ RESTRICTED ]&lt;/p&gt;
+      &lt;p class="text-sm text-[var(--text-muted)]"&gt;
+        Biometric authentication required.
+      &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vertical Flip Card -->
+          <div class="mb-8">
+            <p class="card-subtitle mb-4">03. Vertical Flip Card (Reveal)</p>
+            <p class="body-text secondary-text text-sm mb-4">Two-sided card with LOCKED cover that flips on click to reveal content.</p>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <!-- Live Example -->
+              <div>
+                <p class="text-xs secondary-text mb-2 font-mono">LIVE PREVIEW</p>
+                <div class="component-preview-box p-6 flex items-center justify-center" style="min-height: 340px;">
+                  <div class="flip-wrapper" style="width: 280px;">
+                    <div class="flip-inner">
+                      <!-- SIDE A: COVER -->
+                      <div class="flip-face cover">
+                        <div class="flex justify-between">
+                          <span class="corner-label text-accent pl-2">LOCKED</span>
+                        </div>
+
+                        <div class="flex flex-col items-center justify-center h-full">
+                          <div class="w-16 h-16 rounded-full border border-gray-800 flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-lock text-xl text-gray-500"></i>
+                          </div>
+                          <h3 class="font-display text-2xl tracking-widest text-gray-500">CLASSIFIED</h3>
+                        </div>
+
+                        <div class="w-full text-center border-t border-gray-800 pt-4">
+                          <p class="font-mono text-[10px] text-orange-500 animate-pulse">[ CLICK TO DECRYPT ]</p>
+                        </div>
+                      </div>
+
+                      <!-- SIDE B: CONTENT -->
+                      <div class="flip-face content game-card vertical group">
+                        <div class="flex justify-between w-full">
+                          <span class="corner-label text-accent">DATA_01</span>
+                          <span class="corner-label">// UNLOCKED</span>
+                        </div>
+
+                        <div class="text-center mt-4">
+                          <div class="mb-6 opacity-80">
+                            <i class="fa-solid fa-eye text-5xl"></i>
+                          </div>
+                          <h2 class="font-display text-4xl mb-2">Insight</h2>
+                          <div class="w-8 h-0.5 bg-[var(--accent)] mx-auto mb-4"></div>
+                          <p class="font-mono text-xs text-[var(--text-muted)]">
+                            Data revealed successfully.
+                          </p>
+                        </div>
+
+                        <div class="flex justify-between w-full items-end">
+                          <span class="corner-label">SECURE</span>
+                          <i class="fa-solid fa-check text-accent"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Code Snippet -->
+              <div>
+                <p class="text-xs secondary-text mb-2 font-mono">CODE</p>
+                <div class="component-preview-box p-4 overflow-auto" style="max-height: 340px;">
+                  <pre class="text-xs"><code>&lt;div class="flip-wrapper"&gt;
+  &lt;div class="flip-inner"&gt;
+    &lt;!-- SIDE A: COVER --&gt;
+    &lt;div class="flip-face cover"&gt;
+      &lt;div class="flex justify-between"&gt;
+        &lt;span class="corner-label text-accent"&gt;LOCKED&lt;/span&gt;
+      &lt;/div&gt;
+
+      &lt;div class="flex flex-col items-center justify-center h-full"&gt;
+        &lt;div class="w-16 h-16 rounded-full border border-gray-800
+             flex items-center justify-center mb-4"&gt;
+          &lt;i class="fa-solid fa-lock text-xl text-gray-500"&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;h3 class="font-display text-2xl tracking-widest text-gray-500"&gt;
+          CLASSIFIED
+        &lt;/h3&gt;
+      &lt;/div&gt;
+
+      &lt;div class="w-full text-center border-t border-gray-800 pt-4"&gt;
+        &lt;p class="font-mono text-[10px] text-orange-500 animate-pulse"&gt;
+          [ CLICK TO DECRYPT ]
+        &lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- SIDE B: CONTENT --&gt;
+    &lt;div class="flip-face content game-card vertical group"&gt;
+      &lt;!-- Standard Vertical Card Content --&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study Template Pattern -->
+        <div>
+          <h3 class="case-study-title">Case Study Template Pattern</h3>
+          <p class="body-text secondary-text mb-4">Standard case study page structure used across all project pages. Includes hero section, meta grid, sticky navigation, content sections, and footer.</p>
+
+          <!-- Visual Preview -->
+          <div class="mb-6">
+            <p class="card-subtitle mb-4">Visual Preview</p>
+            <div class="p-6 border border-border-color-dark rounded-lg" style="background: rgba(0,0,0,0.2);">
+              <div style="max-width: 1000px; margin: 0 auto;">
+                <!-- HEADER / HERO -->
+                <header style="padding-top: 2rem; padding-bottom: 2rem;">
+                  <div style="margin-bottom: 1rem;">
+                    <span style="font-family: 'Space Mono', monospace; color: var(--accent-color); font-size: 0.875rem; border: 1px solid var(--accent-color); padding: 0.25rem 0.5rem; border-radius: 9999px; display: inline-block;">CASE STUDY 001</span>
+                  </div>
+                  <h1 style="font-family: var(--font-family-display); text-transform: uppercase; letter-spacing: 0.02em; font-size: clamp(2.5rem, 8vw, 5rem); line-height: 0.9; margin-bottom: 1.5rem; color: var(--primary-light); margin-top: 0;">PROJECT<br>TEMPLATE</h1>
+
+                  <p style="max-width: 42rem; font-size: 1.125rem; line-height: 1.6; margin-top: 1rem;">
+                    A comprehensive case study template showcasing the standard structure and components used across all project pages.
+                  </p>
+
+                  <!-- META GRID -->
+                  <div class="meta-grid" style="margin-top: 3rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; border-top: 1px solid var(--border-color-dark); border-bottom: 1px solid var(--border-color-dark); padding: 2rem 0;">
+                    <div class="meta-item">
+                      <label style="display: block; font-family: 'Space Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: var(--secondary-text-dark); margin-bottom: 0.5rem;">My Role</label>
+                      <span style="font-size: 1rem; font-weight: 500;">Product Designer</span>
+                    </div>
+                    <div class="meta-item">
+                      <label style="display: block; font-family: 'Space Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: var(--secondary-text-dark); margin-bottom: 0.5rem;">Timeline</label>
+                      <span style="font-size: 1rem; font-weight: 500;">3 Weeks (Sprint)</span>
+                    </div>
+                    <div class="meta-item">
+                      <label style="display: block; font-family: 'Space Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: var(--secondary-text-dark); margin-bottom: 0.5rem;">Team</label>
+                      <span style="font-size: 1rem; font-weight: 500;">2 Devs, 1 PM, 1 Designer</span>
+                    </div>
+                    <div class="meta-item">
+                      <label style="display: block; font-family: 'Space Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: var(--secondary-text-dark); margin-bottom: 0.5rem;">Recognition</label>
+                      <span style="font-size: 1rem; font-weight: 500; color: var(--accent-color);">Award Winner</span>
+                    </div>
+                  </div>
+                </header>
+
+                <!-- HERO IMAGE -->
+                <div style="width: 100%; height: 300px; background: #1a1a1a; overflow: hidden; position: relative; border-top: 1px solid var(--border-color-dark); border-bottom: 1px solid var(--border-color-dark); margin-top: 2rem;">
+                  <img src="https://placehold.co/1200x800/1a1a1a/666?text=Hero+Image+60-80vh" alt="Case hero preview" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+
+                <!-- MAIN CONTENT -->
+                <main style="display: grid; grid-template-columns: 1fr; gap: 4rem; padding: 4rem 0;">
+                  <!-- Sidebar Navigation (Desktop) -->
+                  <aside class="hidden lg:block" style="grid-column: 1; position: sticky; top: 2rem; height: fit-content;">
+                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color-dark);">
+                      <span style="display: block; font-family: 'Space Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: var(--secondary-text-dark); margin-bottom: 1rem; letter-spacing: 0.05em;">Navigation</span>
                       <nav style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <a href="#" class="toc-link" style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--accent-color); font-family: 'Space Mono', monospace; font-size: 0.85rem; text-decoration: none; position: relative; border-left: 1px solid var(--border-color-dark);">
+                        <a href="#context" style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--accent-color); font-family: 'Space Mono', monospace; font-size: 0.85rem; text-decoration: none; position: relative; border-left: 1px solid var(--border-color-dark); transition: color 0.2s;">
                           <span style="position: absolute; left: -1px; top: 0; width: 2px; height: 100%; background: var(--accent-color);"></span>
                           01 / THE CONTEXT
                         </a>
-                        <a href="#" class="toc-link" style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; text-decoration: none; border-left: 1px solid var(--border-color-dark);">02 / DISCOVERY</a>
-                        <a href="#" class="toc-link" style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; text-decoration: none; border-left: 1px solid var(--border-color-dark);">03 / THE SOLUTION</a>
-                        <a href="#" class="toc-link" style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; text-decoration: none; border-left: 1px solid var(--border-color-dark);">04 / THE IMPACT</a>
+                        <a href="#discovery" style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; text-decoration: none; border-left: 1px solid var(--border-color-dark); transition: color 0.2s;">02 / DISCOVERY</a>
+                        <a href="#solution" style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; text-decoration: none; border-left: 1px solid var(--border-color-dark); transition: color 0.2s;">03 / THE SOLUTION</a>
+                        <a href="#impact" style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; text-decoration: none; border-left: 1px solid var(--border-color-dark); transition: color 0.2s;">04 / THE IMPACT</a>
                       </nav>
                     </div>
+                  </aside>
+
+                  <!-- Article Content -->
+                  <article style="grid-column: 1;">
+                    <section id="context" style="margin-bottom: 6rem;">
+                      <span style="font-family: 'Space Mono', monospace; font-size: 0.875rem; color: var(--accent-color); text-transform: uppercase; display: block; margin-bottom: 1.5rem; letter-spacing: 0.1em;">01 / THE CONTEXT</span>
+                      <h2 style="font-family: var(--font-family-display); text-transform: uppercase; font-size: 2.25rem; margin-bottom: 2rem; color: var(--primary-light);">Understanding the Problem</h2>
+
+                      <div style="font-size: 1.0625rem; line-height: 1.8; margin-bottom: 3rem;">
+                        <p style="margin-bottom: 1.5rem;">Case study content flows here with proper typography, spacing, and hierarchy. This template demonstrates the standard structure for presenting project work.</p>
+                        <p>Multiple paragraphs provide detailed context about the project, problem space, and approach taken.</p>
+                      </div>
+
+                      <!-- Stats Grid -->
+                      <div class="stats-grid" style="margin-top: 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+                        <div style="background: rgba(255, 107, 0, 0.05); border: 1px solid rgba(255, 107, 0, 0.2); border-radius: 0.5rem; padding: 2rem;">
+                          <div style="font-size: 3rem; font-weight: 700; color: var(--accent-color); font-family: var(--font-family-display); line-height: 1;">40%</div>
+                          <div style="font-family: 'Space Mono', monospace; font-size: 0.75rem; letter-spacing: 0.1em; margin-top: 0.5rem; color: var(--secondary-text-dark);">REDUCTION</div>
+                          <div style="font-size: 0.875rem; margin-top: 0.5rem; color: var(--secondary-text-dark);">In appointment absences</div>
+                        </div>
+                        <div style="background: rgba(255, 107, 0, 0.05); border: 1px solid rgba(255, 107, 0, 0.2); border-radius: 0.5rem; padding: 2rem;">
+                          <div style="font-size: 3rem; font-weight: 700; color: var(--accent-color); font-family: var(--font-family-display); line-height: 1;">1500+</div>
+                          <div style="font-family: 'Space Mono', monospace; font-size: 0.75rem; letter-spacing: 0.1em; margin-top: 0.5rem; color: var(--secondary-text-dark);">USERS</div>
+                          <div style="font-size: 0.875rem; margin-top: 0.5rem; color: var(--secondary-text-dark);">Active patients using the system</div>
+                        </div>
+                      </div>
+
+                      <!-- Image Example -->
+                      <div style="margin-top: 4rem; width: 100%; border-radius: 0.5rem; overflow: hidden; border: 1px solid var(--border-color-dark);">
+                        <img src="https://placehold.co/1200x600/1a1a1a/666?text=Design+Artifact" alt="Design artifact" style="width: 100%; height: auto; display: block;">
+                      </div>
+                      <div style="font-family: 'Space Mono', monospace; font-size: 0.75rem; text-align: center; color: var(--secondary-text-dark); margin-top: 0.75rem;">FIG 1. CAPTION DESCRIBING THE VISUAL</div>
+
+                      <!-- Feature Showcase (2-column) -->
+                      <div style="margin-top: 4rem; display: grid; grid-template-columns: 1fr; gap: 3rem;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                          <div>
+                            <h3 style="font-family: var(--font-family-display); text-transform: uppercase; font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary-light);">Key Feature</h3>
+                            <p style="font-size: 1rem; line-height: 1.7; color: var(--secondary-text-dark);">Feature description explaining the solution and its impact on users. Detailed text about implementation.</p>
+                          </div>
+                          <div style="border-radius: 0.5rem; overflow: hidden; border: 1px solid var(--border-color-dark);">
+                            <img src="https://placehold.co/800x600/1a1a1a/666?text=Feature+Screenshot" alt="Feature preview" style="width: 100%; height: auto; display: block;">
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </article>
+                </main>
+
+                <!-- NEXT PROJECT FOOTER -->
+                <footer style="padding: 6rem 0; text-align: center; border-top: 1px solid var(--border-color-dark); margin-top: 4rem;">
+                  <span style="font-family: 'Space Mono', monospace; color: var(--secondary-text-dark); font-size: 0.9rem; margin-bottom: 1rem; display: block;">NEXT PROJECT IN ARCHIVE</span>
+                  <a href="#" style="font-family: var(--font-family-display); text-transform: uppercase; letter-spacing: 0.02em; font-size: clamp(2rem, 5vw, 4rem); color: var(--primary-light); text-decoration: none; display: inline-block; transition: color 0.3s ease;">
+                    Next Project <span style="font-size: 1.125rem; vertical-align: middle; margin-left: 0.5rem;">↗</span>
+                  </a>
+                  <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; font-family: 'Space Mono', monospace; font-size: 0.85rem;">
+                    <a href="./creators-fit.html" style="color: var(--secondary-text-dark); text-decoration: none; transition: color 0.3s;">PREV</a>
+                    <span style="color: var(--secondary-text-dark);">/</span>
+                    <a href="./nohs-somos.html" style="color: var(--secondary-text-dark); text-decoration: none; transition: color 0.3s;">NEXT</a>
                   </div>
-                </aside>
-
-                <!-- Article Content -->
-                <article>
-                  <section class="case-section mb-16">
-                    <span class="chapter-number">01 / THE CONTEXT</span>
-                    <h2 style="font-family: var(--font-family-display); text-transform: uppercase; font-size: 2rem; margin-bottom: 2rem;">The Problem Space</h2>
-                    <div class="case-content">
-                      <p>This paragraph previews the case page body text styling and line height. It demonstrates how content flows within the case study sections with proper spacing and readability.</p>
-                    </div>
-
-                    <!-- Stats Grid -->
-                    <div class="stats-grid" style="margin-top: 2rem;">
-                      <div class="stat-card">
-                        <div class="stat-value">40%</div>
-                        <div class="stat-label">IMPROVEMENT</div>
-                        <div class="stat-description">Key metric showing impact of the solution.</div>
-                      </div>
-                      <div class="stat-card">
-                        <div class="stat-value">72h</div>
-                        <div class="stat-label">TIME SAVED</div>
-                        <div class="stat-description">Average time reduction per user.</div>
-                      </div>
-                    </div>
-
-                    <!-- Image Example -->
-                    <div class="case-image-container" style="margin-top: 3rem;">
-                      <img src="https://placehold.co/1200x600/1a1a1a/666?text=Design+Artifact" alt="Case image preview">
-                    </div>
-                    <div class="image-caption">FIG 1. CAPTION STYLE USED IN CASE PAGES</div>
-
-                    <!-- Feature Showcase -->
-                    <div class="feature-showcase" style="margin-top: 3rem;">
-                      <div class="feature-grid">
-                        <div class="feature-content">
-                          <h3>Key Feature Title</h3>
-                          <p>Feature description preview for the two-column feature blocks used throughout case studies.</p>
-                        </div>
-                        <div class="feature-image">
-                          <img src="https://placehold.co/800x600/1a1a1a/666?text=Feature+Screenshot" alt="Feature preview">
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                </article>
-              </main>
-
-              <!-- Next Project Footer -->
-              <footer class="next-project" style="padding: 4rem 0; text-align: center; border-top: 1px solid var(--border-color-dark);">
-                <span class="next-label">NEXT PROJECT IN ARCHIVE</span>
-                <a href="#" class="next-title">
-                  Next Case Study <span class="text-lg align-middle ml-2">↗</span>
-                </a>
-                <div class="flex justify-center gap-4 mt-8 font-mono text-xs">
-                  <a href="#" style="color: var(--secondary-text-dark);">PREV</a>
-                  <span style="color: var(--secondary-text-dark);">/</span>
-                  <a href="#" style="color: var(--secondary-text-dark);">NEXT</a>
-                </div>
-              </footer>
+                </footer>
+              </div>
             </div>
           </div>
         </div>
 
-              <footer class="next-project" style="padding: var(--spacing-xl) 0 0; margin-top: var(--spacing-xl);">
-                <span class="next-label">NEXT PROJECT IN ARCHIVE</span>
-                <a href="#" class="next-title">Next Case <span class="text-lg align-middle ml-2">↗</span></a>
-                <div class="next-navigation" style="display:flex; justify-content:center; gap:0.75rem; margin-top: var(--spacing-md); font-family: 'Space Mono', monospace; font-size: 0.85rem;">
-                  <span class="opacity-50">PREV</span>
-                  <span>/</span>
-                  <span class="opacity-50">NEXT</span>
-                </div>
-              </footer>
-            </div>
-          </div>
-        </div>
 
       </div>
     </section>
