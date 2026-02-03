@@ -156,6 +156,9 @@ export const projectsData = [
       impact: 'Onboarded 500+ creators in the first 6 months. Processed over R$1M in creator earnings. Platform was later rebranded to Creators Fit and expanded to include fitness and lifestyle creators.'
     }
   },
+
+  // iLog - HIDDEN (to be populated later)
+  /*
   {
     id: 8,
     title: "iLog",
@@ -179,6 +182,7 @@ export const projectsData = [
       impact: 'Deployed across 15+ major LATAM companies. Reduced average delivery times by 25% and fuel costs by 30%. Platform now manages over 5,000 vehicles across the region.'
     }
   }
+  */
 ];
 
 // Helper functions for data access
