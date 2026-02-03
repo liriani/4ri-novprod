@@ -2796,6 +2796,7 @@ body.reveal-modal-open {
     .reveal-card-pile {
         width: 288px;
         height: 224px;
+        margin: 0 auto;
     }
 
     .reveal-splash-screen {

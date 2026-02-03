@@ -25,6 +25,12 @@ function createCardPile(config) {
     const cards = []; const velocities = new Map();
     let running = true; // controls RAF
 
+    // Responsive spacing adjustments (keep card sizes same, adjust spread only)
+    const isMobile = window.innerWidth < 768;
+    const spreadX = isMobile ? 100 : 160;  // Tighter horizontal spread on mobile
+    const spreadY = isMobile ? 80 : 120;   // Tighter vertical spread on mobile
+    const maxRotation = 25; // Keep same rotation for visual consistency
+
     for (let i = 0; i < cardCount; i++) {
         const el = document.createElement('div');
         el.className = `${cardClass} game-card vertical group`;
@@ -55,7 +61,7 @@ function createCardPile(config) {
         `;
 
         const mainContent = document.createElement('div');
-        mainContent.className = 'text-center mt-4';
+        mainContent.className = 'text-center flex-1 flex flex-col justify-center';
         mainContent.innerHTML = `
             <div class="mb-6 opacity-80 group-hover:opacity-100 text-[var(--text-main)]">
                 <i class="fa-solid ${icons[i % icons.length]} text-5xl"></i>
@@ -101,20 +107,50 @@ function createCardPile(config) {
     requestAnimationFrame(updatePhysics);
 
     let lastMouseMove = 0;
-    pile.addEventListener('mousemove', (e) => {
-        const now = performance.now(); if (now - lastMouseMove < 16) return; lastMouseMove = now;
-        const rect = pile.getBoundingClientRect(); const mx = e.clientX - rect.left; const my = e.clientY - rect.top;
+
+    // Mouse movement handler
+    function handlePointerMove(clientX, clientY) {
+        const now = performance.now();
+        if (now - lastMouseMove < 16) return;
+        lastMouseMove = now;
+
+        const rect = pile.getBoundingClientRect();
+        const mx = clientX - rect.left;
+        const my = clientY - rect.top;
+
         cards.forEach(card => {
             const cardRect = card.getBoundingClientRect();
             const cx = cardRect.left + cardRect.width / 2 - rect.left;
             const cy = cardRect.top + cardRect.height / 2 - rect.top;
-            const dx = mx - cx; const dy = my - cy; let dist = Math.hypot(dx, dy);
+            const dx = mx - cx;
+            const dy = my - cy;
+            let dist = Math.hypot(dx, dy);
+
             if (dist < DEAD_ZONE_RADIUS) dist = DEAD_ZONE_RADIUS + (dist / DEAD_ZONE_RADIUS) * 10;
-            const strength = Math.max(0, 1 - dist / MAX_DISTANCE); if (strength <= 0) return;
-            const repel = REPEL_STRENGTH * strength; const angle = Math.atan2(dy, dx);
-            const pushX = -Math.cos(angle) * repel * REPEL_MULTIPLIER; const pushY = -Math.sin(angle) * repel * REPEL_MULTIPLIER;
-            const vel = velocities.get(card); vel.vx += pushX; vel.vy += pushY;
+            const strength = Math.max(0, 1 - dist / MAX_DISTANCE);
+            if (strength <= 0) return;
+
+            const repel = REPEL_STRENGTH * strength;
+            const angle = Math.atan2(dy, dx);
+            const pushX = -Math.cos(angle) * repel * REPEL_MULTIPLIER;
+            const pushY = -Math.sin(angle) * repel * REPEL_MULTIPLIER;
+            const vel = velocities.get(card);
+            vel.vx += pushX;
+            vel.vy += pushY;
         });
+    }
+
+    // Desktop mouse events
+    pile.addEventListener('mousemove', (e) => {
+        handlePointerMove(e.clientX, e.clientY);
+    }, { passive: true });
+
+    // Mobile touch events - same avoidance logic
+    pile.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+            const touch = e.touches[0];
+            handlePointerMove(touch.clientX, touch.clientY);
+        }
     }, { passive: true });
 
     requestAnimationFrame(()=>{ cards.forEach((card,i)=>{ card.style.opacity='0'; setTimeout(()=>{ card.style.transition='opacity 300ms ease'; card.style.opacity='1'; }, 60*i); }); });

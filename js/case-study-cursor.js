@@ -4,6 +4,17 @@
 (function() {
     'use strict';
 
+    // Mobile Detection - Exit early on mobile/touch devices
+    const isMobile = window.innerWidth < 768 ||
+                     'ontouchstart' in window ||
+                     navigator.maxTouchPoints > 0 ||
+                     /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (isMobile) {
+        console.log('📱 Mobile device detected - custom cursor disabled');
+        return; // Exit completely on mobile
+    }
+
     // Custom Cursor Initialization
     function initializeCursor() {
         // Prevent multiple initializations
