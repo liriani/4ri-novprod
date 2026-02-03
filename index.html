@@ -625,9 +625,49 @@
 
             <div>
               <p class="card-subtitle">Custom Cursor</p>
-              <p class="body-text secondary-text">A custom dual-layer cursor follows mouse movement with smooth transitions. The outer ring expands on hover over interactive elements.</p>
-              <div class="component-preview-box text-center">
-                <p class="body-text">Move your mouse around to see the custom cursor in action</p>
+              <p class="body-text secondary-text mb-4">A custom dual-layer cursor follows mouse movement with smooth transitions. The outer ring expands on hover over interactive elements.</p>
+              <div class="component-preview-box text-center p-8">
+                <p class="body-text mb-6">Move your mouse around to see the custom cursor in action</p>
+
+                <!-- Visual cursor demonstration boxes -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+                  <!-- Default State -->
+                  <div class="p-6 border-2 border-dashed border-gray-600 rounded-lg">
+                    <div class="mb-3 text-xs mono-text text-secondary-text-dark">DEFAULT STATE</div>
+                    <div class="flex flex-col items-center gap-2">
+                      <div class="relative w-12 h-12 flex items-center justify-center">
+                        <!-- Outer ring -->
+                        <div class="absolute w-8 h-8 border-2 border-accent-color rounded-full"></div>
+                        <!-- Inner dot -->
+                        <div class="absolute w-2 h-2 bg-accent-color rounded-full"></div>
+                      </div>
+                      <p class="text-xs text-secondary-text-dark">Normal cursor</p>
+                    </div>
+                  </div>
+
+                  <!-- Hover State -->
+                  <div class="p-6 border-2 border-accent-color rounded-lg cursor-pointer">
+                    <div class="mb-3 text-xs mono-text text-accent-color">HOVER STATE</div>
+                    <div class="flex flex-col items-center gap-2">
+                      <div class="relative w-12 h-12 flex items-center justify-center">
+                        <!-- Outer ring expanded -->
+                        <div class="absolute w-12 h-12 border-2 border-accent-color rounded-full opacity-70"></div>
+                        <!-- Inner dot -->
+                        <div class="absolute w-2 h-2 bg-accent-color rounded-full"></div>
+                      </div>
+                      <p class="text-xs text-accent-color">Hover over me!</p>
+                    </div>
+                  </div>
+
+                  <!-- Interactive Test Area -->
+                  <div class="p-6 border-2 border-dashed border-gray-600 rounded-lg">
+                    <div class="mb-3 text-xs mono-text text-secondary-text-dark">TEST AREA</div>
+                    <div class="flex flex-col gap-2">
+                      <button type="button" class="btn btn-primary text-xs py-1 px-2">Button</button>
+                      <a href="javascript:void(0)" onclick="return false;" class="text-accent-color text-xs text-center hover:underline">Link</a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
