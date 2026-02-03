@@ -4,7 +4,7 @@
  */
 
 import { getProjectById, getAllProjects } from './projects-data.js';
-import { createProjectsGrid, createCallToAction, createProjectDetail } from './projects-components.js';
+import { createProjectsGrid, createProjectDetail } from './projects-components.js';
 import { initializeCaseStudyNavigation } from './case-study-template.js';
 
 export class ProjectsController {
@@ -42,13 +42,9 @@ export class ProjectsController {
     // Clear existing content
     this.projectsGrid.innerHTML = '';
 
-    // Render project cards and next adventure card
+    // Render project cards
     this.projectsGrid.innerHTML = createProjectsGrid();
 
-    // Add CTA if it doesn't exist
-    if (!this.projectsContainer.querySelector('.text-center.p-8')) {
-      this.projectsContainer.innerHTML += createCallToAction();
-    }
 
     // Re-attach event listeners after rendering
     this.attachProjectCardListeners();

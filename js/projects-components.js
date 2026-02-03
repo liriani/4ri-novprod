@@ -36,36 +36,6 @@ export function createProjectCard(project) {
 }
 
 /**
- * Creates the "Next Adventure" card
- * @returns {string} HTML string for the next adventure card
- */
-export function createNextAdventureCard() {
-  return `
-      <div class="w-24 h-24 mb-4 text-accent-color opacity-30">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      </div>
-      <h3 class="card-title text-accent-color mt-2">My Next Adventure</h3>
-      <p class="card-subtitle mt-2">This space is reserved for our next big project. Let's build something great together!</p>
-    </div>
-  `;
-}
-
-/**
- * Creates the call-to-action section
- * @returns {string} HTML string for the CTA section
- */
-export function createCallToAction() {
-  return `
-    <div class="text-center p-8 border border-accent-color rounded-lg mt-8">
-      <h3 class="card-title">Got a project in mind?</h3>
-      <a href="#contact" class="btn btn-primary page-link" data-page="contact">Let's talk <i class="fas fa-arrow-right ml-2"></i></a>
-    </div>
-  `;
-}
-
-/**
  * Creates project detail content for the detail page
  * @param {Object} project - Project data object
  * @returns {Object} Object with different sections of the detail page
@@ -239,7 +209,6 @@ export function createProjectDetail(project) {
  */
 export function createProjectsGrid() {
   const projectCards = projectsData.map(project => createProjectCard(project)).join('');
-  const nextAdventureCard = createNextAdventureCard();
 
-  return projectCards + nextAdventureCard;
+  return projectCards;
 }
