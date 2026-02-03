@@ -2001,8 +2001,8 @@ html, body { cursor: none !important; }
 .home-pile-card {
   position: absolute;
   left: 50%; top: 50%;
-  margin-left: -70px; margin-top: -100px; /* center offset */
-  width: 140px; height: 200px;
+  margin-left: -70px; margin-top: -98px; /* center offset - adjusted for 196px height */
+  width: 140px; height: 196px; /* Standard poker card ratio 2.5:3.5 */
   background: var(--primary-dark);
   border: 2px solid var(--accent-color);
   border-radius: var(--border-radius-md);
@@ -2138,7 +2138,7 @@ html, body { cursor: none !important; }
 
 @media (max-width:767px){
   .home-card-pile { width:240px; height:200px; }
-  .home-pile-card { width:120px; height:180px; margin-left:-60px; margin-top:-90px; padding: 0.75rem; }
+  .home-pile-card { width:120px; height:168px; margin-left:-60px; margin-top:-84px; padding: 0.75rem; }
   .home-pile-card-icon { font-size:1.5rem; }
   .home-pile-card-text { font-size:0.6rem; }
   .home-pile-card-meta-top,
@@ -2744,8 +2744,8 @@ body.reveal-modal-open {
 /* Individual pile cards - created by JS */
 .reveal-pile-card {
     position: absolute;
-    width: 160px;
-    height: 220px;
+    width: 140px; /* Standard size - matches home pile */
+    height: 196px; /* Standard poker card ratio 2.5:3.5 */
     background: linear-gradient(135deg, var(--primary-dark) 0%, #1a1b1b 100%);
     border: 2px solid var(--accent-color);
     border-radius: var(--border-radius-md);
@@ -2804,8 +2804,8 @@ body.reveal-modal-open {
     }
 
     .reveal-pile-card {
-        width: 140px;
-        height: 200px;
+        width: 120px;
+        height: 168px;
     }
 }
 
