@@ -71,8 +71,10 @@ select,
     opacity: 0.8;
 }
 
-/* Mobile: restore native cursor */
-@media (max-width: 767px) {
+/* =========================================================================
+   MOBILE RESET - Restore native cursor on mobile/touch devices
+   ========================================================================= */
+@media (max-width: 767px), (pointer: coarse), (hover: none) {
     html,
     body,
     *,
@@ -82,11 +84,18 @@ select,
     button,
     input,
     textarea,
-    select {
+    select,
+    [role="button"],
+    .cursor-pointer {
         cursor: auto !important;
     }
 
-    .custom-cursor {
+    .custom-cursor,
+    .cursor-outer,
+    .cursor-inner {
         display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
     }
 }
