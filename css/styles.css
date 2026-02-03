@@ -214,6 +214,15 @@ img, video {
     color: var(--primary-dark);
 }
 
+/* Contact page social icons - light theme fix */
+.light #contact-page a[aria-label] {
+    color: var(--primary-dark) !important;
+}
+
+.light #contact-page a[aria-label]:hover {
+    color: var(--accent-color) !important;
+}
+
 /* =========================================================================
    4. TYPOGRAPHY SYSTEM
    ========================================================================= */
@@ -2057,7 +2066,7 @@ html, body { cursor: none !important; }
 }
 
 /* =========================================================================
-   Interactive Reveal Card Game - Design System v1.3 Vertical Reveal (Flip)
+   Interactive Reveal Card Game - Design System Vertical Reveal (Flip)
    ========================================================================= */
 
 /* Main container */
@@ -2067,7 +2076,7 @@ html, body { cursor: none !important; }
     padding: 2rem 1rem;
 }
 
-/* Grid layout */
+/* Grid layout - 2 columns on mobile, 3 on desktop */
 #reveal-card-grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -2268,8 +2277,16 @@ html, body { cursor: none !important; }
 }
 
 /* Arrow rotation */
+/* Arrow icon - default white for buttons */
 .fa-arrow-right {
     transition: transform var(--transition-normal);
+    color: var(--primary-light);
+}
+
+/* Arrow icon - orange for cards */
+.game-card .fa-arrow-right,
+.text-accent .fa-arrow-right,
+.fa-arrow-right.text-accent {
     color: var(--accent-color);
 }
 
