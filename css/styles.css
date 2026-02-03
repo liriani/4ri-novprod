@@ -108,7 +108,12 @@
    2. Base Styles & Global Utilities
    ========================================================================= */
 
-/* Base Styles */
+/* Base Styles - Prevent horizontal scroll */
+html {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
 body {
     font-family: var(--font-family-primary), sans-serif;
     font-size: var(--font-size-sm);
@@ -116,8 +121,18 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    max-width: 100%;
     transition: background-color var(--transition-normal), color var(--transition-normal);
     cursor: none;
+}
+
+/* Prevent all elements from causing horizontal overflow */
+* {
+    box-sizing: border-box;
+}
+
+*:not(svg):not(path) {
+    max-width: 100%;
 }
 
 /* Utility Classes */
@@ -565,10 +580,29 @@ html, body { cursor: none !important; }
     transform: translate(-50%, -50%) scale(1.8);
 }
 
-/* On mobile, restore native cursor (because custom cursor is hidden) */
-@media (max-width: 767px) {
-    body, a, button, input, textarea, select {
+/* Mobile & Touch Device Reset - Restore native cursor */
+@media (max-width: 767px), (pointer: coarse), (hover: none) {
+    html,
+    body,
+    *,
+    *::before,
+    *::after,
+    a,
+    button,
+    input,
+    textarea,
+    select,
+    [role="button"],
+    .cursor-pointer {
         cursor: auto !important;
+    }
+
+    .custom-cursor,
+    .cursor-outer,
+    .cursor-inner {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
     }
 }
 
@@ -954,7 +988,7 @@ html, body { cursor: none !important; }
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     z-index: 100;
     background-color: var(--primary-dark);
@@ -1932,6 +1966,7 @@ html, body { cursor: none !important; }
     position: relative;
     width: 100%;
     height: 320px;
+    padding: 0 1rem; /* Add padding to prevent edge touching */
 }
 
 /* Subtle message hidden under the cards */
@@ -2696,13 +2731,14 @@ body.reveal-modal-open {
 .reveal-card-pile-wrapper {
     width: 100%;
     height: 320px;
+    padding: 0 1rem; /* Add padding to prevent edge touching */
 }
 
 /* Card pile container */
 .reveal-card-pile {
     width: 384px;
     height: 280px;
-    max-width: 90vw;
+    max-width: 100%; /* Changed from 90vw to prevent overflow */
 }
 
 /* Individual pile cards - created by JS */
