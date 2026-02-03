@@ -210,7 +210,7 @@
     <!-- Projects Page -->
     <section id="projects-page" class="page-content hidden">
       <h2 class="section-title">Projects</h2>
-      <p class="section-subtitle mb-12 text-center max-w-3xl mx-auto">A curated collection of my most impactful work, showcasing my skills in design and development.</p>
+      <p class="section-subtitle mb-12 text-start max-w-3xl mx-auto">A curated collection of my most impactful work, showcasing my skills in design and development.</p>
       <div class="grid grid-cols-1 gap-8 mb-12">
         <!-- Project Card 5: FIAP HealthHub -->
         <div class="project-card" data-project-id="5">
@@ -367,35 +367,60 @@
             </div>
 
             <div>
-              <p class="card-subtitle">Navigation (preview)</p>
-              <nav class="component-preview-box p-4">
-                <ul class="nav-list flex items-center gap-4">
-                  <li>
-                    <a class="nav-link sections-link" href="#">
-                      About
-                      <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
-                        <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
-                      </svg>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="nav-link sections-link" href="#">
-                      Projects
-                      <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
-                        <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
-                      </svg>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="nav-link sections-link" href="#">
-                      Design System
-                      <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
-                        <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
-                      </svg>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
+              <p class="card-subtitle">Navigation</p>
+              <p class="body-text secondary-text text-sm mb-4">Header navigation with organic line animation and sidebar navigation for case study pages with active state indicators.</p>
+
+              <!-- Header Navigation Preview -->
+              <div class="component-preview-box p-4 mb-6">
+                <p class="text-xs secondary-text mb-3 mono-text">HEADER NAVIGATION</p>
+                <nav>
+                  <ul class="nav-list flex items-center gap-4">
+                    <li>
+                      <a class="nav-link sections-link" href="javascript:void(0)" onclick="return false;">
+                        About
+                        <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
+                          <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="nav-link sections-link" href="javascript:void(0)" onclick="return false;">
+                        Projects
+                        <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
+                          <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="nav-link sections-link" href="javascript:void(0)" onclick="return false;">
+                        Design System
+                        <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
+                          <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+
+              <!-- Sidebar Navigation Preview -->
+              <div class="component-preview-box p-6">
+                <p class="text-xs secondary-text mb-3 mono-text">SIDEBAR NAVIGATION (CASE STUDIES)</p>
+                <div style="max-width: 250px;">
+                  <div style="border-top: 1px solid var(--border-color-dark); padding-top: 2rem; margin-top: 1rem;">
+                    <span style="display: block; font-family: 'Space Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: var(--secondary-text-dark); margin-bottom: 1rem; letter-spacing: 0.05em;">Navigation</span>
+                    <nav style="display: flex; flex-direction: column; gap: 0.5rem;">
+                      <span style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--accent-color); font-family: 'Space Mono', monospace; font-size: 0.85rem; position: relative; border-left: 1px solid var(--border-color-dark);">
+                        <span style="position: absolute; left: -1px; top: 0; width: 2px; height: 100%; background: var(--accent-color);"></span>
+                        01 / THE CONTEXT
+                      </span>
+                      <span style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; border-left: 1px solid var(--border-color-dark);">02 / DISCOVERY</span>
+                      <span style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; border-left: 1px solid var(--border-color-dark);">03 / THE SOLUTION</span>
+                      <span style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; border-left: 1px solid var(--border-color-dark);">04 / THE IMPACT</span>
+                    </nav>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div>
@@ -1061,28 +1086,6 @@
                     <span style="color: var(--secondary-text-dark); pointer-events: none;">NEXT</span>
                   </div>
                 </footer>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Navigation Menu -->
-        <div>
-          <h3 class="case-study-title">Navigation</h3>
-          <p class="body-text secondary-text text-sm mb-4">Sticky sidebar navigation for case study pages with active state indicators.</p>
-          <div class="component-preview-box p-6">
-            <div style="max-width: 250px;">
-              <div style="border-top: 1px solid var(--border-color-dark); padding-top: 2rem; margin-top: 2rem;">
-                <span style="display: block; font-family: 'Space Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: var(--secondary-text-dark); margin-bottom: 1rem; letter-spacing: 0.05em;">Navigation</span>
-                <nav style="display: flex; flex-direction: column; gap: 0.5rem;">
-                  <span style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--accent-color); font-family: 'Space Mono', monospace; font-size: 0.85rem; position: relative; border-left: 1px solid var(--border-color-dark);">
-                    <span style="position: absolute; left: -1px; top: 0; width: 2px; height: 100%; background: var(--accent-color);"></span>
-                    01 / THE CONTEXT
-                  </span>
-                  <span style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; border-left: 1px solid var(--border-color-dark);">02 / DISCOVERY</span>
-                  <span style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; border-left: 1px solid var(--border-color-dark);">03 / THE SOLUTION</span>
-                  <span style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; border-left: 1px solid var(--border-color-dark);">04 / THE IMPACT</span>
-                </nav>
               </div>
             </div>
           </div>
