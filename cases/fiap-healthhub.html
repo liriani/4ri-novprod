@@ -339,7 +339,11 @@
 
     </style>
 </head>
-<body>
+<body class="dark">
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor cursor-outer"></div>
+    <div class="custom-cursor cursor-inner"></div>
 
     <!-- NAV (Simplified for Preview) -->
     <nav class="fixed top-0 w-full z-50 mix-blend-difference px-6 py-6 flex justify-between items-center text-white pointer-events-none">
@@ -553,6 +557,9 @@
             sections.forEach(section => observer.observe(section));
         });
     </script>
+
+    <!-- Custom Cursor & Theme Script -->
+    <script src="../js/case-study-cursor.js"></script>
 
 </body>
 </html>
