@@ -1,0 +1,92 @@
+/* =========================================================================
+   CUSTOM CURSOR ONLY - Isolated from main styles to prevent conflicts
+   ========================================================================= */
+
+/* CSS Variables for cursor (scoped to not conflict with case study vars) */
+:root {
+    --cursor-size: 20px;
+    --cursor-z-index: 9999;
+}
+
+/* Hide native cursor */
+html,
+body {
+    cursor: none !important;
+}
+
+*,
+*::before,
+*::after {
+    cursor: none !important;
+}
+
+a,
+button,
+input,
+textarea,
+select,
+[role="button"],
+.cursor-pointer {
+    cursor: none !important;
+}
+
+/* Custom cursor base styles */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: var(--cursor-z-index);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+    transform-origin: center;
+    will-change: left, top, transform, opacity;
+    transition: opacity 200ms ease;
+}
+
+/* Outer ring (circular) */
+.cursor-outer {
+    width: var(--cursor-size);
+    height: var(--cursor-size);
+    border: 2px solid var(--accent-color, #FF6B00);
+    background-color: transparent;
+    transition: transform 120ms ease, opacity 120ms ease;
+}
+
+/* Inner dot (circular) */
+.cursor-inner {
+    width: 20px;
+    height: 20px;
+    background-color: var(--accent-color, #FF6B00);
+    mix-blend-mode: exclusion;
+    transition: opacity 120ms ease;
+}
+
+/* Hover state - ring grows */
+.cursor-outer.link-hover {
+    transform: translate(-50%, -50%) scale(1.8);
+}
+
+.cursor-inner.link-hover {
+    opacity: 0.8;
+}
+
+/* Mobile: restore native cursor */
+@media (max-width: 767px) {
+    html,
+    body,
+    *,
+    *::before,
+    *::after,
+    a,
+    button,
+    input,
+    textarea,
+    select {
+        cursor: auto !important;
+    }
+
+    .custom-cursor {
+        display: none !important;
+    }
+}
