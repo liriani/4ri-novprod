@@ -432,7 +432,6 @@
               <p class="card-subtitle">Tags & Tokens</p>
               <div class="tag-list-container">
                 <span class="tech-tag">React</span>
-                <span class="tech-tag">Figma</span>
                 <span class="tech-tag light">Design</span>
               </div>
             </div>
@@ -533,32 +532,58 @@
         <!-- Grid & Layout -->
         <div>
           <h3 class="case-study-title">Grid & Layout</h3>
-          <div class="space-y-4">
+          <div class="space-y-6">
             <div>
               <p class="card-subtitle">Responsive Grid</p>
               <p class="body-text secondary-text mb-4">Flexbox-based grid system with breakpoints for mobile, tablet, and desktop.</p>
-              <div class="component-preview-box">
-                <div class="grid md:grid-cols-3 gap-4">
-                  <div class="p-4 bg-accent-color bg-opacity-20 rounded text-center">
-                    <p class="body-text">Column 1</p>
+              <div class="component-preview-box p-6">
+                <div class="grid md:grid-cols-3 gap-4 mb-4">
+                  <div class="p-6 border-2 border-accent-color rounded text-center" style="background: rgba(255, 107, 0, 0.1);">
+                    <p class="body-text font-mono text-sm mb-2">Column 1</p>
+                    <p class="text-xs secondary-text">1/3 width on desktop</p>
                   </div>
-                  <div class="p-4 bg-accent-color bg-opacity-20 rounded text-center">
-                    <p class="body-text">Column 2</p>
+                  <div class="p-6 border-2 border-accent-color rounded text-center" style="background: rgba(255, 107, 0, 0.1);">
+                    <p class="body-text font-mono text-sm mb-2">Column 2</p>
+                    <p class="text-xs secondary-text">1/3 width on desktop</p>
                   </div>
-                  <div class="p-4 bg-accent-color bg-opacity-20 rounded text-center">
-                    <p class="body-text">Column 3</p>
+                  <div class="p-6 border-2 border-accent-color rounded text-center" style="background: rgba(255, 107, 0, 0.1);">
+                    <p class="body-text font-mono text-sm mb-2">Column 3</p>
+                    <p class="text-xs secondary-text">1/3 width on desktop</p>
                   </div>
                 </div>
+                <p class="text-xs secondary-text text-center font-mono">
+                  <code>grid md:grid-cols-3 gap-4</code> - Full width on mobile, 3 columns on tablet+
+                </p>
               </div>
             </div>
 
             <div>
               <p class="card-subtitle">Container Widths</p>
-              <p class="body-text secondary-text">Predefined max-width utilities for content containment.</p>
-              <div class="component-preview-box space-y-2 text-sm">
-                <p><code>max-w-3xl</code> - 48rem (768px) - Used for readable text content</p>
-                <p><code>max-w-xl</code> - 36rem (576px) - Used for forms and narrow content</p>
-                <p><code>max-w-card-demo</code> - 320px - Used for component demos</p>
+              <p class="body-text secondary-text mb-4">Predefined max-width utilities for content containment.</p>
+              <div class="component-preview-box p-6 space-y-4">
+                <!-- max-w-3xl -->
+                <div>
+                  <p class="text-xs secondary-text font-mono mb-2"><code>max-w-3xl</code> - 48rem (768px)</p>
+                  <div class="max-w-3xl p-4 border-2 border-accent-color rounded" style="background: rgba(255, 107, 0, 0.05);">
+                    <p class="text-sm">Used for readable text content. This container width provides optimal reading experience for long-form content, preventing lines from becoming too wide.</p>
+                  </div>
+                </div>
+
+                <!-- max-w-xl -->
+                <div>
+                  <p class="text-xs secondary-text font-mono mb-2"><code>max-w-xl</code> - 36rem (576px)</p>
+                  <div class="max-w-xl p-4 border-2 border-accent-color rounded" style="background: rgba(255, 107, 0, 0.05);">
+                    <p class="text-sm">Used for forms and narrow content. Perfect for input forms and focused content areas.</p>
+                  </div>
+                </div>
+
+                <!-- max-w-card-demo -->
+                <div>
+                  <p class="text-xs secondary-text font-mono mb-2"><code>max-w-card-demo</code> - 320px</p>
+                  <div style="max-width: 320px;" class="p-4 border-2 border-accent-color rounded bg-opacity-5" style="background: rgba(255, 107, 0, 0.05);">
+                    <p class="text-sm">Used for component demos. Standard card width for UI components.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -745,7 +770,7 @@
                     <!-- Footer Meta -->
                     <div class="flex justify-between w-full items-end">
                       <span class="corner-label">EST. 2024</span>
-                      <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0"></i>
+                      <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 text-accent"></i>
                     </div>
                   </div>
                 </div>
@@ -779,7 +804,7 @@
     &lt;!-- Footer Meta --&gt;
     &lt;div class="flex justify-between w-full items-end"&gt;
         &lt;span class="corner-label"&gt;EST. 2024&lt;/span&gt;
-        &lt;i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0"&gt;&lt;/i&gt;
+        &lt;i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 text-accent"&gt;&lt;/i&gt;
     &lt;/div&gt;
 &lt;/div&gt;</code></pre>
                 </div>
@@ -977,13 +1002,13 @@
                     <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color-dark);">
                       <span style="display: block; font-family: 'Space Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: var(--secondary-text-dark); margin-bottom: 1rem; letter-spacing: 0.05em;">Navigation</span>
                       <nav style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <a href="#context" style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--accent-color); font-family: 'Space Mono', monospace; font-size: 0.85rem; text-decoration: none; position: relative; border-left: 1px solid var(--border-color-dark); transition: color 0.2s;">
+                        <span style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--accent-color); font-family: 'Space Mono', monospace; font-size: 0.85rem; position: relative; border-left: 1px solid var(--border-color-dark); pointer-events: none;">
                           <span style="position: absolute; left: -1px; top: 0; width: 2px; height: 100%; background: var(--accent-color);"></span>
                           01 / THE CONTEXT
-                        </a>
-                        <a href="#discovery" style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; text-decoration: none; border-left: 1px solid var(--border-color-dark); transition: color 0.2s;">02 / DISCOVERY</a>
-                        <a href="#solution" style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; text-decoration: none; border-left: 1px solid var(--border-color-dark); transition: color 0.2s;">03 / THE SOLUTION</a>
-                        <a href="#impact" style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; text-decoration: none; border-left: 1px solid var(--border-color-dark); transition: color 0.2s;">04 / THE IMPACT</a>
+                        </span>
+                        <span style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; border-left: 1px solid var(--border-color-dark); pointer-events: none;">02 / DISCOVERY</span>
+                        <span style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; border-left: 1px solid var(--border-color-dark); pointer-events: none;">03 / THE SOLUTION</span>
+                        <span style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; border-left: 1px solid var(--border-color-dark); pointer-events: none;">04 / THE IMPACT</span>
                       </nav>
                     </div>
                   </aside>
@@ -1038,15 +1063,37 @@
                 <!-- NEXT PROJECT FOOTER -->
                 <footer style="padding: 6rem 0; text-align: center; border-top: 1px solid var(--border-color-dark); margin-top: 4rem;">
                   <span style="font-family: 'Space Mono', monospace; color: var(--secondary-text-dark); font-size: 0.9rem; margin-bottom: 1rem; display: block;">NEXT PROJECT IN ARCHIVE</span>
-                  <a href="#" style="font-family: var(--font-family-display); text-transform: uppercase; letter-spacing: 0.02em; font-size: clamp(2rem, 5vw, 4rem); color: var(--primary-light); text-decoration: none; display: inline-block; transition: color 0.3s ease;">
+                  <span style="font-family: var(--font-family-display); text-transform: uppercase; letter-spacing: 0.02em; font-size: clamp(2rem, 5vw, 4rem); color: var(--primary-light); display: inline-block; pointer-events: none;">
                     Next Project <span style="font-size: 1.125rem; vertical-align: middle; margin-left: 0.5rem;">↗</span>
-                  </a>
+                  </span>
                   <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; font-family: 'Space Mono', monospace; font-size: 0.85rem;">
-                    <a href="./creators-fit.html" style="color: var(--secondary-text-dark); text-decoration: none; transition: color 0.3s;">PREV</a>
+                    <span style="color: var(--secondary-text-dark); pointer-events: none;">PREV</span>
                     <span style="color: var(--secondary-text-dark);">/</span>
-                    <a href="./nohs-somos.html" style="color: var(--secondary-text-dark); text-decoration: none; transition: color 0.3s;">NEXT</a>
+                    <span style="color: var(--secondary-text-dark); pointer-events: none;">NEXT</span>
                   </div>
                 </footer>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <div>
+          <h3 class="case-study-title">Navigation</h3>
+          <p class="body-text secondary-text text-sm mb-4">Sticky sidebar navigation for case study pages with active state indicators.</p>
+          <div class="component-preview-box p-6">
+            <div style="max-width: 250px;">
+              <div style="border-top: 1px solid var(--border-color-dark); padding-top: 2rem; margin-top: 2rem;">
+                <span style="display: block; font-family: 'Space Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: var(--secondary-text-dark); margin-bottom: 1rem; letter-spacing: 0.05em;">Navigation</span>
+                <nav style="display: flex; flex-direction: column; gap: 0.5rem;">
+                  <span style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--accent-color); font-family: 'Space Mono', monospace; font-size: 0.85rem; position: relative; border-left: 1px solid var(--border-color-dark);">
+                    <span style="position: absolute; left: -1px; top: 0; width: 2px; height: 100%; background: var(--accent-color);"></span>
+                    01 / THE CONTEXT
+                  </span>
+                  <span style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; border-left: 1px solid var(--border-color-dark);">02 / DISCOVERY</span>
+                  <span style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; border-left: 1px solid var(--border-color-dark);">03 / THE SOLUTION</span>
+                  <span style="display: block; padding: 0.5rem 0 0.5rem 1.5rem; color: var(--secondary-text-dark); font-family: 'Space Mono', monospace; font-size: 0.85rem; border-left: 1px solid var(--border-color-dark);">04 / THE IMPACT</span>
+                </nav>
               </div>
             </div>
           </div>
@@ -1070,16 +1117,16 @@
         <div class="mt-8 text-center">
           <p class="secondary-text">Connect with me</p>
           <div class="flex justify-center space-x-6 mt-4 text-3xl">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent-color transition-colors duration-300" aria-label="GitHub">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-accent-color transition-colors duration-300" style="color: var(--primary-light);" aria-label="GitHub">
               <i class="fab fa-github"></i>
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent-color transition-colors duration-300" aria-label="LinkedIn">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-accent-color transition-colors duration-300" style="color: var(--primary-light);" aria-label="LinkedIn">
               <i class="fab fa-linkedin"></i>
             </a>
-            <a href="https://www.figma.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent-color transition-colors duration-300" aria-label="Figma">
+            <a href="https://www.figma.com" target="_blank" rel="noopener noreferrer" class="hover:text-accent-color transition-colors duration-300" style="color: var(--primary-light);" aria-label="Figma">
               <i class="fab fa-figma"></i>
             </a>
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent-color transition-colors duration-300" aria-label="Instagram">
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-accent-color transition-colors duration-300" style="color: var(--primary-light);" aria-label="Instagram">
               <i class="fab fa-instagram"></i>
             </a>
           </div>

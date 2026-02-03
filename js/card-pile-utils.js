@@ -71,7 +71,7 @@ function createCardPile(config) {
         footerMeta.className = 'flex justify-between w-full items-end';
         footerMeta.innerHTML = `
             <span class="corner-label">EST. 2024</span>
-            <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0"></i>
+            <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 text-accent"></i>
         `;
 
         el.appendChild(topMeta);
