@@ -524,6 +524,7 @@ img, video {
     display: none;
 }
 
+/* Mobile nav open state - full screen overlay */
 #main-nav.open {
     display: flex;
     position: fixed;
@@ -531,11 +532,44 @@ img, video {
     left: 0;
     width: 100%;
     height: 100vh;
-    z-index: var(--z-sticky);
+    z-index: var(--z-overlay);
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: var(--spacing-2xl);
     gap: var(--spacing-xl);
+}
+
+.light #main-nav.open {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+}
+
+/* Navigation list styling in mobile menu */
+#main-nav.open .nav-list {
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    align-items: center;
+}
+
+/* Nav links in mobile menu - larger, centered */
+#main-nav.open .nav-link {
+    font-size: var(--font-size-2xl);
+    font-family: var(--font-family-display), sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Theme toggle positioning in mobile */
+#main-nav.open .theme-toggle-btn {
+    margin: var(--spacing-lg) 0;
+}
+
+/* CTA button in mobile menu */
+#main-nav.open .lets-talk-button {
+    margin: var(--spacing-md) 0 0 0;
 }
 
 /* =========================================================================
@@ -982,38 +1016,7 @@ html, body { cursor: none !important; }
    13. RESPONSIVE MEDIA QUERIES
    ========================================================================= */
 
-/* Navigation Styles */
-#main-nav.open {
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 100;
-    background-color: var(--primary-dark);
-    color: var(--primary-light);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 4rem;
-}
-
-.light #main-nav.open {
-    background-color: var(--primary-light);
-    color: var(--primary-dark);
-}
-
-.light .hamburger .bar {
-    background: var(--primary-dark);
-}
-
-.theme-toggle-btn {
-    margin-top: 1.5rem;
-    margin-bottom: 0;
-    margin-left: 0;
-}
-
+/* Mobile-specific adjustments */
 @media (max-width: 767px) {
     .lets-talk-button {
         margin-left: 0.5rem;
