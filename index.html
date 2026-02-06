@@ -797,12 +797,12 @@
             <p class="card-subtitle mb-4">01. Vertical Card</p>
             <p class="body-text secondary-text text-sm mb-4">Centered layout with top/bottom meta and hover animations.</p>
 
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <!-- Live Example -->
               <div>
                 <p class="text-xs secondary-text mb-2 font-mono">LIVE PREVIEW</p>
-                <div class="component-preview-box p-6 flex items-center justify-center" style="min-height: 320px;">
-                  <div class="game-card vertical group" style="width: 280px; min-height: 320px;">
+                <div class="component-preview-box p-4 md:p-6 flex items-center justify-center" style="min-height: 280px;">
+                  <div class="game-card vertical group" style="width: 100%; max-width: 280px; min-height: 280px; margin: 0 auto;">
                     <!-- Top Meta -->
                     <div class="flex justify-between w-full">
                       <span class="corner-label text-accent">ID_01</span>
@@ -812,9 +812,9 @@
                     <!-- Main Content -->
                     <div class="text-center mt-4">
                       <div class="mb-6 opacity-80 group-hover:opacity-100 text-[var(--text-main)]">
-                        <i class="fa-solid fa-cube text-5xl"></i>
+                        <i class="fa-solid fa-cube text-4xl md:text-5xl"></i>
                       </div>
-                      <h2 class="font-display text-4xl mb-2">Modules</h2>
+                      <h2 class="font-display text-3xl md:text-4xl mb-2">Modules</h2>
                       <div class="w-8 h-0.5 bg-[var(--accent)] mx-auto mb-4"></div>
                       <p class="font-mono text-xs text-[var(--text-muted)]">
                         Standardized atomic units.
@@ -871,27 +871,27 @@
             <p class="card-subtitle mb-4">02. Horizontal Card</p>
             <p class="body-text secondary-text text-sm mb-4">Icon left, content right with bottom decoration line.</p>
 
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <!-- Live Example -->
               <div>
                 <p class="text-xs secondary-text mb-2 font-mono">LIVE PREVIEW</p>
-                <div class="component-preview-box p-6 flex items-center justify-center" style="min-height: 180px;">
-                  <div class="game-card horizontal group" style="width: 100%; max-width: 400px; min-height: 160px; position: relative;">
+                <div class="component-preview-box p-4 md:p-6 flex items-center justify-center" style="min-height: 180px;">
+                  <div class="game-card horizontal group" style="width: 100%; max-width: 400px; min-height: 160px; position: relative; margin: 0 auto;">
                     <!-- Decoration Line -->
                     <div class="absolute bottom-0 left-0 w-full h-1 bg-[var(--card-border)] group-hover:bg-[var(--accent)] transition-colors"></div>
 
                     <!-- Left: Icon -->
                     <div class="icon-col">
-                      <i class="fa-solid fa-fingerprint text-4xl text-[var(--text-muted)] group-hover:text-[var(--text-main)]"></i>
+                      <i class="fa-solid fa-fingerprint text-3xl md:text-4xl text-[var(--text-muted)] group-hover:text-[var(--text-main)]"></i>
                     </div>
 
                     <!-- Right: Content -->
                     <div class="content-col relative">
                       <span class="corner-label absolute top-0 right-0">SEC_04</span>
                       <div>
-                        <h3 class="font-display text-3xl mb-1">Access</h3>
+                        <h3 class="font-display text-2xl md:text-3xl mb-1">Access</h3>
                         <p class="font-mono text-xs text-[var(--accent)] mb-2">[ RESTRICTED ]</p>
-                        <p class="text-sm text-[var(--text-muted)] font-light">Biometric authentication required.</p>
+                        <p class="text-xs md:text-sm text-[var(--text-muted)] font-light">Biometric authentication required.</p>
                       </div>
                     </div>
                   </div>
@@ -941,12 +941,12 @@
             <p class="card-subtitle mb-4">03. Vertical Flip Card (Reveal)</p>
             <p class="body-text secondary-text text-sm mb-4">Two-sided card with LOCKED cover that flips on click to reveal content.</p>
 
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <!-- Live Example -->
               <div>
                 <p class="text-xs secondary-text mb-2 font-mono">LIVE PREVIEW</p>
-                <div class="component-preview-box p-6 flex items-center justify-center" style="min-height: 340px;">
-                  <div class="flip-wrapper" style="width: 280px;">
+                <div class="component-preview-box p-4 md:p-6 flex items-center justify-center" style="min-height: 300px;">
+                  <div class="flip-wrapper" style="width: 100%; max-width: 280px; margin: 0 auto;">
                     <div class="flip-inner">
                       <!-- FRONT: Cover -->
                       <div class="flip-face cover">
@@ -954,15 +954,15 @@
                           <span class="corner-label text-accent pl-2">LOCKED</span>
                         </div>
                         <div class="flex flex-col items-center justify-center h-full">
-                          <i class="fa-solid fa-lock text-xl text-gray-500"></i>
-                          <h3 class="font-display text-2xl tracking-widest text-gray-500">CLASSIFIED</h3>
+                          <i class="fa-solid fa-lock text-lg md:text-xl text-gray-500"></i>
+                          <h3 class="font-display text-xl md:text-2xl tracking-widest text-gray-500">CLASSIFIED</h3>
                         </div>
                       </div>
                       <!-- BACK: Content -->
                       <div class="flip-face content">
                         <div class="text-center mt-4">
-                          <i class="fa-solid fa-eye text-5xl"></i>
-                          <h2 class="font-display text-4xl">Insight</h2>
+                          <i class="fa-solid fa-eye text-4xl md:text-5xl"></i>
+                          <h2 class="font-display text-3xl md:text-4xl">Insight</h2>
                         </div>
                       </div>
                     </div>
