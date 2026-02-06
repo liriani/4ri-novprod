@@ -98,10 +98,11 @@
     --z-pile-cards: 9998;
     --z-confetti: 2001;
 
-    /* Shared pattern card variables */
-    --pattern-card-width: 140px;
-    --pattern-card-height: 200px;
+    /* Shared pattern card variables - Tarot/Oversized Card Size (5:7 ratio) */
+    --pattern-card-width: 300px;           /* Tarot card width */
+    --pattern-card-height: 420px;          /* Tarot card height (5:7 ratio) */
     --pattern-card-radius: var(--border-radius-md);
+    --pattern-card-padding: 2rem;          /* 32px - scaled for larger card */
 }
 
 /* =========================================================================
@@ -1999,16 +2000,18 @@ html, body { cursor: none !important; }
     .home-pile-easter { font-size: 0.8rem; top: 0.25rem; }
 }
 
-/* Reinstate Home Pile Card visual styles with new vertical game card design */
-.home-card-pile { width: 280px; height: 240px; max-width: 90vw; position: relative; }
+/* Reinstate Home Pile Card visual styles with Tarot card design pattern */
+.home-card-pile { width: 600px; height: 500px; max-width: 90vw; position: relative; }
 .home-pile-card {
   position: absolute;
   left: 50%; top: 50%;
-  margin-left: -70px; margin-top: -98px; /* center offset - adjusted for 196px height */
-  width: 140px; height: 196px; /* Standard poker card ratio 2.5:3.5 */
+  margin-left: calc(var(--pattern-card-width) / -2);  /* -150px center offset */
+  margin-top: calc(var(--pattern-card-height) / -2);  /* -210px center offset */
+  width: var(--pattern-card-width);   /* 300px - Tarot card */
+  height: var(--pattern-card-height); /* 420px - Tarot card ratio 5:7 */
   background: var(--primary-dark);
   border: 2px solid var(--accent-color);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--pattern-card-radius);
   box-shadow: var(--shadow-accent-dark);
   display: flex;
   flex-direction: column;
@@ -2017,7 +2020,7 @@ html, body { cursor: none !important; }
   cursor: none;
   will-change: transform;
   overflow: hidden;
-  padding: 1rem;
+  padding: var(--pattern-card-padding);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -2140,13 +2143,20 @@ html, body { cursor: none !important; }
 }
 
 @media (max-width:767px){
-  .home-card-pile { width:240px; height:200px; }
-  .home-pile-card { width:120px; height:168px; margin-left:-60px; margin-top:-84px; padding: 0.75rem; }
-  .home-pile-card-icon { font-size:1.5rem; }
-  .home-pile-card-text { font-size:0.6rem; }
+  .home-card-pile { width: 400px; height: 350px; max-width: 95vw; }
+  /* Mobile: 66.7% scale of Tarot card (200px × 280px maintains 5:7 ratio) */
+  .home-pile-card {
+    width: 200px;
+    height: 280px;
+    margin-left: -100px;  /* half of width */
+    margin-top: -140px;   /* half of height */
+    padding: 1.5rem;
+  }
+  .home-pile-card-icon { font-size: 2rem; }
+  .home-pile-card-text { font-size: 0.75rem; }
   .home-pile-card-meta-top,
-  .home-pile-card-meta-bottom { font-size: 0.45rem; }
-  .home-pile-card-arrow { font-size: 0.65rem; }
+  .home-pile-card-meta-bottom { font-size: 0.6rem; }
+  .home-pile-card-arrow { font-size: 0.8rem; }
 }
 
 /* =========================================================================
@@ -2458,19 +2468,23 @@ html, body { cursor: none !important; }
     border-color: var(--accent-color);
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments - Maintain Tarot card ratio on mobile */
 @media (max-width: 640px) {
     .flip-wrapper {
+        width: 200px;   /* 66.7% scale of Tarot card */
+        height: 280px;  /* Maintains 5:7 ratio */
         min-height: 280px;
     }
 
     .flip-inner {
         min-height: 280px;
+        height: 280px;
     }
 
     .flip-face {
         min-height: 280px;
-        padding: 1.25rem;
+        height: 280px;
+        padding: 1.5rem;
     }
     
     .flip-face.content .text-4xl {
@@ -2482,6 +2496,8 @@ html, body { cursor: none !important; }
     }
 
     .game-card.vertical {
+        width: 200px;
+        height: 280px;
         padding: 1.5rem;
         gap: 1rem;
     }
@@ -2761,28 +2777,28 @@ body.reveal-modal-open {
     transform: scale(0.9);
 }
 
-/* Card pile wrapper */
+/* Card pile wrapper - sized for Tarot cards */
 .reveal-card-pile-wrapper {
     width: 100%;
-    height: 320px;
-    padding: 0 1rem; /* Add padding to prevent edge touching */
+    height: 500px;
+    padding: 0 1rem;
 }
 
 /* Card pile container */
 .reveal-card-pile {
-    width: 384px;
-    height: 280px;
-    max-width: 100%; /* Changed from 90vw to prevent overflow */
+    width: 600px;
+    height: 500px;
+    max-width: 100%;
 }
 
-/* Individual pile cards - created by JS */
+/* Individual pile cards - created by JS - Tarot Card Pattern */
 .reveal-pile-card {
     position: absolute;
-    width: 140px; /* Standard size - matches home pile */
-    height: 196px; /* Standard poker card ratio 2.5:3.5 */
+    width: var(--pattern-card-width);   /* 300px - Tarot card */
+    height: var(--pattern-card-height); /* 420px - Tarot card ratio 5:7 */
     background: linear-gradient(135deg, var(--primary-dark) 0%, #1a1b1b 100%);
     border: 2px solid var(--accent-color);
-    border-radius: var(--border-radius-md);
+    border-radius: var(--pattern-card-radius);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     cursor: none;
     transition: transform 120ms linear;
@@ -2821,25 +2837,25 @@ body.reveal-modal-open {
     letter-spacing: 0.05em;
 }
 
-/* Mobile adjustments */
+/* Mobile adjustments - scaled Tarot cards */
 @media (max-width: 767px) {
     .reveal-card-pile-wrapper {
-        height: 280px;
+        height: 350px;
     }
 
     .reveal-card-pile {
-        width: 288px;
-        height: 224px;
+        width: 400px;
+        height: 350px;
         margin: 0 auto;
     }
 
     .reveal-splash-screen {
-        min-height: 400px;
+        min-height: 450px;
     }
 
     .reveal-pile-card {
-        width: 120px;
-        height: 168px;
+        width: 200px;   /* 66.7% scale */
+        height: 280px;  /* Maintains 5:7 ratio */
     }
 }
 
