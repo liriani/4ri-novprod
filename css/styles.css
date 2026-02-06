@@ -2221,27 +2221,51 @@ html, body { cursor: none !important; }
 }
 
 /* Cover Face (LOCKED/CLASSIFIED) */
+/* Cover Face (Solid Orange Background - Design Pattern) */
 .flip-face.cover {
-    background: var(--primary-dark);
-    border: 2px solid var(--border-color-dark);
+    background: var(--accent-color);      /* Orange #FF6B00 */
+    border: 2px solid var(--accent-color);
+    color: var(--primary-dark);           /* Dark text */
 }
 
 .flip-face.cover:hover {
-    border-color: var(--accent-color);
-    box-shadow: 0 8px 24px rgba(255, 107, 0, 0.2);
+    background: #ff8534;                  /* Lighter orange */
+    border-color: #ff8534;
+    box-shadow: 0 8px 24px rgba(255, 107, 0, 0.4);
 }
 
+/* Cover face icons - dark color */
 .flip-face.cover .w-16 {
     transition: all var(--transition-normal);
+    border-color: var(--primary-dark) !important;
 }
 
 .flip-face.cover:hover .w-16 {
     transform: scale(1.1);
-    border-color: var(--accent-color) !important;
+    border-color: var(--primary-dark) !important;
 }
 
-.flip-face.cover:hover .fa-lock {
-    color: var(--accent-color) !important;
+.flip-face.cover .fa-lock,
+.flip-face.cover:hover .fa-lock,
+.flip-face.cover i {
+    color: var(--primary-dark) !important;
+}
+
+/* Cover face text colors */
+.flip-face.cover .corner-label {
+    color: var(--primary-dark);
+}
+
+.flip-face.cover .font-display {
+    color: var(--primary-dark);
+}
+
+.flip-face.cover .font-mono {
+    color: var(--primary-dark);
+}
+
+.flip-face.cover .text-gray-500 {
+    color: var(--primary-dark) !important;
 }
 
 /* Content Face (Revealed) - Uses game-card styling */
@@ -2404,22 +2428,29 @@ html, body { cursor: none !important; }
     background: var(--accent-color);
 }
 
-/* Light theme adjustments */
+/* Light theme adjustments - maintains orange cover */
 .light .flip-face.cover {
-    background: var(--bg-elevated-light);
-    border-color: rgba(0, 0, 0, 0.1);
+    background: var(--accent-color);      /* Same orange */
+    border-color: var(--accent-color);
+    color: var(--primary-dark);
 }
 
 .light .flip-face.cover .border-gray-800 {
-    border-color: rgba(0, 0, 0, 0.2) !important;
+    border-color: var(--primary-dark) !important;
 }
 
 .light .flip-face.cover .text-gray-500 {
-    color: rgba(0, 0, 0, 0.5) !important;
+    color: var(--primary-dark) !important;
 }
 
 .light .flip-face.cover:hover {
-    border-color: var(--accent-color);
+    background: #ff8534;                  /* Lighter on hover */
+    border-color: #ff8534;
+}
+
+.light .flip-face.cover i,
+.light .flip-face.cover .fa-lock {
+    color: var(--primary-dark) !important;
 }
 
 .light .flip-face.content {
