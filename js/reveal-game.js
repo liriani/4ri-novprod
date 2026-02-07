@@ -92,25 +92,25 @@ function renderRevealGameCard(cardState, index) {
 
     // Top corner
     const topCorner = document.createElement('div');
-    topCorner.className = 'flex justify-between';
+    topCorner.className = 'flex justify-between w-full';
     const lockedLabel = document.createElement('span');
-    lockedLabel.className = 'corner-label text-accent pl-2';
+    lockedLabel.className = 'corner-label text-accent';
     lockedLabel.textContent = 'LOCKED';
     topCorner.appendChild(lockedLabel);
 
-    // Center - Lock icon + CLASSIFIED
+    // Center - Lock icon + CLASSIFIED (with auto margins to center vertically)
     const centerContent = document.createElement('div');
-    centerContent.className = 'flex flex-col items-center justify-center h-full';
+    centerContent.className = 'flex flex-col items-center justify-center flex-1 my-auto';
 
     const iconCircle = document.createElement('div');
-    iconCircle.className = 'w-16 h-16 rounded-full border border-gray-800 flex items-center justify-center mb-4';
+    iconCircle.className = 'w-20 h-20 rounded-full border-2 border-gray-800 flex items-center justify-center mb-4';
 
     const lockIcon = document.createElement('i');
-    lockIcon.className = 'fa-solid fa-lock text-xl text-gray-500';
+    lockIcon.className = 'fa-solid fa-lock text-2xl text-gray-500';
     iconCircle.appendChild(lockIcon);
 
     const classifiedTitle = document.createElement('h3');
-    classifiedTitle.className = 'font-display text-2xl tracking-widest text-gray-500';
+    classifiedTitle.className = 'font-display text-3xl tracking-widest text-gray-500';
     classifiedTitle.textContent = 'CLASSIFIED';
 
     centerContent.appendChild(iconCircle);
@@ -118,10 +118,10 @@ function renderRevealGameCard(cardState, index) {
 
     // Bottom - Decrypt message
     const bottomBorder = document.createElement('div');
-    bottomBorder.className = 'w-full text-center border-t border-gray-800 pt-4';
+    bottomBorder.className = 'w-full text-center border-t-2 border-gray-800 pt-4';
 
     const decryptMsg = document.createElement('p');
-    decryptMsg.className = 'font-mono text-[10px] text-orange-500 animate-pulse';
+    decryptMsg.className = 'font-mono text-xs text-orange-500 animate-pulse';
     decryptMsg.textContent = '[ CLICK TO DECRYPT ]';
     bottomBorder.appendChild(decryptMsg);
 
@@ -150,14 +150,14 @@ function renderRevealGameCard(cardState, index) {
 
     // Main Content
     const mainContent = document.createElement('div');
-    mainContent.className = 'text-center mt-4';
+    mainContent.className = 'text-center flex-1 my-auto';
 
     // Icon
     const iconWrapper = document.createElement('div');
-    iconWrapper.className = 'mb-6 opacity-80 group-hover:opacity-100';
+    iconWrapper.className = 'mb-4 opacity-80 group-hover:opacity-100';
 
     const revealedIcon = document.createElement('i');
-    revealedIcon.className = `fa-solid ${card.icon} text-5xl`;
+    revealedIcon.className = `fa-solid ${card.icon} text-6xl`;
 
     // Animation on first flip - PRESERVED
     if (isFlipped && !hasAnimated) {
@@ -168,16 +168,16 @@ function renderRevealGameCard(cardState, index) {
 
     // Title
     const title = document.createElement('h2');
-    title.className = 'font-display text-4xl mb-2';
+    title.className = 'font-display text-5xl mb-2';
     title.textContent = card.categoryLabel || card.type;
 
     // Divider
     const divider = document.createElement('div');
-    divider.className = 'w-8 h-0.5 bg-[var(--accent)] mx-auto mb-4';
+    divider.className = 'w-10 h-0.5 bg-[var(--accent)] mx-auto mb-4';
 
     // Description
     const description = document.createElement('p');
-    description.className = 'font-mono text-xs text-[var(--text-muted)]';
+    description.className = 'font-mono text-sm text-[var(--text-muted)] px-6 leading-relaxed';
     description.textContent = card.description;
 
     mainContent.appendChild(iconWrapper);
