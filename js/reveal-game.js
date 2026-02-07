@@ -10,18 +10,74 @@ const revealCardIcons = {
 };
 
 const revealInitialCardsData = [
-    { id: 1, type: "PROCESS", nvlCode: "LIRI.", icon: revealCardIcons.approach,
-       question: "What's my approach?", description: "User-first thinking combined with data-driven decisions." },
-    { id: 2, type: "AESTHETIC", nvlCode: "LIRI.", icon: revealCardIcons.style,
-       question: "What's my style?", description: "Clean, minimal interfaces with delightful micro-interactions." },
-    { id: 3, type: "TECH", nvlCode: "LIRI.", icon: revealCardIcons.build,
-       question: "What do I build?", description: "Scalable web apps with React, TypeScript, and modern tooling." },
-    { id: 4, type: "SKILL", nvlCode: "LIRI.", icon: revealCardIcons.learn,
-       question: "What motivates me?", description: "A constant drive to learn new frameworks and design patterns.", categoryLabel: "LEARN" },
-    { id: 5, type: "COLLAB", nvlCode: "LIRI.", icon: revealCardIcons.work,
-       question: "How do I work?", description: "Cross-functional collaboration with designers and engineers." },
-    { id: 6, type: "GOAL", nvlCode: "LIRI.", icon: revealCardIcons.impact,
-       question: "What's my goal?", description: "To create products that solve real problems for large user bases.", categoryLabel: "IMPACT" },
+    {
+        id: 1,
+        type: "PROCESS",
+        nvlCode: "LIRI.",
+        icon: revealCardIcons.approach,
+        question: "What's my approach?",
+        description: "User-first thinking combined with data-driven decisions.",
+        titleSize: "lg",
+        iconSize: "xl",
+        descSize: "md"
+    },
+    {
+        id: 2,
+        type: "AESTHETIC",
+        nvlCode: "LIRI.",
+        icon: revealCardIcons.style,
+        question: "What's my style?",
+        description: "Clean, minimal interfaces with delightful micro-interactions.",
+        titleSize: "md",  // Smaller for longer word
+        iconSize: "xl",
+        descSize: "md"
+    },
+    {
+        id: 3,
+        type: "TECH",
+        nvlCode: "LIRI.",
+        icon: revealCardIcons.build,
+        question: "What do I build?",
+        description: "Scalable web apps with React, TypeScript, and modern tooling.",
+        titleSize: "xl",  // Larger for short word
+        iconSize: "xl",
+        descSize: "md"
+    },
+    {
+        id: 4,
+        type: "SKILL",
+        nvlCode: "LIRI.",
+        icon: revealCardIcons.learn,
+        question: "What motivates me?",
+        description: "A constant drive to learn new frameworks and design patterns.",
+        categoryLabel: "LEARN",
+        titleSize: "xl",
+        iconSize: "xl",
+        descSize: "md"
+    },
+    {
+        id: 5,
+        type: "COLLAB",
+        nvlCode: "LIRI.",
+        icon: revealCardIcons.work,
+        question: "How do I work?",
+        description: "Cross-functional collaboration with designers and engineers.",
+        titleSize: "lg",
+        iconSize: "xl",
+        descSize: "md"
+    },
+    {
+        id: 6,
+        type: "GOAL",
+        nvlCode: "LIRI.",
+        icon: revealCardIcons.impact,
+        question: "What's my goal?",
+        description: "To create products that solve real problems for large user bases.",
+        categoryLabel: "IMPACT",
+        titleSize: "xl",
+        iconSize: "xl",
+        descSize: "md"
+    },
 ];
 
 // Global state for reveal cards
@@ -154,10 +210,11 @@ function renderRevealGameCard(cardState, index) {
 
     // Icon
     const iconWrapper = document.createElement('div');
-    iconWrapper.className = 'mb-4 opacity-80 group-hover:opacity-100';
+    iconWrapper.className = 'mb-4';
 
     const revealedIcon = document.createElement('i');
-    revealedIcon.className = `fa-solid ${card.icon} text-6xl`;
+    const iconSize = card.iconSize || 'xl';
+    revealedIcon.className = `fa-solid ${card.icon} card-icon card-icon-${iconSize}`;
 
     // Animation on first flip - PRESERVED
     if (isFlipped && !hasAnimated) {
@@ -168,7 +225,8 @@ function renderRevealGameCard(cardState, index) {
 
     // Title
     const title = document.createElement('h2');
-    title.className = 'font-display text-5xl mb-2';
+    const titleSize = card.titleSize || 'lg';
+    title.className = `card-title card-title-${titleSize} mb-2`;
     title.textContent = card.categoryLabel || card.type;
 
     // Divider
@@ -177,7 +235,8 @@ function renderRevealGameCard(cardState, index) {
 
     // Description
     const description = document.createElement('p');
-    description.className = 'font-mono text-sm text-[var(--text-muted)] px-6 leading-relaxed';
+    const descSize = card.descSize || 'md';
+    description.className = `card-description card-description-${descSize} px-4`;
     description.textContent = card.description;
 
     mainContent.appendChild(iconWrapper);
