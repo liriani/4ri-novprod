@@ -84,9 +84,12 @@
             <span class="hero-highlight">high-usage </span>
             <span class="hero-subtitle">products.</span>
           </div>
-          <div class="hero-buttons ">
-            <a href="#projects" class="btn btn-outline page-link" data-page="projects">
+          <div class="hero-buttons flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <a href="#projects" class="btn btn-primary page-link" data-page="projects">
               View My Work
+            </a>
+            <a href="#about" class="btn btn-outline page-link" data-page="about">
+              About Me
             </a>
           </div>
         </div>
@@ -105,6 +108,74 @@
           </div>
         </div>
 
+      </div>
+
+      <!-- Featured Projects Section -->
+      <div class="featured-projects-section max-w-6xl mx-auto mt-16 mb-16">
+        <div class="text-center mb-12">
+          <h2 class="section-title">Featured Projects</h2>
+          <p class="section-subtitle mb-8 max-w-3xl mx-auto">A curated collection of my most impactful work, showcasing my skills in design and development.</p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-8">
+          <!-- Project Card 5: FIAP HealthHub -->
+          <div class="project-card" data-project-id="5">
+            <div class="project-card-front">
+              <span class="project-logo"><img src="./assets/fiap/logo.png" alt="FIAP Logo"></span>
+              <h3 class="card-title">FIAP Startup Challenge: HealthHub</h3>
+            </div>
+            <div class="project-preview">
+              <div class="preview-left">
+                <h3 class="card-title">FIAP HealthHub</h3>
+                <p class="card-subtitle">Mobile-first platform for clinics and patients. 2nd place at FIAP Startup Challenge 2023. Focused on long-term care management.</p>
+              </div>
+              <div class="preview-right">
+                <img src="./assets/fiap/cover.png" alt="FIAP HealthHub">
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Card 6: Nohs Somos -->
+          <div class="project-card" data-project-id="6">
+            <div class="project-card-front">
+              <span class="project-logo"><img src="./assets/nohs-somos/logo.png" alt="Nohs Somos Logo"></span>
+              <h3 class="card-title">Nohs Somos: LGBTQ Community Safety App</h3>
+            </div>
+            <div class="project-preview">
+              <div class="preview-left">
+                <h3 class="card-title">Nohs Somos</h3>
+                <p class="card-subtitle">Map-based app for LGBTQ community safety. Find and review safe spaces. Built for Nohs Somos, merged with TODXS.</p>
+              </div>
+              <div class="preview-right">
+                <img src="./assets/nohs-somos/cover.png" alt="TODXS & Nohs Somos">
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Card 7: Creators Fit (Privi) -->
+          <div class="project-card" data-project-id="7">
+            <div class="project-card-front">
+              <span class="project-logo"><img src="./assets/creators-fit/logo.png" alt="Privi Logo"></span>
+              <h3 class="card-title">Creators Fit (formerly Privi): Monetizing Content for Brazilian Influencers</h3>
+            </div>
+            <div class="project-preview">
+              <div class="preview-left">
+                <h3 class="card-title">Creators Fit (Privi)</h3>
+                <p class="card-subtitle">Platform for Brazilian creators to monetize exclusive content. Supports subscriptions, pay-per-view, and media uploads.</p>
+              </div>
+              <div class="preview-right">
+                <img src="./assets/creators-fit/cover.png" alt="Creators Fit (Privi)">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- View All Projects CTA -->
+        <div class="text-center mt-12">
+          <a href="#projects" class="btn btn-outline page-link" data-page="projects">
+            View All Projects
+          </a>
+        </div>
       </div>
 
 
@@ -217,8 +288,7 @@
                   <div class="artifact-content">
                     <h3 class="artifact-title section-title">Barcelona Base</h3>
                     <p class="artifact-text body-text">
-                      Currently based in Barcelona, Spain - with my partner and our amazing family of pets.
-                    </p>
+                      Currently based in Barcelona, Spain - with my partner and our amazing family of pets                    </p>
                     <div class="location-coords">
                       <i class="fas fa-map-marker-alt" style="color: var(--accent-color);"></i>
                       <span>41.3851° N, 2.1734° E</span>
