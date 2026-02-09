@@ -5,7 +5,32 @@
 
 export const projectsData = [
   {
-    id: 5,
+    id: 1,
+    title: "Creators Fit (formerly Privi): Monetizing Content for Brazilian Influencers",
+    shortTitle: "Creators Fit (Privi)",
+    description: "Platform for Brazilian creators to monetize exclusive content. Supports subscriptions, pay-per-view, and media uploads.",
+    caseStudyUrl: "./cases/creators-fit.html",
+    logo: "./assets/creators-fit/logo.png",
+    logoAlt: "Privi Logo",
+    cover: "./assets/creators-fit/cover.png",
+    coverAlt: "Creators Fit (Privi)",
+    tech: ['React', 'Django', 'PostgreSQL', 'Stripe', 'AWS S3'],
+    designs: [
+      { caption: 'Creator persona development and user journey mapping', src: './assets/creators-fit/creatorspersona.png' },
+      { caption: 'Custom profile builder for content creators', src: './assets/creators-fit/customprofile.png' },
+      { caption: 'Brand inspiration and visual identity development', src: './assets/creators-fit/brandinspiration.png' },
+      { caption: 'Private feed interface for exclusive content', src: './assets/creators-fit/privifeed.png' },
+      { caption: 'Instagram integration for cross-platform promotion', src: './assets/creators-fit/priviinstagram.png' }
+    ],
+    caseStudy: {
+      context: { team: 'Team of 6', timeline: '8 months', role: 'Senior Product Designer & Frontend Lead' },
+      problem: 'Brazilian content creators lacked accessible platforms to monetize their work directly. Existing international platforms had high fees, complex interfaces, and limited local payment options.',
+      process: 'We researched the Brazilian creator economy, interviewed 50+ content creators, designed a localized monetization platform with multiple revenue streams, and built integrations with popular Brazilian payment methods.',
+      impact: 'Onboarded 500+ creators in the first 6 months. Processed over R$1M in creator earnings. Platform was later rebranded to Creators Fit and expanded to include fitness and lifestyle creators.'
+    }
+  },
+  {
+    id: 2,
     title: "FIAP Startup Challenge: HealthHub",
     shortTitle: "FIAP HealthHub",
     description: "Mobile-first platform for clinics and patients. 2nd place at FIAP Startup Challenge 2023. Focused on long-term care management.",
@@ -30,7 +55,7 @@ export const projectsData = [
     },
     detailedCaseStudy: {
       subtitle: "A mobile-first ecosystem connecting long-term patients with clinics, reducing appointment absences by 40%.",
-      caseNumber: "005",
+      caseNumber: "002",
       meta: {
         role: "Product Designer",
         timeline: "3 Weeks (Sprint)",
@@ -101,14 +126,14 @@ export const projectsData = [
         }
       ],
       nextProject: {
-        id: 6,
+        id: 3,
         title: "Nohs Somos",
-        url: "#project-6"
+        url: "#project-3"
       }
     }
   },
   {
-    id: 6,
+    id: 3,
     title: "Nohs Somos: LGBTQ Community Safety App",
     shortTitle: "Nohs Somos",
     description: "Map-based app for LGBTQ community safety. Find and review safe spaces. Built for Nohs Somos, merged with TODXS.",
@@ -131,36 +156,11 @@ export const projectsData = [
       impact: 'Successfully launched and later merged with TODXS, expanding reach across Brazil. Featured in Forbes for innovative approach to community safety. Helped over 10,000 users find safe spaces in their neighborhoods.'
     }
   },
-  {
-    id: 7,
-    title: "Creators Fit (formerly Privi): Monetizing Content for Brazilian Influencers",
-    shortTitle: "Creators Fit (Privi)",
-    description: "Platform for Brazilian creators to monetize exclusive content. Supports subscriptions, pay-per-view, and media uploads.",
-    caseStudyUrl: "./cases/creators-fit.html",
-    logo: "./assets/creators-fit/logo.png",
-    logoAlt: "Privi Logo",
-    cover: "./assets/creators-fit/cover.png",
-    coverAlt: "Creators Fit (Privi)",
-    tech: ['React', 'Django', 'PostgreSQL', 'Stripe', 'AWS S3'],
-    designs: [
-      { caption: 'Creator persona development and user journey mapping', src: './assets/creators-fit/creatorspersona.png' },
-      { caption: 'Custom profile builder for content creators', src: './assets/creators-fit/customprofile.png' },
-      { caption: 'Brand inspiration and visual identity development', src: './assets/creators-fit/brandinspiration.png' },
-      { caption: 'Private feed interface for exclusive content', src: './assets/creators-fit/privifeed.png' },
-      { caption: 'Instagram integration for cross-platform promotion', src: './assets/creators-fit/priviinstagram.png' }
-    ],
-    caseStudy: {
-      context: { team: 'Team of 6', timeline: '8 months', role: 'Senior Product Designer & Frontend Lead' },
-      problem: 'Brazilian content creators lacked accessible platforms to monetize their work directly. Existing international platforms had high fees, complex interfaces, and limited local payment options.',
-      process: 'We researched the Brazilian creator economy, interviewed 50+ content creators, designed a localized monetization platform with multiple revenue streams, and built integrations with popular Brazilian payment methods.',
-      impact: 'Onboarded 500+ creators in the first 6 months. Processed over R$1M in creator earnings. Platform was later rebranded to Creators Fit and expanded to include fitness and lifestyle creators.'
-    }
-  },
 
   // iLog - HIDDEN (to be populated later)
   /*
   {
-    id: 8,
+    id: 4,
     title: "iLog",
     shortTitle: "iLog",
     description: "Logistics platform for fleet operations. Automates route planning and real-time tracking. Used by major LATAM companies.",
