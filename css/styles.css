@@ -2611,7 +2611,7 @@ html, body { cursor: none !important; }
 /* Main container */
 .reveal-game-section {
     margin-top: 6rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     padding: 2rem 1rem;
 }
 
@@ -2624,6 +2624,11 @@ html, body { cursor: none !important; }
     margin: 0 auto;
     justify-content: center;
     padding: 1rem;
+}
+
+/* Collapse grid when content is not active */
+.reveal-game-content:not(.active) #reveal-card-grid {
+    display: none;
 }
 
 @media (max-width: 640px) {
@@ -3396,13 +3401,18 @@ body.reveal-modal-open {
     margin: 0 auto;
     max-width: 1200px;
     padding: 2rem;
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease, min-height 0.5s ease, margin 0.5s ease, padding 0.5s ease;
 }
 
 .reveal-splash-screen.hidden {
     opacity: 0;
     pointer-events: none;
     transform: scale(0.9);
+    min-height: 0;
+    max-height: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 /* Card pile wrapper - sized for Tarot cards */
@@ -3410,6 +3420,14 @@ body.reveal-modal-open {
     width: 100%;
     height: 500px;
     padding: 0 1rem;
+    transition: height 0.5s ease, padding 0.5s ease;
+}
+
+/* Collapse wrapper when splash is hidden */
+.reveal-splash-screen.hidden .reveal-card-pile-wrapper {
+    height: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 /* Card pile container */
@@ -3493,12 +3511,16 @@ body.reveal-modal-open {
     pointer-events: none;
     transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
     transform: translateY(20px);
+    max-height: 0;
+    overflow: hidden;
 }
 
 .reveal-game-content.active {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
+    max-height: none;
+    overflow: visible;
 }
 
 /* =========================================================================

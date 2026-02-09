@@ -450,7 +450,8 @@ function initRevealGameSplash() {
         started = true;
         splashScreen.classList.add('hidden');
         setTimeout(() => { gameContent.classList.add('active'); }, 300);
-        setTimeout(() => { splashScreen.style.display = 'none'; }, 800);
+        // Removed: setTimeout(() => { splashScreen.style.display = 'none'; }, 800);
+        // Let CSS handle the collapse with transitions
     }
 
     const { LABELS, ICONS } = window.CARD_PILE_CONTENT || { LABELS: [], ICONS: [] };
