@@ -56,7 +56,7 @@ export function createDetailedCaseStudy(project) {
             section.images.forEach(image => {
                 sectionContent += `
                     <div class="case-image-container">
-                        <img src="${image.src}" alt="${image.caption}" loading="lazy">
+                        <img src="${image.src}" alt="${image.caption}" loading="lazy" class="zoomable-image" style="cursor: zoom-in;">
                     </div>
                     <div class="image-caption">${image.caption}</div>
                 `;
@@ -75,7 +75,7 @@ export function createDetailedCaseStudy(project) {
                                 <p>${feature.description}</p>
                             </div>
                             <div class="feature-image">
-                                <img src="${feature.image}" alt="${feature.title}" loading="lazy">
+                                <img src="${feature.image}" alt="${feature.title}" loading="lazy" class="zoomable-image" style="cursor: zoom-in;">
                             </div>
                         </div>
                     </div>
@@ -93,6 +93,13 @@ export function createDetailedCaseStudy(project) {
 
     return `
         <div class="detailed-case-study">
+            <!-- Image Zoom Modal -->
+            <div id="image-zoom-modal" class="image-zoom-modal" style="display: none;">
+                <button class="zoom-close" aria-label="Close zoom">&times;</button>
+                <img id="zoomed-image" src="" alt="" class="zoomed-image">
+                <div class="zoom-caption"></div>
+            </div>
+
             <!-- Top Case Nav (matches reference) -->
             <nav class="case-top-nav fixed top-0 w-full z-50 mix-blend-difference px-6 py-6 flex justify-between items-center text-white pointer-events-none">
                 <a href="#home" class="page-link font-bold text-xl pointer-events-auto" data-page="home" style="font-family: 'Anton';">LIRI.</a>
@@ -229,3 +236,56 @@ export function initializeCaseStudyNavigation() {
 
     sections.forEach(section => observer.observe(section));
 }
+
+/**
+ * Initialize image zoom functionality
+ */
+export function initializeImageZoom() {
+    const modal = document.getElementById('image-zoom-modal');
+    const zoomedImage = document.getElementById('zoomed-image');
+    const zoomCaption = modal?.querySelector('.zoom-caption');
+    const closeBtn = modal?.querySelector('.zoom-close');
+
+    if (!modal || !zoomedImage) return;
+
+    // Handle click on zoomable images
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('zoomable-image')) {
+            const img = e.target;
+            zoomedImage.src = img.src;
+            zoomedImage.alt = img.alt;
+
+            // Set caption if available
+            const caption = img.closest('.case-image-container')?.nextElementSibling?.textContent ||
+                           img.alt;
+            if (zoomCaption) zoomCaption.textContent = caption;
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+    });
+
+    // Close modal on close button click
+    closeBtn?.addEventListener('click', () => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    });
+
+    // Close modal on background click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // Close modal on ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+}
+
+

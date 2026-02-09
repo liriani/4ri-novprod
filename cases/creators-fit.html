@@ -340,9 +340,106 @@
             color: #666;
         }
 
+        /* --- IMAGE ZOOM MODAL --- */
+        .image-zoom-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            cursor: zoom-out;
+        }
+
+        .image-zoom-modal.active {
+            display: flex;
+        }
+
+        .zoom-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: transparent;
+            border: 2px solid var(--primary-light);
+            color: var(--primary-light);
+            font-size: 2rem;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .zoom-close:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: rotate(90deg);
+        }
+
+        .zoomed-image {
+            max-width: 90%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 0.5rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            cursor: default;
+        }
+
+        .zoom-caption {
+            margin-top: 1.5rem;
+            font-family: var(--font-family-mono);
+            font-size: 0.875rem;
+            color: var(--secondary-text-dark);
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .zoomable-image {
+            cursor: zoom-in;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+        }
+
+        .zoomable-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 24px rgba(255, 107, 0, 0.2);
+            opacity: 1 !important;
+        }
+
+        @media (max-width: 768px) {
+            .zoomed-image {
+                max-width: 95%;
+                max-height: 80vh;
+            }
+            .zoom-close {
+                top: 1rem;
+                right: 1rem;
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 1.5rem;
+            }
+        }
+
     </style>
 </head>
 <body class="dark">
+
+    <!-- Image Zoom Modal -->
+    <div id="image-zoom-modal" class="image-zoom-modal">
+        <button class="zoom-close" aria-label="Close zoom">&times;</button>
+        <img id="zoomed-image" src="" alt="" class="zoomed-image">
+        <div class="zoom-caption"></div>
+    </div>
 
     <!-- Custom Cursor -->
     <div class="custom-cursor cursor-outer"></div>
@@ -446,7 +543,7 @@
                 </div>
 
                 <div class="image-container">
-                    <img src="../assets/creators-fit/creatorspersona.png" alt="Creator persona research and insights">
+                    <img src="../assets/creators-fit/creatorspersona.png" alt="Creator persona research and insights" class="zoomable-image">
                 </div>
                 <p class="text-xs font-mono text-center text-gray-500 mt-2">FIG 1. CREATOR PERSONA DEVELOPMENT AND USER JOURNEY MAPPING</p>
             </section>
@@ -464,14 +561,14 @@
                         <p class="body-text">Flexible profile builder allowing creators to showcase their unique brand, set subscription tiers, and create compelling content previews that convert visitors to subscribers.</p>
                     </div>
                     <div class="rounded-lg overflow-hidden shadow-2xl border border-[#2d2d2d]">
-                         <img src="../assets/creators-fit/customprofile.png" alt="Custom profile builder interface">
+                         <img src="../assets/creators-fit/customprofile.png" alt="Custom profile builder interface" class="zoomable-image">
                     </div>
                 </div>
 
                 <!-- Feature 2 -->
                 <div class="mt-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center md:flex-row-reverse">
                     <div class="order-2 md:order-1 rounded-lg overflow-hidden shadow-2xl border border-[#2d2d2d]">
-                         <img src="../assets/creators-fit/privifeed.png" alt="Private content feed">
+                         <img src="../assets/creators-fit/privifeed.png" alt="Private content feed" class="zoomable-image">
                     </div>
                     <div class="order-1 md:order-2">
                         <h3 class="text-2xl mb-4 text-white">Premium Content Feeds</h3>
@@ -486,7 +583,7 @@
                         <p class="body-text">Seamless Instagram integration allowing creators to cross-promote their premium content and drive traffic from their existing social media presence.</p>
                     </div>
                     <div class="rounded-lg overflow-hidden shadow-2xl border border-[#2d2d2d]">
-                         <img src="../assets/creators-fit/priviinstagram.png" alt="Instagram integration features">
+                         <img src="../assets/creators-fit/priviinstagram.png" alt="Instagram integration features" class="zoomable-image">
                     </div>
                 </div>
             </section>
@@ -569,6 +666,48 @@
             }, observerOptions);
 
             sections.forEach(section => observer.observe(section));
+        });
+    </script>
+
+    <!-- Image Zoom Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('image-zoom-modal');
+            const zoomedImage = document.getElementById('zoomed-image');
+            const zoomCaption = modal?.querySelector('.zoom-caption');
+            const closeBtn = modal?.querySelector('.zoom-close');
+
+            if (!modal || !zoomedImage) return;
+
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('zoomable-image')) {
+                    const img = e.target;
+                    zoomedImage.src = img.src;
+                    zoomedImage.alt = img.alt;
+                    if (zoomCaption) zoomCaption.textContent = img.alt || '';
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+
+            closeBtn?.addEventListener('click', () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
         });
     </script>
 

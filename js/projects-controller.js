@@ -5,7 +5,7 @@
 
 import { getProjectById, getAllProjects } from './projects-data.js';
 import { createProjectsGrid, createProjectDetail } from './projects-components.js';
-import { initializeCaseStudyNavigation } from './case-study-template.js';
+import { initializeCaseStudyNavigation, initializeImageZoom } from './case-study-template.js';
 
 export class ProjectsController {
   constructor() {
@@ -78,6 +78,9 @@ export class ProjectsController {
 
         // Initialize detailed case study navigation
         initializeCaseStudyNavigation();
+
+        // Initialize image zoom functionality
+        initializeImageZoom();
       } else {
         // For regular case studies, restore original structure if needed
         this.restoreOriginalStructure();

@@ -5,7 +5,7 @@
 /* CSS Variables for cursor (scoped to not conflict with case study vars) */
 :root {
     --cursor-size: 20px;
-    --cursor-z-index: 9999;
+    --cursor-z-index: 10002;
 }
 
 /* Hide native cursor */
