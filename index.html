@@ -32,23 +32,30 @@
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <!-- Preconnect to external domains for performance -->
+  <!-- DNS Prefetch for external domains -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Preconnect to critical external domains -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.tailwindcss.com">
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
-  <!-- Load Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Fonts with display swap for better performance -->
-  <link href="https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Inter:wght@400;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- Main Stylesheet -->
+  <!-- Main Stylesheet (Critical CSS - load immediately) -->
   <link rel="stylesheet" href="./css/styles.css">
+
+  <!-- Preload critical fonts -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Inter:wght@400;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Inter:wght@400;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"></noscript>
+
+  <!-- Defer non-critical CSS (Font Awesome) -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+  <!-- Defer Tailwind CSS (not critical for initial render since we have custom CSS) -->
+  <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+  <script src="https://cdn.tailwindcss.com" defer></script>
 
   <!-- Structured Data (JSON-LD) for better SEO -->
   <script type="application/ld+json">
@@ -76,48 +83,53 @@
 
 </head>
 <body class="dark">
+<!-- Skip to main content link for accessibility -->
+<a href="#main-content" class="sr-only sr-only-focusable" style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;">Skip to main content</a>
+
 <!-- Custom Cursor -->
-<div class="custom-cursor cursor-outer"></div>
-<div class="custom-cursor cursor-inner"></div>
+<div class="custom-cursor cursor-outer" aria-hidden="true"></div>
+<div class="custom-cursor cursor-inner" aria-hidden="true"></div>
 
 <!-- Main Container -->
 <div class="container mx-auto p-4 md:p-8">
 
   <!-- Header/Navigation -->
-  <header class="header" id="site-header">
-    <h1 class="logo page-link" data-page="home">LIRI.</h1>
-    <nav class="nav" id="main-nav">
+  <header class="header" id="site-header" role="banner">
+    <h1 class="logo page-link" data-page="home">
+      <a href="#home" aria-label="LIRI Portfolio Home">LIRI.</a>
+    </h1>
+    <nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
       <ul class="nav-list">
         <li>
-          <a href="#about" class="page-link sections-link nav-link" data-page="about">
+          <a href="#about" class="page-link sections-link nav-link" data-page="about" aria-label="Navigate to About section">
             About
-            <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
+            <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
               <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
             </svg>
           </a>
         </li>
         <li>
-          <a href="#projects" class="page-link sections-link nav-link" data-page="projects">
+          <a href="#projects" class="page-link sections-link nav-link" data-page="projects" aria-label="Navigate to Projects section">
             Projects
-            <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
+            <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
               <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
             </svg>
           </a>
         </li>
         <li>
-          <a href="#design-system" class="page-link sections-link nav-link" data-page="design-system">
+          <a href="#design-system" class="page-link sections-link nav-link" data-page="design-system" aria-label="Navigate to Design System section">
             Design System
-            <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
+            <svg class="hover-line" width="100%" height="10" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
               <path d="M0 1 C25 10 75 -8 100 1" stroke-dasharray="100" stroke-dashoffset="100" />
             </svg>
           </a>
         </li>
       </ul>
-      <button id="theme-toggle" class="theme-toggle-btn">
-        <svg id="moon-icon" class="icon-moon text-accent-color hidden" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-        <svg id="sun-icon" class="icon-sun text-accent-color" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle between dark and light theme" aria-pressed="false">
+        <svg id="moon-icon" class="icon-moon text-accent-color hidden" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        <svg id="sun-icon" class="icon-sun text-accent-color" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
       </button>
-      <a href="#contact" class="page-link lets-talk-button" data-page="contact">Let's talk <i class="fas fa-arrow-right ml-2"></i></a>
+      <a href="#contact" class="page-link lets-talk-button" data-page="contact" aria-label="Contact me">Let's talk <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i></a>
 
     </nav>
 
@@ -129,7 +141,7 @@
   </header>
 
   <!-- Page Content Sections -->
-  <main>
+  <main id="main-content" role="main">
     <!-- Home Page -->
     <section id="home-page" class="page-content active">
       <div class="hero flex flex-col md:flex-row items-center md:items-stretch md:space-x-8 min-h-[calc(100vh-9rem)]">
@@ -179,10 +191,10 @@
 
         <div class="grid grid-cols-1 gap-8">
           <!-- Project Card 1: Creators Fit (Privi) -->
-          <div class="project-card" data-project-id="1">
+          <div class="project-card" data-project-id="1" role="article" aria-labelledby="project-1-title">
             <div class="project-card-front">
-              <span class="project-logo"><img src="./assets/creators-fit/logo.png" alt="Privi Logo"></span>
-              <h3 class="card-title">Creators Fit (formerly Privi): Monetizing Content for Brazilian Influencers</h3>
+              <span class="project-logo"><img src="./assets/creators-fit/logo.png" alt="Privi Logo" loading="lazy" width="80" height="80"></span>
+              <h3 class="card-title" id="project-1-title">Creators Fit (formerly Privi): Monetizing Content for Brazilian Influencers</h3>
             </div>
             <div class="project-preview">
               <div class="preview-left">
@@ -190,16 +202,16 @@
                 <p class="card-subtitle">Platform for Brazilian creators to monetize exclusive content. Supports subscriptions, pay-per-view, and media uploads.</p>
               </div>
               <div class="preview-right">
-                <img src="./assets/creators-fit/cover.png" alt="Creators Fit (Privi)">
+                <img src="./assets/creators-fit/cover.png" alt="Creators Fit platform interface showing content monetization features" loading="lazy" width="600" height="400">
               </div>
             </div>
           </div>
 
           <!-- Project Card 2: FIAP HealthHub -->
-          <div class="project-card" data-project-id="2">
+          <div class="project-card" data-project-id="2" role="article" aria-labelledby="project-2-title">
             <div class="project-card-front">
-              <span class="project-logo"><img src="./assets/fiap/logo.png" alt="FIAP Logo"></span>
-              <h3 class="card-title">FIAP Startup Challenge: HealthHub</h3>
+              <span class="project-logo"><img src="./assets/fiap/logo.png" alt="FIAP Logo" loading="lazy" width="80" height="80"></span>
+              <h3 class="card-title" id="project-2-title">FIAP Startup Challenge: HealthHub</h3>
             </div>
             <div class="project-preview">
               <div class="preview-left">
@@ -207,16 +219,16 @@
                 <p class="card-subtitle">Mobile-first platform for clinics and patients. 2nd place at FIAP Startup Challenge 2023. Focused on long-term care management.</p>
               </div>
               <div class="preview-right">
-                <img src="./assets/fiap/cover.png" alt="FIAP HealthHub">
+                <img src="./assets/fiap/cover.png" alt="FIAP HealthHub mobile interface showing patient management features" loading="lazy" width="600" height="400">
               </div>
             </div>
           </div>
 
           <!-- Project Card 3: Nohs Somos -->
-          <div class="project-card" data-project-id="3">
+          <div class="project-card" data-project-id="3" role="article" aria-labelledby="project-3-title">
             <div class="project-card-front">
-              <span class="project-logo"><img src="./assets/nohs-somos/logo.png" alt="Nohs Somos Logo"></span>
-              <h3 class="card-title">Nohs Somos: LGBTQ Community Safety App</h3>
+              <span class="project-logo"><img src="./assets/nohs-somos/logo.png" alt="Nohs Somos Logo" loading="lazy" width="80" height="80"></span>
+              <h3 class="card-title" id="project-3-title">Nohs Somos: LGBTQ Community Safety App</h3>
             </div>
             <div class="project-preview">
               <div class="preview-left">
@@ -224,7 +236,7 @@
                 <p class="card-subtitle">Map-based app for LGBTQ community safety. Find and review safe spaces. Built for Nohs Somos, merged with TODXS.</p>
               </div>
               <div class="preview-right">
-                <img src="./assets/nohs-somos/cover.png" alt="TODXS & Nohs Somos">
+                <img src="./assets/nohs-somos/cover.png" alt="Nohs Somos app interface showing map-based safety features for LGBTQ community" loading="lazy" width="600" height="400">
               </div>
             </div>
           </div>
@@ -502,7 +514,7 @@
         <!-- Project Card 1: Creators Fit (Privi) -->
         <div class="project-card" data-project-id="1">
           <div class="project-card-front">
-            <span class="project-logo"><img src="./assets/creators-fit/logo.png" alt="Privi Logo"></span>
+            <span class="project-logo"><img src="./assets/creators-fit/logo.png" alt="Privi Logo" loading="lazy" width="80" height="80"></span>
             <h3 class="card-title">Creators Fit (formerly Privi): Monetizing Content for Brazilian Influencers</h3>
           </div>
           <div class="project-preview">
@@ -511,7 +523,7 @@
               <p class="card-subtitle">Platform for Brazilian creators to monetize exclusive content. Supports subscriptions, pay-per-view, and media uploads.</p>
             </div>
             <div class="preview-right">
-              <img src="./assets/creators-fit/cover.png" alt="Creators Fit (Privi)">
+              <img src="./assets/creators-fit/cover.png" alt="Creators Fit platform interface showing content monetization features" loading="lazy" width="600" height="400">
             </div>
           </div>
         </div>
@@ -519,7 +531,7 @@
         <!-- Project Card 2: FIAP HealthHub -->
         <div class="project-card" data-project-id="2">
           <div class="project-card-front">
-            <span class="project-logo"><img src="./assets/fiap/logo.png" alt="FIAP Logo"></span>
+            <span class="project-logo"><img src="./assets/fiap/logo.png" alt="FIAP Logo" loading="lazy" width="80" height="80"></span>
             <h3 class="card-title">FIAP Startup Challenge: HealthHub</h3>
           </div>
           <div class="project-preview">
@@ -528,7 +540,7 @@
               <p class="card-subtitle">Mobile-first platform for clinics and patients. 2nd place at FIAP Startup Challenge 2023. Focused on long-term care management.</p>
             </div>
             <div class="preview-right">
-              <img src="./assets/fiap/cover.png" alt="FIAP HealthHub">
+              <img src="./assets/fiap/cover.png" alt="FIAP HealthHub mobile interface showing patient management features" loading="lazy" width="600" height="400">
             </div>
           </div>
         </div>
@@ -536,7 +548,7 @@
         <!-- Project Card 3: Nohs Somos -->
         <div class="project-card" data-project-id="3">
           <div class="project-card-front">
-            <span class="project-logo"><img src="./assets/nohs-somos/logo.png" alt="Nohs Somos Logo"></span>
+            <span class="project-logo"><img src="./assets/nohs-somos/logo.png" alt="Nohs Somos Logo" loading="lazy" width="80" height="80"></span>
             <h3 class="card-title">Nohs Somos: LGBTQ Community Safety App</h3>
           </div>
           <div class="project-preview">
@@ -545,7 +557,7 @@
               <p class="card-subtitle">Map-based app for LGBTQ community safety. Find and review safe spaces. Built for Nohs Somos, merged with TODXS.</p>
             </div>
             <div class="preview-right">
-              <img src="./assets/nohs-somos/cover.png" alt="TODXS & Nohs Somos">
+              <img src="./assets/nohs-somos/cover.png" alt="Nohs Somos app interface showing map-based safety features for LGBTQ community" loading="lazy" width="600" height="400">
             </div>
           </div>
         </div>
@@ -562,7 +574,7 @@
               <p class="card-subtitle">Logistics platform for fleet operations. Automates route planning and real-time tracking. Used by major LATAM companies.</p>
             </div>
             <div class="preview-right">
-              <img src="https://placehold.co/600x400/1e1e1e/d3d3d3?text=iLog+Dashboard" alt="iLog Dashboard Preview">
+              <img src="https://placehold.co/600x400/1e1e1e/d3d3d3?text=iLog+Dashboard" alt="iLog Dashboard Preview showing logistics management interface" loading="lazy" width="600" height="400">
             </div>
           </div>
         </div>

@@ -1106,6 +1106,25 @@ html, body { cursor: none !important; }
     border: 0;
 }
 
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    z-index: 10000;
+    padding: 1rem 2rem;
+    background: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 0 0 4px 0;
+}
+
 /* =========================================================================
    13. RESPONSIVE MEDIA QUERIES
    ========================================================================= */
