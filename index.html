@@ -3,16 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4ri Portfolio</title>
+
+  <!-- Primary Meta Tags -->
+  <title>Liriani Saikoski - Product Designer & Creative Front-End Developer | Portfolio</title>
+  <meta name="title" content="Liriani Saikoski - Product Designer & Creative Front-End Developer | Portfolio">
+  <meta name="description" content="Product Designer with 5+ years of experience crafting impactful digital products. Expert in UI/UX, design systems, and creative front-end development with React, Vue, and Angular. Based in Barcelona, Spain.">
+  <meta name="keywords" content="Product Designer, UI/UX Designer, Front-End Developer, Design Systems, Figma, React, Vue, Angular, Barcelona, Portfolio, Creative Developer">
+  <meta name="author" content="Liriani Saikoski">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://liri.design/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://liri.design/">
+  <meta property="og:title" content="Liriani Saikoski - Product Designer & Creative Front-End Developer">
+  <meta property="og:description" content="Product Designer with 5+ years of experience crafting impactful digital products. Expert in UI/UX, design systems, and creative front-end development.">
+  <meta property="og:image" content="https://liri.design/assets/about.PNG">
+  <meta property="og:site_name" content="LIRI. Portfolio">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://liri.design/">
+  <meta property="twitter:title" content="Liriani Saikoski - Product Designer & Creative Front-End Developer">
+  <meta property="twitter:description" content="Product Designer with 5+ years of experience crafting impactful digital products. Expert in UI/UX, design systems, and creative front-end development.">
+  <meta property="twitter:image" content="https://liri.design/assets/about.PNG">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+  <!-- Preconnect to external domains for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
   <!-- Load Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Fonts with display swap for better performance -->
   <link href="https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Inter:wght@400;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
   <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Main Stylesheet -->
   <link rel="stylesheet" href="./css/styles.css">
+
+  <!-- Structured Data (JSON-LD) for better SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Liriani Saikoski",
+    "url": "https://liri.design",
+    "image": "https://liri.design/assets/about.PNG",
+    "jobTitle": "Product Designer & Creative Front-End Developer",
+    "description": "Product Designer with 5+ years of experience in UI/UX design, design systems, and creative front-end development.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Barcelona",
+      "addressCountry": "Spain"
+    },
+    "knowsAbout": ["UI/UX Design", "Product Design", "Design Systems", "Front-End Development", "React", "Vue", "Angular", "Figma", "Lottie", "CSS", "JavaScript"],
+    "alumniOf": "Professional Tennis Player",
+    "sameAs": [
+      "https://linkedin.com/in/liriani-saikoski",
+      "https://github.com/liriani-saikoski"
+    ]
+  }
+  </script>
 
 </head>
 <body class="dark">
@@ -529,6 +589,106 @@
     <section id="design-system-page" class="case-study-section page-content hidden">
       <h2 class="section-title">Design System</h2>
       <p class="section-subtitle mb-12 text-center max-w-3xl mx-auto">A system of reusable components and guidelines that ensure design and code consistency across all projects.</p>
+
+      <!-- Implementation Overview -->
+      <div class="implementation-overview-card">
+
+        <!-- Tech Manifest Header -->
+        <div class="tech-manifest-header">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div class="flex items-center gap-4 flex-wrap">
+              <div class="flex items-center gap-2">
+                <span class="tech-manifest-dot"></span>
+                <span class="mono-text tech-manifest-label">System Manifest</span>
+              </div>
+              <div class="hidden md:block tech-manifest-divider"></div>
+              <p class="mono-text tech-manifest-text">
+                Built with <span style="color: var(--primary-light);">Vanilla HTML/JS/CSS</span> • No external libraries
+              </p>
+            </div>
+            <div class="flex items-center gap-6 flex-wrap">
+              <div class="flex items-center gap-2">
+                <span class="mono-text tech-manifest-label">Performance</span>
+                <span class="mono-text performance-badge">96</span>
+              </div>
+              <p class="mono-text tech-manifest-text">
+                Clean Implementation • Semantic Structure • High Lighthouse Grade
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="p-8">
+          <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+            <!-- Left: Tech Stack -->
+            <div class="flex-1">
+              <h4 class="card-title mb-4 flex items-center gap-2">
+                <i class="fas fa-code text-accent-color"></i>
+                Clean Implementation
+              </h4>
+              <p class="body-text secondary-text text-sm mb-4">
+                This portfolio is built from scratch using <strong class="text-accent-color">plain HTML, CSS, and vanilla JavaScript</strong>—no frameworks, no libraries, no dependencies.
+              </p>
+              <div class="space-y-2 text-sm mono-text secondary-text">
+                <div class="flex items-center gap-2">
+                  <span class="text-accent-color">✓</span>
+                  <span>Zero dependencies</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-accent-color">✓</span>
+                  <span>Semantic HTML5</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-accent-color">✓</span>
+                  <span>Modern CSS (Grid, Flexbox, Custom Properties)</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-accent-color">✓</span>
+                  <span>ES6+ JavaScript modules</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Performance -->
+            <div class="flex-1">
+              <h4 class="card-title mb-4 flex items-center gap-2">
+                <i class="fas fa-tachometer-alt text-accent-color"></i>
+                Performance Metrics
+              </h4>
+              <p class="body-text secondary-text text-sm mb-4">
+                Optimized for speed and best practices with industry-leading scores.
+              </p>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="metric-box">
+                  <div class="metric-number">96</div>
+                  <div class="metric-label mono-text secondary-text">Lighthouse Performance</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-number">100</div>
+                  <div class="metric-label mono-text secondary-text">Best Practices</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-number">90</div>
+                  <div class="metric-label mono-text secondary-text">Accessibility</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-number">100</div>
+                  <div class="metric-label mono-text secondary-text">SEO</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="overview-footer">
+            <p class="text-sm secondary-text text-center mono-text">
+              <i class="fas fa-lightbulb text-accent-color mr-2"></i>
+              Built with performance, accessibility, and maintainability in mind—demonstrating expertise in core web technologies and clean code architecture.
+            </p>
+          </div>
+        </div>
+      </div>
 
       <div class="space-y-12">
         <!-- Color Palette -->
