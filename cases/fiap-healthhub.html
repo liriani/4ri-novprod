@@ -10,6 +10,9 @@
     <!-- Custom Cursor Styles (Isolated) -->
     <link rel="stylesheet" href="../css/cursor-only.css">
 
+    <!-- Main Styles for Footer Component -->
+    <link rel="stylesheet" href="../css/styles.css">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -595,18 +598,14 @@
         </article>
     </main>
 
-    <!-- FOOTER / NEXT PROJECT -->
-    <footer class="next-project wrapper">
-        <span class="next-label">NEXT PROJECT IN ARCHIVE</span>
-        <a href="./nohs-somos.html" class="next-title font-display uppercase block">
-            Nohs Somos <span class="text-lg align-middle ml-2">↗</span>
-        </a>
-        <div class="flex justify-center gap-4 mt-8 font-mono text-xs">
-            <a href="../index.html#projects" class="text-gray-500 hover:text-accent-color transition-colors">PROJECTS</a>
-            <span class="text-gray-500">/</span>
-            <a href="./nohs-somos.html" class="text-gray-500 hover:text-accent-color transition-colors">NEXT</a>
-        </div>
-    </footer>
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <script type="module">
+        // Import and initialize footer
+        import { replaceFooterPlaceholder } from '../js/footer-component.js';
+        replaceFooterPlaceholder('#footer-placeholder');
+    </script>
 
     <script>
         // Simple navigation for smooth scrolling
