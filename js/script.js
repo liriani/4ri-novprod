@@ -1,9 +1,10 @@
 import { projectsController } from './projects-controller.js';
 import { getProjectById } from './projects-data.js';
+import { replaceFooterPlaceholder } from './footer-component.js';
 
 // Custom Cursor
 function initializeCursor() {
-    // Prevent multiple initializations (e.g., if scripts are re-run)
+    // ...existing code...
     if (window.__cursorInitialized) return;
     window.__cursorInitialized = true;
 
@@ -129,6 +130,10 @@ function initializeCursor() {
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize Custom Cursor
     initializeCursor();
+
+    // Initialize Footer Components
+    replaceFooterPlaceholder('#footer-placeholder');
+    replaceFooterPlaceholder('#about-footer-placeholder');
 
     // Initialize projects system - Projects are automatically rendered by the ProjectsController
 
