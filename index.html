@@ -32,30 +32,120 @@
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <!-- DNS Prefetch for external domains -->
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
-  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-
-  <!-- Preconnect to critical external domains -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <!-- Main Stylesheet (Critical CSS - load immediately) -->
   <link rel="stylesheet" href="./css/styles.css">
 
-  <!-- Preload critical fonts -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Inter:wght@400;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Inter:wght@400;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"></noscript>
+  <!-- Preload critical Anton font for hero (LCP element) -->
+  <link rel="preload" href="https://fonts.gstatic.com/s/anton/v25/1Ptgg87LROyAm3K9-C8QSw.woff2" as="font" type="font/woff2" crossorigin>
 
-  <!-- Defer non-critical CSS (Font Awesome) -->
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <!-- Async load fonts with media trick (loads async but applies when ready) -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Inter:wght@400;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Inter:wght@400;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=optional" rel="stylesheet"></noscript>
+
+  <!-- Async load Font Awesome -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" media="print">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
-  <!-- Defer Tailwind CSS (not critical for initial render since we have custom CSS) -->
-  <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
-  <script src="https://cdn.tailwindcss.com" defer></script>
+  <!-- Inline critical utility classes (replaces Tailwind) -->
+  <style>
+    /* Critical utility classes for initial render */
+    .hidden { display: none !important; }
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .flex-row { flex-direction: row; }
+    .items-center { align-items: center; }
+    .items-start { align-items: flex-start; }
+    .justify-center { justify-content: center; }
+    .justify-between { justify-content: space-between; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-3 { gap: 0.75rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-6 { gap: 1.5rem; }
+    .gap-8 { gap: 2rem; }
+    .grid { display: grid; }
+    .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .mb-1 { margin-bottom: 0.25rem; }
+    .mb-2 { margin-bottom: 0.5rem; }
+    .mb-3 { margin-bottom: 0.75rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .mb-8 { margin-bottom: 2rem; }
+    .mb-10 { margin-bottom: 2.5rem; }
+    .mb-12 { margin-bottom: 3rem; }
+    .mt-2 { margin-top: 0.5rem; }
+    .mt-4 { margin-top: 1rem; }
+    .mt-6 { margin-top: 1.5rem; }
+    .mt-8 { margin-top: 2rem; }
+    .ml-2 { margin-left: 0.5rem; }
+    .p-3 { padding: 0.75rem; }
+    .p-4 { padding: 1rem; }
+    .p-6 { padding: 1.5rem; }
+    .p-8 { padding: 2rem; }
+    .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+    .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+    .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+    .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+    .text-xs { font-size: 0.75rem; line-height: 1rem; }
+    .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+    .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+    .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+    .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+    .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+    .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+    .text-5xl { font-size: 3rem; line-height: 1; }
+    .font-bold { font-weight: 700; }
+    .font-extrabold { font-weight: 800; }
+    .uppercase { text-transform: uppercase; }
+    .text-center { text-align: center; }
+    .text-white { color: #fff; }
+    .border { border-width: 1px; }
+    .border-2 { border-width: 2px; }
+    .border-accent-color { border-color: #FF6B00; }
+    .rounded { border-radius: 0.25rem; }
+    .rounded-lg { border-radius: 0.5rem; }
+    .bg-accent-color { background-color: #FF6B00; }
+    .space-y-2 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.5rem; }
+    .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
+    .space-y-6 > :not([hidden]) ~ :not([hidden]) { margin-top: 1.5rem; }
+    .space-x-6 > :not([hidden]) ~ :not([hidden]) { margin-left: 1.5rem; }
+    .max-w-xl { max-width: 36rem; }
+    .max-w-3xl { max-width: 48rem; }
+    .max-w-6xl { max-width: 72rem; }
+    .max-w-7xl { max-width: 80rem; }
+    .w-full { width: 100%; }
+    .w-8 { width: 2rem; }
+    .h-0\.5 { height: 0.125rem; }
+    .inline-block { display: inline-block; }
+    .relative { position: relative; }
+    .absolute { position: absolute; }
+    .top-0 { top: 0; }
+    .right-0 { right: 0; }
+    .tracking-wide { letter-spacing: 0.025em; }
+    .tracking-widest { letter-spacing: 0.1em; }
+    .opacity-90 { opacity: 0.9; }
+    .hover\:opacity-90:hover { opacity: 0.9; }
+    .hover\:underline:hover { text-decoration: underline; }
+    .transition { transition-property: all; transition-duration: 150ms; }
+    .container { width: 100%; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
+    @media (min-width: 640px) {
+      .sm\:flex-row { flex-direction: row; }
+      .sm\:gap-6 { gap: 1.5rem; }
+    }
+    @media (min-width: 768px) {
+      .md\:flex-row { flex-direction: row; }
+      .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .md\:block { display: block; }
+      .md\:p-8 { padding: 2rem; }
+      .md\:text-left { text-align: left; }
+      .md\:w-2\/5 { width: 40%; }
+      .md\:items-stretch { align-items: stretch; }
+      .md\:space-x-8 > :not([hidden]) ~ :not([hidden]) { margin-left: 2rem; }
+      .md\:hidden { display: none; }
+    }
+  </style>
 
   <!-- Structured Data (JSON-LD) for better SEO -->
   <script type="application/ld+json">
@@ -1570,12 +1660,12 @@
   </main>
 </div>
 
-<!-- JavaScript -->
-<script src="./js/card-pile-content.js"></script>
-<script src="./js/card-pile-utils.js"></script>
-<script type="module" src="./js/script.js"></script>
-<script type="module" src="./js/reveal-game.js"></script>
-<script type="module" src="./js/home-card-pile.js"></script>
+<!-- JavaScript - All deferred for performance -->
+<script src="./js/card-pile-content.js" defer></script>
+<script src="./js/card-pile-utils.js" defer></script>
+<script type="module" src="./js/script.js" defer></script>
+<script type="module" src="./js/reveal-game.js" defer></script>
+<script type="module" src="./js/home-card-pile.js" defer></script>
 </body>
 </html>
 
