@@ -1,6 +1,7 @@
 import { projectsController } from './projects-controller.js';
 import { getProjectById } from './projects-data.js';
 import { replaceFooterPlaceholder } from './footer-component.js';
+import { replaceSocialLinksPlaceholder } from './social-links-component.js';
 
 // Custom Cursor
 function initializeCursor() {
@@ -134,6 +135,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Footer Components
     replaceFooterPlaceholder('#footer-placeholder');
     replaceFooterPlaceholder('#about-footer-placeholder');
+
+    // Initialize Social Links Components
+    replaceSocialLinksPlaceholder('#about-social-links-placeholder', { centered: false });
+    replaceSocialLinksPlaceholder('#contact-social-links-placeholder', { centered: true });
 
     // Initialize projects system - Projects are automatically rendered by the ProjectsController
 
