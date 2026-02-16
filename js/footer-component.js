@@ -11,14 +11,14 @@ export function createFooter() {
         <div class="footer-grid">
             <div>
                 <h2 class="footer-cta-title">Ready to<br>Collaborate?</h2>
-                <a href="mailto:hello@liriani.design" class="footer-email">hello@liriani.design</a>
+                <a href="mailto:its.liriani@gmail.com" class="footer-email">its.liriani@gmail.com</a>
             </div>
             <div class="footer-right">
                 <div class="footer-social-links">
                     <a href="https://linkedin.com/in/liriani-saikoski" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
                     <a href="https://github.com/liriani-saikoski" target="_blank" rel="noopener noreferrer" aria-label="GitHub">Github</a>
                 </div>
-                <p class="footer-copyright">© 2026 LIRIANI SAIKOSKI. ALL RIGHTS RESERVED.</p>
+                <p class="footer-copyright">© 2026 LIRI SAIKOSKI. Made with <3.</p>
             </div>
         </div>
     `;
