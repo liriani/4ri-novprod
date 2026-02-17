@@ -12,68 +12,60 @@ const revealCardIcons = {
 const revealInitialCardsData = [
     {
         id: 1,
-        type: "PROCESS",
+        type: "ALIGNMENT",
         nvlCode: "LIRI.",
         icon: revealCardIcons.approach,
-        question: "What's my approach?",
-        description: "User-first thinking combined with data-driven decisions.",
+        description: "What drives me is not trends.\nIt's alignment.\nIntention. Interface. Behavior.",
         titleSize: "lg",
         iconSize: "xl",
         descSize: "md"
     },
     {
         id: 2,
-        type: "AESTHETIC",
+        type: "STRUCTURE",
         nvlCode: "LIRI.",
         icon: revealCardIcons.style,
-        question: "What's my style?",
-        description: "Clean, minimal interfaces with delightful micro-interactions.",
-        titleSize: "md",  // Smaller for longer word
+        description: "I observe quietly.\nI reorganize what feels slightly off.\nMost people don't notice.\nI do.",
+        titleSize: "md",
         iconSize: "xl",
         descSize: "md"
     },
     {
         id: 3,
-        type: "TECH",
+        type: "BUILD",
         nvlCode: "LIRI.",
         icon: revealCardIcons.build,
-        question: "What do I build?",
-        description: "Scalable web apps with React, TypeScript, and modern tooling.",
-        titleSize: "xl",  // Larger for short word
+        description: "I design interfaces that behave.\nThen I build them to match.",
+        titleSize: "xl",
         iconSize: "xl",
         descSize: "md"
     },
     {
         id: 4,
-        type: "SKILL",
+        type: "LEARN",
         nvlCode: "LIRI.",
         icon: revealCardIcons.learn,
-        question: "What motivates me?",
-        description: "A constant drive to learn new frameworks and design patterns.",
-        categoryLabel: "LEARN",
+        description: "Curiosity is structural.\nI study patterns.\nI question defaults.",
         titleSize: "xl",
         iconSize: "xl",
         descSize: "md"
     },
     {
         id: 5,
-        type: "COLLAB",
+        type: "SYSTEM",
         nvlCode: "LIRI.",
         icon: revealCardIcons.work,
-        question: "How do I work?",
-        description: "Cross-functional collaboration with designers and engineers.",
+        description: "I move between design and engineering.\nBetween logic and aesthetics.",
         titleSize: "lg",
         iconSize: "xl",
         descSize: "md"
     },
     {
         id: 6,
-        type: "GOAL",
+        type: "MOVEMENT",
         nvlCode: "LIRI.",
         icon: revealCardIcons.impact,
-        question: "What's my goal?",
-        description: "To create products that solve real problems for large user bases.",
-        categoryLabel: "IMPACT",
+        description: "Movement helps me think.\nI skate long distances to reorganize ideas.\nClarity often arrives in motion.",
         titleSize: "xl",
         iconSize: "xl",
         descSize: "md"
@@ -237,7 +229,15 @@ function renderRevealGameCard(cardState, index) {
     const description = document.createElement('p');
     const descSize = card.descSize || 'md';
     description.className = `card-description card-description-${descSize} px-4`;
-    description.textContent = card.description;
+
+    // Handle multi-line descriptions with proper line breaks
+    const lines = card.description.split('\n');
+    lines.forEach((line, index) => {
+        if (index > 0) {
+            description.appendChild(document.createElement('br'));
+        }
+        description.appendChild(document.createTextNode(line));
+    });
 
     mainContent.appendChild(iconWrapper);
     mainContent.appendChild(title);
