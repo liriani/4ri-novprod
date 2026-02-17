@@ -664,10 +664,16 @@ html, body { cursor: none !important; }
 }
 
 .section,
-.case-study-section {
+.case-study-section,
+.page-content {
     max-width: 1200px;
     margin: 0 auto;
     padding: var(--spacing-xl) var(--spacing-md);
+}
+
+/* Extra bottom padding for page sections before footer */
+.page-content {
+    padding-bottom: var(--spacing-4xl); /* 96px */
 }
 
 .grid {
@@ -1843,6 +1849,17 @@ html, body { cursor: none !important; }
 
 .artifact-content { flex: 1; }
 
+.artifact-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.artifact-header .artifact-title {
+    margin: 0;
+}
+
 /* Use design system section-title for artifact titles */
 .artifact-title {
     font-size: clamp(1.5rem, 4vw, 2rem);
@@ -1858,6 +1875,11 @@ html, body { cursor: none !important; }
     margin-bottom: var(--spacing-md);
 }
 .light .artifact-text { color: var(--secondary-text-light); }
+
+.artifact-text-sm {
+    font-size: 0.95rem;
+    margin-top: 1rem;
+}
 
 /* Highlight Variant */
 .artifact-card-highlight {
@@ -2064,11 +2086,35 @@ html, body { cursor: none !important; }
 }
 .light .cv-placeholder-msg { color: var(--secondary-text-light); }
 
+.cv-placeholder-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+/* About page specific utilities */
+.about-emoji-large {
+    font-size: 2rem;
+}
+
+.about-location-icon {
+    font-size: 3rem;
+    flex-shrink: 0;
+}
+
+.about-map-icon {
+    color: var(--accent-color);
+}
+
 /* Social Buttons */
 .social-btn-group {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+}
+
+.social-btn-group-centered {
+    justify-content: center;
 }
 
 .social-btn {

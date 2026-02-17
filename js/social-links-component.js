@@ -21,11 +21,7 @@ export function createSocialButtonGroup(options = {}) {
     const { centered = true } = options;
 
     const container = document.createElement('div');
-    container.className = 'social-btn-group';
-
-    if (centered) {
-        container.style.justifyContent = 'center';
-    }
+    container.className = centered ? 'social-btn-group social-btn-group-centered' : 'social-btn-group';
 
     container.innerHTML = `
         <a href="mailto:${SOCIAL_LINKS.email}" class="social-btn btn-email">
@@ -71,4 +67,5 @@ export function getSocialLink(type) {
 export function getEmailLink() {
     return `mailto:${SOCIAL_LINKS.email}`;
 }
+
 
