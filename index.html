@@ -42,8 +42,11 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Inter:wght@400;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Inter:wght@400;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=optional" rel="stylesheet"></noscript>
 
-  <!-- Async load Font Awesome -->
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" media="print">
+  <!-- Font Awesome - Direct load to ensure icons appear -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Async load Font Awesome as backup -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
   <!-- Inline critical utility classes (replaces Tailwind) -->
@@ -180,6 +183,11 @@
 <div class="custom-cursor cursor-outer" aria-hidden="true"></div>
 <div class="custom-cursor cursor-inner" aria-hidden="true"></div>
 
+<!-- Scroll to Top Button -->
+<button id="scroll-to-top" class="scroll-to-top-btn" aria-label="Scroll to top" title="Back to top">
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</button>
+
 <!-- Main Container -->
 <div class="container mx-auto p-4 md:p-8">
 
@@ -216,10 +224,12 @@
         </li>
       </ul>
       <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle between dark and light theme" aria-pressed="false">
-        <svg id="moon-icon" class="icon-moon text-accent-color hidden" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-        <svg id="sun-icon" class="icon-sun text-accent-color" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+        <svg id="moon-icon" class="icon-moon hidden" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        <svg id="sun-icon" class="icon-sun" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
       </button>
-      <a href="#contact" class="page-link lets-talk-button" data-page="contact" aria-label="Contact me">Let's talk <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i></a>
+      <a href="#contact" class="page-link lets-talk-button" data-page="contact" aria-label="Contact me">
+        Let's talk <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+      </a>
 
     </nav>
 

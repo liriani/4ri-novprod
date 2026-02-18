@@ -420,12 +420,36 @@ document.addEventListener('DOMContentLoaded', () => {
             // Toggle body scroll
             body.style.overflow = isExpanded ? '' : 'hidden';
         });
+
         // Close menu when a nav link is clicked (for better mobile UX)
-        mainNav.querySelectorAll('.page-link').forEach(link => {
+        const navLinks = mainNav.querySelectorAll('.page-link, .sections-link, .nav-link');
+        navLinks.forEach(link => {
             link.addEventListener('click', () => {
+                // Close mobile menu
                 mainNav.classList.remove('open');
                 hamburgerButton.setAttribute('aria-expanded', 'false');
                 body.style.overflow = '';
+            });
+        });
+    }
+
+    // Scroll to Top Button
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+    if (scrollToTopBtn) {
+        // Show/hide button based on scroll position
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        // Scroll to top when clicked
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
         });
     }
