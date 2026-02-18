@@ -1921,6 +1921,198 @@ html, body { cursor: none !important; }
     transform: translateY(-2px);
 }
 
+/* Bridge Variant */
+.artifact-card.bridge-variant {
+    flex-direction: column;
+    padding: var(--spacing-2xl);
+    gap: var(--spacing-lg);
+    background: var(--bg-subtle-dark);
+    border: 1px solid var(--border-color-dark);
+    border-radius: var(--border-radius-sm);
+}
+
+.light .artifact-card.bridge-variant {
+    background: var(--bg-subtle-light);
+    border-color: var(--border-color-light);
+}
+
+.bridge-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0 1.5rem 0;
+}
+
+.bridge-emoji {
+    font-size: 2.5rem;
+    line-height: 1;
+    filter: grayscale(0);
+}
+
+.bridge-title-text {
+    font-family: var(--font-family-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--primary-light);
+}
+
+.light .bridge-title-text {
+    color: var(--primary-dark);
+}
+
+.bridge-description {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+}
+
+.tech-bridge-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--primary-dark);
+    border: 1px solid var(--border-color-dark);
+    border-radius: var(--border-radius-sm);
+}
+
+.light .tech-bridge-container {
+    background: var(--primary-light);
+    border-color: var(--border-color-light);
+}
+
+.tech-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.tech-category {
+    font-family: var(--font-family-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--secondary-text-dark);
+    font-weight: 700;
+    min-width: 70px;
+}
+
+.light .tech-category {
+    color: var(--secondary-text-light);
+}
+
+.tech-tag {
+    display: inline-block;
+    padding: 0.4rem 0.85rem;
+    background: var(--bg-subtle-dark);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary-light);
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.light .tech-tag {
+    background: var(--bg-subtle-light);
+    border-color: var(--border-color-light);
+    color: var(--primary-dark);
+}
+
+.tech-tag:hover {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 107, 0, 0.3);
+}
+
+.tech-divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--accent-color);
+    font-size: 1.25rem;
+    opacity: 0.7;
+}
+
+/* Resilience Variant */
+.artifact-card.resilience-variant {
+    position: relative;
+    flex-direction: column;
+    padding: var(--spacing-2xl);
+    gap: var(--spacing-lg);
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--bg-subtle-dark) 0%, var(--primary-dark) 100%);
+    border: 1px solid rgba(255, 107, 0, 0.2);
+}
+
+.light .artifact-card.resilience-variant {
+    background: linear-gradient(135deg, var(--bg-subtle-light) 0%, var(--primary-light) 100%);
+    border-color: rgba(255, 107, 0, 0.2);
+}
+
+.resilience-bg-text {
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    font-family: var(--font-family-display);
+    font-size: 10rem;
+    font-weight: 700;
+    color: rgba(255, 107, 0, 0.05);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+}
+
+.resilience-visual {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    filter: grayscale(0);
+    animation: tennis-bounce 2s ease-in-out infinite;
+}
+
+@keyframes tennis-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.resilience-content {
+    position: relative;
+    z-index: 2;
+}
+
+.resilience-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(255, 107, 0, 0.15);
+    border: 1px solid rgba(255, 107, 0, 0.3);
+    border-radius: 999px;
+    font-family: var(--font-family-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-color);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.resilience-quote {
+    margin-top: 1rem;
+    font-style: italic;
+    opacity: 0.9;
+    padding-left: 1rem;
+    border-left: 3px solid var(--accent-color);
+}
+
+.highlight-text {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
 /* Personal Gallery */
 .personal-gallery {
     display: grid;
