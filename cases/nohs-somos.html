@@ -58,9 +58,16 @@
 
         /* --- LAYOUT UTILITIES --- */
         .wrapper {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 2rem;
+        }
+
+        @media (min-width: 1400px) {
+            .wrapper {
+                max-width: 1800px;
+                padding: 0 3rem;
+            }
         }
 
         .section-divider {
@@ -111,16 +118,41 @@
             padding: 4rem 0;
         }
 
-        @media (min-width: 1024px) {
+        /* Force aside to be hidden below 1200px */
+        .content-grid > aside {
+            display: none !important;
+        }
+
+        @media (min-width: 1200px) {
             .content-grid {
-                grid-template-columns: 250px 1fr;
+                grid-template-columns: 280px 1fr;
+                gap: 5rem;
+            }
+
+            /* Show aside at 1200px+ */
+            .content-grid > aside {
+                display: block !important;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .content-grid {
+                grid-template-columns: 300px 1fr;
+                gap: 6rem;
             }
         }
 
         .sticky-nav {
-            position: sticky;
-            top: 2rem;
-            height: fit-content;
+            display: none;
+        }
+
+        @media (min-width: 1200px) {
+            .sticky-nav {
+                display: block;
+                position: sticky;
+                top: 2rem;
+                height: fit-content;
+            }
         }
         
         .sidebar-section {
@@ -224,7 +256,7 @@
             color: var(--secondary-text-dark);
             font-size: 1.1rem;
             line-height: 1.7;
-            max-width: 65ch;
+            max-width: 75ch;
             margin-bottom: 1.5rem;
         }
 
