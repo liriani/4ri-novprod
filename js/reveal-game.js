@@ -6,16 +6,19 @@ const revealCardIcons = {
     build: 'fa-code',
     learn: 'fa-graduation-cap',
     work: 'fa-users',
-    impact: 'fa-rocket'
+    impact: 'fa-rocket',
+    skating: 'fa-person-skating',
+    gaming: 'fa-gamepad',
+    diy: 'fa-hammer'
 };
 
 const revealInitialCardsData = [
     {
         id: 1,
         type: "ALIGNMENT",
-        nvlCode: "LIRI.",
+        nvlCode: "SYS.01",
         icon: revealCardIcons.approach,
-        description: "What drives me is not trends.\nIt's alignment.\nIntention. Interface. Behavior.",
+        description: "Driven by alignment.\nNot trends.\nIntention matches behavior.",
         titleSize: "lg",
         iconSize: "xl",
         descSize: "md"
@@ -23,9 +26,9 @@ const revealInitialCardsData = [
     {
         id: 2,
         type: "STRUCTURE",
-        nvlCode: "LIRI.",
+        nvlCode: "SYS.02",
         icon: revealCardIcons.style,
-        description: "I observe quietly.\nI reorganize what feels slightly off.\nMost people don't notice.\nI do.",
+        description: "Observing the chaos.\nReorganizing the flow.\nFixing what feels off.",
         titleSize: "md",
         iconSize: "xl",
         descSize: "md"
@@ -33,9 +36,9 @@ const revealInitialCardsData = [
     {
         id: 3,
         type: "BUILD",
-        nvlCode: "LIRI.",
+        nvlCode: "SYS.03",
         icon: revealCardIcons.build,
-        description: "I design interfaces that behave.\nThen I build them to match.",
+        description: "Designing behavior.\nCoding the match.\nBridging the gap.",
         titleSize: "xl",
         iconSize: "xl",
         descSize: "md"
@@ -43,9 +46,9 @@ const revealInitialCardsData = [
     {
         id: 4,
         type: "LEARN",
-        nvlCode: "LIRI.",
+        nvlCode: "DAT.01",
         icon: revealCardIcons.learn,
-        description: "Curiosity is structural.\nI study patterns.\nI question defaults.",
+        description: "Curiosity is structural.\nStudying the patterns.\nQuestioning defaults.",
         titleSize: "xl",
         iconSize: "xl",
         descSize: "md"
@@ -53,9 +56,9 @@ const revealInitialCardsData = [
     {
         id: 5,
         type: "SYSTEM",
-        nvlCode: "LIRI.",
+        nvlCode: "SYS.04",
         icon: revealCardIcons.work,
-        description: "I move between design and engineering.\nBetween logic and aesthetics.",
+        description: "Logic meets aesthetics.\nDesign meets engineering.",
         titleSize: "lg",
         iconSize: "xl",
         descSize: "md"
@@ -63,10 +66,40 @@ const revealInitialCardsData = [
     {
         id: 6,
         type: "MOVEMENT",
-        nvlCode: "LIRI.",
+        nvlCode: "LOC.01",
+        icon: revealCardIcons.skating,
+        description: "Clearing the cache.\nIdeas reorganized in motion.\nBarcelona is the grid.",
+        titleSize: "md",
+        iconSize: "xl",
+        descSize: "md"
+    },
+    {
+        id: 7,
+        type: "MECHANICS",
+        nvlCode: "LOG.01",
+        icon: revealCardIcons.gaming,
+        description: "Analyzing game loops.\nUI decisions in play.\nEven fun is a system.",
+        titleSize: "md",
+        iconSize: "xl",
+        descSize: "md"
+    },
+    {
+        id: 8,
+        type: "TACTILE",
+        nvlCode: "LOG.02",
+        icon: revealCardIcons.diy,
+        description: "Pixel perfection on screen.\nPhysical build by hand.\nBalancing the input.",
+        titleSize: "lg",
+        iconSize: "xl",
+        descSize: "md"
+    },
+    {
+        id: 9,
+        type: "RESILIENCE",
+        nvlCode: "LEG.01",
         icon: revealCardIcons.impact,
-        description: "Movement helps me think.\nI skate long distances to reorganize ideas.\nClarity often arrives in motion.",
-        titleSize: "xl",
+        description: "10 years Pro Tennis.\nFocus under pressure.\nStamina is a skill.",
+        titleSize: "md",
         iconSize: "xl",
         descSize: "md"
     },
@@ -79,8 +112,39 @@ let revealCardsState = revealInitialCardsData.map(card => ({
     hasAnimated: false
 }));
 
-function getRevealedCardCount() {
-    return revealCardsState.filter(c => c.isFlipped).length;
+// Store selected mobile cards for the session
+let selectedMobileCards = null;
+
+// Mobile detection
+function isMobileDevice() {
+    return window.innerWidth <= 767;
+}
+
+// Get random subset of cards for mobile
+function getRandomCards(cards, count) {
+    const shuffled = [...cards].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, count);
+}
+
+// Get cards to display based on device
+function getCardsToDisplay() {
+    if (isMobileDevice()) {
+        // On mobile, use stored selection or create new one
+        if (!selectedMobileCards) {
+            // First time on mobile - select 3 random cards and store them
+            const randomCards = getRandomCards(revealInitialCardsData, 3);
+            selectedMobileCards = randomCards.map(card => card.id);
+        }
+
+        // Return the stored selection with current state
+        return selectedMobileCards.map(cardId =>
+            revealCardsState.find(s => s.card.id === cardId)
+        ).filter(Boolean); // Remove any null/undefined
+    }
+
+    // On desktop, show all 9 cards
+    selectedMobileCards = null; // Clear mobile selection when on desktop
+    return revealCardsState;
 }
 
 /**
@@ -89,6 +153,9 @@ function getRevealedCardCount() {
 function resetRevealCards() {
     // Close modal if open
     closeRevealModal();
+
+    // Clear mobile card selection so new random cards are chosen
+    selectedMobileCards = null;
 
     // Reset all cards
     revealCardsState = revealCardsState.map(state => ({
@@ -275,15 +342,20 @@ function renderRevealGameCard(cardState, index) {
  * Handles click event on a reveal card
  */
 function handleRevealCardClick(index) {
-    const cardData = revealCardsState[index];
+    const cardsToDisplay = getCardsToDisplay();
+    const cardData = cardsToDisplay[index];
     if (!cardData) return;
 
+    // Find the actual card in the main state and toggle it
+    const actualCardState = revealCardsState.find(s => s.card.id === cardData.card.id);
+    if (!actualCardState) return;
+
     // Toggle flip state
-    cardData.isFlipped = !cardData.isFlipped;
+    actualCardState.isFlipped = !actualCardState.isFlipped;
 
     // Mark as animated if flipped to back for first time
-    if (cardData.isFlipped && !cardData.hasAnimated) {
-        cardData.hasAnimated = true;
+    if (actualCardState.isFlipped && !actualCardState.hasAnimated) {
+        actualCardState.hasAnimated = true;
     }
 
     // Re-render the grid to show changes
@@ -297,13 +369,16 @@ function renderRevealGrid() {
     const grid = document.getElementById('reveal-card-grid');
     const statusElement = document.getElementById('reveal-status');
     const resetButton = document.getElementById('reveal-reset-button');
-    const revealedCount = getRevealedCardCount();
 
     if (!grid || !statusElement || !resetButton) return;
 
-    statusElement.textContent = `${revealedCount}/${revealCardsState.length} REVEALED`;
+    const cardsToDisplay = getCardsToDisplay();
+    const revealedCount = cardsToDisplay.filter(c => c.isFlipped).length;
+    const totalCards = cardsToDisplay.length;
 
-    const allRevealed = revealedCount === revealCardsState.length;
+    statusElement.textContent = `${revealedCount}/${totalCards} REVEALED`;
+
+    const allRevealed = revealedCount === totalCards;
 
     resetButton.classList.toggle('hidden', !allRevealed);
 
@@ -312,12 +387,11 @@ function renderRevealGrid() {
         setTimeout(() => {
             showRevealModal();
         }, 800);
-
     }
 
     grid.innerHTML = '';
 
-    revealCardsState.forEach((state, index) => {
+    cardsToDisplay.forEach((state, index) => {
         grid.appendChild(renderRevealGameCard(state, index));
     });
 }
