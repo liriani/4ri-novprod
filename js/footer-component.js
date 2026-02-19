@@ -25,7 +25,7 @@ export function createFooter() {
                     <a href="${SOCIAL_LINKS.linkedin}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
                     <a href="${SOCIAL_LINKS.github}" target="_blank" rel="noopener noreferrer" aria-label="GitHub">Github</a>
                 </div>
-                <p class="footer-copyright">© 2026 LIRIANI SAIKOSKI. ALL RIGHTS RESERVED.</p>
+                <p class="footer-copyright">© 2026 LIRI SAIKOSKI. DESIGNED & DEVELOPED WITH ❤️.</p>
             </div>
         </div>
     `;
