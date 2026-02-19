@@ -2012,7 +2012,7 @@ html, body { cursor: none !important; }
 }
 
 .bridge-title-text {
-    font-family: var(--font-family-display);
+    font-family: var(--font-family-display), sans-serif;
     font-size: 1.75rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -2052,7 +2052,7 @@ html, body { cursor: none !important; }
 }
 
 .tech-category {
-    font-family: var(--font-family-mono);
+    font-family: var(--font-family-mono), sans-serif;
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.15em;
@@ -2121,7 +2121,7 @@ html, body { cursor: none !important; }
     position: absolute;
     top: -20px;
     right: -10px;
-    font-family: var(--font-family-display);
+    font-family: var(--font-family-display), sans-serif;
     font-size: 10rem;
     font-weight: 700;
     color: rgba(255, 107, 0, 0.05);
@@ -2153,7 +2153,7 @@ html, body { cursor: none !important; }
     background: rgba(255, 107, 0, 0.15);
     border: 1px solid rgba(255, 107, 0, 0.3);
     border-radius: 999px;
-    font-family: var(--font-family-mono);
+    font-family: var(--font-family-mono), sans-serif;
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -2179,7 +2179,7 @@ html, body { cursor: none !important; }
 .personal-gallery {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 280px 200px;
+    grid-template-rows: 360px 260px;
     gap: 0.75rem;
     margin-top: 1.5rem;
 }
@@ -2191,6 +2191,9 @@ html, body { cursor: none !important; }
     position: relative;
     border: 1px solid var(--border-color-dark);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .light .gallery-item { background: #e5e5e5; border-color: var(--border-color-light); }
 
@@ -2206,8 +2209,11 @@ html, body { cursor: none !important; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center center;
     display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
     transition: transform 0.3s ease;
 }
 
@@ -2255,7 +2261,7 @@ html, body { cursor: none !important; }
     background: var(--bg-subtle-dark);
     border: 1px solid var(--border-color-dark);
     border-radius: 4px;
-    font-family: var(--font-family-mono);
+    font-family: var(--font-family-mono), sans-serif;
     font-size: 0.75rem;
     color: var(--secondary-text-dark);
 }
@@ -2306,7 +2312,7 @@ html, body { cursor: none !important; }
     background: var(--bg-subtle-dark);
     border: 1px solid var(--border-color-dark);
     border-radius: var(--border-radius-sm);
-    font-family: var(--font-family-display);
+    font-family: var(--font-family-display), sans-serif;
     font-size: 1rem;
     letter-spacing: 0.05em;
     color: var(--primary-light);
@@ -2394,7 +2400,7 @@ html, body { cursor: none !important; }
     gap: 0.75rem;
     padding: 0.75rem 1.5rem;
     border-radius: var(--border-radius-sm);
-    font-family: var(--font-family-mono);
+    font-family: var(--font-family-mono), sans-serif;
     font-size: 0.85rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -2536,7 +2542,7 @@ html, body { cursor: none !important; }
 }
 
 .footer-cta-title {
-    font-family: var(--font-family-display);
+    font-family: var(--font-family-display), sans-serif;
     font-size: 3.75rem;
     line-height: 1;
     margin-bottom: 2rem;
@@ -2544,7 +2550,7 @@ html, body { cursor: none !important; }
 }
 
 .footer-email {
-    font-family: var(--font-family-mono);
+    font-family: var(--font-family-mono), sans-serif;
     color: var(--accent-color);
     font-size: 1.25rem;
     text-decoration: none;
@@ -2574,7 +2580,7 @@ html, body { cursor: none !important; }
 .footer-social-links {
     display: flex;
     gap: 2rem;
-    font-family: var(--font-family-mono);
+    font-family: var(--font-family-mono), sans-serif;
     font-size: 0.75rem;
     text-transform: uppercase;
     color: var(--secondary-text-dark);
@@ -2599,7 +2605,7 @@ html, body { cursor: none !important; }
 }
 
 .footer-copyright {
-    font-family: var(--font-family-mono);
+    font-family: var(--font-family-mono), sans-serif;
     font-size: 0.625rem;
     color: #3a3a3a;
     margin-top: 3rem;
@@ -2634,7 +2640,7 @@ html, body { cursor: none !important; }
     .social-btn { width: 100%; justify-content: center; }
     .cv-embed-container { height: 300px; }
     .personal-gallery {
-        grid-template-rows: 200px 150px;
+        grid-template-rows: 250px 180px;
     }
 }
 
@@ -3380,7 +3386,7 @@ html, body { cursor: none !important; }
 
 /* Card Title Variants */
 .card-title {
-    font-family: var(--font-family-display);
+    font-family: var(--font-family-display), sans-serif;
     line-height: 1.1;
     text-transform: uppercase;
 }
@@ -3403,7 +3409,7 @@ html, body { cursor: none !important; }
 
 /* Card Description Variants */
 .card-description {
-    font-family: var(--font-family-mono);
+    font-family: var(--font-family-mono), sans-serif;
     color: var(--secondary-text-dark);
     line-height: 1.6;
 }
@@ -3660,7 +3666,6 @@ html, body { cursor: none !important; }
     }
 
     .flip-face .mb-2 {
-        margin-bottom: 0.25rem; /* Very tight spacing */
         margin-bottom: 0.5rem; /* Tighter spacing */
     }
 }
@@ -5072,7 +5077,7 @@ body.is-case-page #site-header {
 
 .zoom-caption {
     margin-top: 1.5rem;
-    font-family: var(--font-family-mono);
+    font-family: var(--font-family-mono), sans-serif;
     font-size: 0.875rem;
     color: var(--secondary-text-dark);
     text-align: center;
