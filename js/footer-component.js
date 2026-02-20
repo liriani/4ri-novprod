@@ -1,14 +1,10 @@
 /**
  * Global Footer Component
  * Creates a reusable footer that can be injected into any page
+  * Imports social links from social-links-component for consistency
  */
 
-// Social links data - SINGLE SOURCE OF TRUTH
-const SOCIAL_LINKS = {
-    email: 'its.liriani@gmail.com',
-    linkedin: 'https://linkedin.com/in/liriani',
-    github: 'https://github.com/liriani'
-};
+import { getSocialLink, getEmailLink } from './social-links-component.js';
 
 export function createFooter() {
     const footer = document.createElement('footer');
@@ -18,12 +14,12 @@ export function createFooter() {
         <div class="footer-grid">
             <div>
                 <h2 class="footer-cta-title">Ready to<br>Collaborate?</h2>
-                <a href="mailto:${SOCIAL_LINKS.email}" class="footer-email">${SOCIAL_LINKS.email}</a>
+                <a href="${getEmailLink()}" class="footer-email">${getSocialLink('email')}</a>
             </div>
             <div class="footer-right">
                 <div class="footer-social-links">
-                    <a href="${SOCIAL_LINKS.linkedin}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
-                    <a href="${SOCIAL_LINKS.github}" target="_blank" rel="noopener noreferrer" aria-label="GitHub">Github</a>
+                    <a href="${getSocialLink('linkedin')}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+                    <a href="${getSocialLink('github')}" target="_blank" rel="noopener noreferrer" aria-label="GitHub">Github</a>
                 </div>
                 <p class="footer-copyright">© 2026 LIRI SAIKOSKI. DESIGNED & DEVELOPED WITH ❤️.</p>
             </div>

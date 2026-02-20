@@ -136,9 +136,9 @@ document.addEventListener('DOMContentLoaded', () => {
     replaceFooterPlaceholder('#footer-placeholder');
     replaceFooterPlaceholder('#about-footer-placeholder');
 
-    // Initialize Social Links Components
+    // Initialize Social Links Components (consistent design on both pages)
     replaceSocialLinksPlaceholder('#about-social-links-placeholder', { centered: false });
-    replaceSocialLinksPlaceholder('#contact-social-links-placeholder', { centered: true });
+    replaceSocialLinksPlaceholder('#contact-social-links-placeholder', { centered: false });
 
     // Initialize projects system - Projects are automatically rendered by the ProjectsController
 

@@ -7,7 +7,7 @@
 // Social links data - SINGLE SOURCE OF TRUTH
 const SOCIAL_LINKS = {
     email: 'its.liriani@gmail.com',
-    linkedin: 'https://linkedin.com/in/liriani',
+    linkedin: 'https://linkedin.com/in/liriani-saikoski',
     github: 'https://github.com/liriani'
 };
 
@@ -68,4 +68,17 @@ export function getEmailLink() {
     return `mailto:${SOCIAL_LINKS.email}`;
 }
 
+/**
+ * Initialize social links on all pages
+ * Renders social links in About page CV card and Contact page
+ */
+export function initSocialLinks() {
+    // About page - Social links in CV section
+    replaceSocialLinksPlaceholder('#about-social-links-placeholder', { centered: false });
+
+    // Contact page - Social links
+    replaceSocialLinksPlaceholder('#contact-social-links-placeholder', { centered: false });
+
+    console.log('✅ Social links initialized on About and Contact pages');
+}
 
