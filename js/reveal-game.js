@@ -105,6 +105,8 @@ const revealInitialCardsData = [
     },
 ];
 
+export { revealInitialCardsData, revealCardIcons };
+
 // Global state for reveal cards
 let revealCardsState = revealInitialCardsData.map(card => ({
     card,
