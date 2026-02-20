@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize Social Links Components (consistent design on both pages)
     replaceSocialLinksPlaceholder('#about-social-links-placeholder', { centered: false });
-    replaceSocialLinksPlaceholder('#contact-social-links-placeholder', { centered: false });
+    replaceSocialLinksPlaceholder('#contact-social-links-placeholder', { centered: true });
 
     // Initialize projects system - Projects are automatically rendered by the ProjectsController
 
