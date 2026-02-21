@@ -33,7 +33,9 @@ function createCardPile(config) {
 
     for (let i = 0; i < cardCount; i++) {
         const el = document.createElement('div');
-        el.className = `${cardClass} game-card vertical group`;
+        // Split multiple classes properly
+        const classes = `${cardClass} game-card vertical group`.split(' ').filter(c => c.trim());
+        el.className = classes.join(' ');
         el.setAttribute('role', 'button');
         el.setAttribute('tabindex', '0');
         el.setAttribute('aria-label', ariaLabel);
@@ -50,7 +52,8 @@ function createCardPile(config) {
         el.dataset.ty = ty;
         el.dataset.rot = rot;
         el.style.zIndex = `${i}`;
-        el.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot}deg)`;
+        // Apply centering transform first, then add random offset
+        el.style.transform = `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) rotate(${rot}deg)`;
 
         // Build Design System vertical card structure
         const topMeta = document.createElement('div');
@@ -100,7 +103,8 @@ function createCardPile(config) {
             tx += vel.vx; ty += vel.vy;
             if (Math.abs(vel.vx) < 0.005) vel.vx = 0; if (Math.abs(vel.vy) < 0.005) vel.vy = 0;
             card.dataset.tx = tx; card.dataset.ty = ty;
-            const rot = card.dataset.rot; card.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot}deg)`;
+            const rot = card.dataset.rot;
+            card.style.transform = `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) rotate(${rot}deg)`;
         });
         requestAnimationFrame(updatePhysics);
     }
