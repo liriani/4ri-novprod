@@ -128,7 +128,6 @@ body {
     cursor: none;
 }
 
-/* Prevent all elements from causing horizontal overflow */
 * {
     box-sizing: border-box;
 }
@@ -354,6 +353,13 @@ img, video {
     font-size: var(--font-size-3xl);
     line-height: 1.1;
     margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .hero-title {
+        text-align: left;
+    }
 }
 
 .card-title,
@@ -1086,7 +1092,6 @@ html, body { cursor: none !important; }
     box-shadow: 0 8px 32px var(--shadow-heavy);
 }
 
-/* NEW CLASS FOR COMPONENT PREVIEWS */
 .component-preview-box {
     background-color: var(--primary-dark);
     border: 1px solid var(--border-color-light);
@@ -2730,7 +2735,7 @@ html, body { cursor: none !important; }
     align-items: center;
     margin-top: 4rem;
     margin-bottom: 4rem;
-    height: 400px;
+    min-height: 550px;
     perspective: 1200px;
 }
 
@@ -2738,7 +2743,7 @@ html, body { cursor: none !important; }
     position: relative;
     width: 100%;
     max-width: 1000px;
-    height: 350px;
+    min-height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2997,7 +3002,7 @@ html, body { cursor: none !important; }
 .home-card-pile-wrapper {
     position: relative;
     width: 100%;
-    height: 320px;
+    height: 500px;
     padding: 0 1rem; /* Add padding to prevent edge touching */
 }
 
@@ -3024,12 +3029,18 @@ html, body { cursor: none !important; }
 }
 
 @media (max-width: 767px) {
-    .home-card-pile-wrapper { height: 280px; }
+    .home-card-pile-wrapper { height: 400px; }
     .home-pile-easter { font-size: 0.8rem; top: 0.25rem; }
 }
 
 /* Reinstate Home Pile Card visual styles with Tarot card design pattern */
-.home-card-pile { width: 600px; height: 500px; max-width: 90vw; position: relative; }
+.home-card-pile {
+    width: 600px;
+    height: 500px;
+    max-width: 90vw;
+    position: relative;
+    margin: 0 auto;
+}
 .home-pile-card {
   position: absolute;
   left: 50%; top: 50%;
@@ -3243,6 +3254,7 @@ html, body { cursor: none !important; }
     height: var(--pattern-card-height);
     min-height: var(--pattern-card-height);
     margin: 0 auto;
+    transition: transform 0.1s ease-out;
 }
 
 /* Flip Inner (3D Transform Container) */
@@ -3277,6 +3289,8 @@ html, body { cursor: none !important; }
     flex-direction: column;
     justify-content: space-between;
     transition: all var(--transition-normal);
+    box-sizing: border-box;               /* Include padding in dimensions */
+    overflow: hidden;                     /* Prevent content overflow */
 }
 
 /* Cover Face (LOCKED/CLASSIFIED) */
@@ -3285,6 +3299,8 @@ html, body { cursor: none !important; }
     background: var(--accent-color);      /* Orange #FF6B00 */
     border: 2px solid var(--accent-color);
     color: var(--primary-dark);           /* Dark text */
+    overflow: hidden;                     /* Prevent content overflow */
+    box-sizing: border-box;               /* Include padding in height */
 }
 
 .flip-face.cover:hover {
@@ -3333,6 +3349,20 @@ html, body { cursor: none !important; }
     border: 2px solid var(--accent-color);
     transform: rotateY(180deg);
     box-shadow: 0 8px 24px rgba(255, 107, 0, 0.3);
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.flip-face.content > div {
+    flex-shrink: 0;
+}
+
+.flip-face.content .text-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 0;
 }
 
 /* Game Card Base - Vertical Layout */
@@ -3343,6 +3373,28 @@ html, body { cursor: none !important; }
     align-items: center;
     gap: 1.5rem;
     padding: 2rem;
+    border-radius: var(--border-radius-md);
+    border: 2px solid var(--border-color-dark);
+    background: var(--primary-dark);
+    transition: all var(--transition-normal), transform 0.1s ease-out;
+    cursor: pointer;
+}
+
+.game-card.vertical:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 24px rgba(255, 107, 0, 0.2);
+    transform: translateY(-4px);
+}
+
+/* Light theme - vertical card */
+.light .game-card.vertical {
+    background: var(--bg-elevated-light);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.light .game-card.vertical:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 24px rgba(255, 107, 0, 0.15);
 }
 
 /* Game Card - Horizontal Layout */
@@ -3355,7 +3407,7 @@ html, body { cursor: none !important; }
     border-radius: var(--border-radius-md);
     border: 2px solid var(--border-color-dark);
     background: var(--primary-dark);
-    transition: all var(--transition-normal);
+    transition: all var(--transition-normal), transform 0.1s ease-out;
 }
 
 .game-card.horizontal:hover {
@@ -4195,6 +4247,15 @@ body.reveal-modal-open {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
 

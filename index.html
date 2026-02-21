@@ -1340,68 +1340,10 @@
             </div>
           </div>
 
-          <!-- Horizontal Card -->
-          <div class="mb-8">
-            <p class="card-subtitle mb-4">02. Horizontal Card</p>
-            <p class="body-text secondary-text text-sm mb-4">Icon left, content right with bottom decoration line.</p>
-
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <!-- Live Example -->
               <div>
-                <p class="text-xs secondary-text mb-2 font-mono">LIVE PREVIEW (Real Data from reveal-game.js)</p>
-                <div class="component-preview-box p-4 md:p-6 flex items-center justify-center" style="min-height: 180px;">
-                  <!-- Populated by design-system-previews.js -->
-                  <div id="horizontal-card-preview"></div>
-                </div>
-              </div>
-
-              <!-- Code Snippet -->
-              <div>
-                <p class="text-xs secondary-text mb-2 font-mono">CODE</p>
-                <div class="component-preview-box p-4 overflow-auto" style="max-height: 180px;">
-              <pre class="text-xs"><code>&lt;!-- Horizontal Card Component --&gt;
-&lt;div class="game-card horizontal group"&gt;
-    &lt;!-- Decoration Line --&gt;
-    &lt;div class="absolute bottom-0 left-0 w-full h-1
-         bg-[var(--card-border)]
-         group-hover:bg-[var(--accent)]
-         transition-colors"&gt;&lt;/div&gt;
-
-    &lt;!-- Left: Icon --&gt;
-    &lt;div class="icon-col"&gt;
-        &lt;i class="fa-solid fa-fingerprint text-4xl
-           text-[var(--text-muted)]
-           group-hover:text-[var(--text-main)]"&gt;&lt;/i&gt;
-    &lt;/div&gt;
-
-    &lt;!-- Right: Content --&gt;
-    &lt;div class="content-col relative"&gt;
-        &lt;span class="corner-label absolute top-0 right-0"&gt;SEC_04&lt;/span&gt;
-        &lt;div&gt;
-            &lt;h3 class="font-display text-3xl mb-1"&gt;Access&lt;/h3&gt;
-            &lt;p class="font-mono text-xs text-[var(--accent)] mb-2"&gt;
-                [ RESTRICTED ]
-            &lt;/p&gt;
-            &lt;p class="text-sm text-[var(--text-muted)] font-light"&gt;
-                Biometric authentication required.
-            &lt;/p&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Vertical Flip Card -->
-          <div class="mb-8">
-            <p class="card-subtitle mb-4">03. Vertical Flip Card (Reveal)</p>
-            <p class="body-text secondary-text text-sm mb-4">Two-sided card with LOCKED cover that flips on click to reveal content.</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <!-- Live Example -->
-              <div>
-                <p class="text-xs secondary-text mb-2 font-mono">LIVE PREVIEW (Real Data from reveal-game.js)</p>
+                <p class="text-xs secondary-text mb-2 font-mono">INTERACTIVE PREVIEW (Click to Flip)</p>
                 <div class="component-preview-box p-4 md:p-6 flex items-center justify-center" style="min-height: 450px;">
                   <!-- Populated by design-system-previews.js -->
                   <div id="flip-card-preview"></div>
@@ -1436,6 +1378,48 @@
 &lt;/div&gt;</code></pre>
                 </div>
               </div>
+            </div>
+
+
+          <!-- Real Usage Examples -->
+          <div class="mb-8 mt-12">
+            <p class="card-subtitle mb-4">03. Real Usage Examples</p>
+            <p class="body-text secondary-text text-sm mb-6">See how these cards are actually used throughout the portfolio with animations and interactions.</p>
+
+            <!-- Home Page Card Pile Example -->
+            <div class="mb-8">
+              <h4 class="text-lg font-display mb-2">A. Home Page - Card Pile</h4>
+              <p class="text-xs secondary-text mb-4">Animated card pile with mouse avoidance physics. Click any card to navigate.</p>
+
+              <div class="component-preview-box p-8" style="min-height: 600px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                <div class="relative" style="min-height: 550px; width: 100%; max-width: 800px; overflow: visible;">
+                  <!-- Populated by design-system-previews.js -->
+                  <div id="home-card-pile-example" style="position: relative; min-height: 550px; width: 100%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- About Page Reveal Game Example -->
+            <div class="mb-8">
+              <h4 class="text-lg font-display mb-2">B. About Page - Reveal Game</h4>
+              <p class="text-xs secondary-text mb-4">Interactive flip cards that reveal content on click. Shows 2 example cards with fade-in animations.</p>
+
+              <div class="component-preview-box p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto" id="about-reveal-game-example">
+                </div>
+              </div>
+            </div>
+
+            <!-- Animation Details -->
+            <div class="component-preview-box p-6 bg-opacity-5 bg-[var(--accent-color)]">
+              <p class="text-xs font-mono text-accent mb-2">ANIMATION FEATURES</p>
+              <ul class="text-sm secondary-text space-y-2">
+                <li>✓ <strong>Card Pile:</strong> Mouse avoidance physics, stagger reveal, smooth transforms</li>
+                <li>✓ <strong>Flip Cards:</strong> 3D rotation (rotateY 180deg), backface-visibility hidden</li>
+                <li>✓ <strong>Hover Effects:</strong> Scale transforms, opacity transitions, icon rotations</li>
+                <li>✓ <strong>Sequential Entry:</strong> Fade-in with staggered delays (60ms intervals)</li>
+                <li>✓ <strong>Performance:</strong> Hardware-accelerated transforms, 60fps animations</li>
+              </ul>
             </div>
           </div>
         </div>
