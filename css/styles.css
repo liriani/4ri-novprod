@@ -1332,6 +1332,13 @@ html, body { cursor: none !important; }
 }
 
 /* Mobile and Base Styles */
+.min-h-home {
+    min-height: 500px;
+    display: flex;
+    align-items: flex-start;
+    margin-top: 0;
+}
+
 .hero {
     gap: var(--spacing-lg);
     padding-top: var(--spacing-md);
@@ -1342,8 +1349,15 @@ html, body { cursor: none !important; }
 }
 
 @media (max-width: 767px) {
+    .min-h-home {
+        min-height: auto;
+        padding-top: var(--spacing-2xl);
+        padding-bottom: var(--spacing-2xl);
+    }
+
     .hero {
-        padding-top: var(--spacing-sm);
+        padding-top: 0;
+        gap: var(--spacing-2xl);
     }
 
     .hero-title {
@@ -3009,11 +3023,10 @@ html, body { cursor: none !important; }
 
 @media (max-width: 767px) {
     .highlight-container {
-        flex-direction: column;
-        height: auto;
-        margin-top: 2rem;
+        min-height: 550px;
+        margin-top: 0;
         margin-bottom: 2rem;
-        padding-bottom: 2rem;
+        padding: 0;
     }
 
     .highlight-card-game {
