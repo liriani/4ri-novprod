@@ -347,8 +347,9 @@ img, video {
 }
 
 .hero-title {
+    margin-top: 0;
     font-size: var(--font-size-3xl);
-    line-height: 1.1;
+    line-height: 1;
     margin-bottom: var(--spacing-md);
     text-align: center;
 }
@@ -1397,6 +1398,8 @@ html, body { cursor: none !important; }
 
     .hero {
         flex-direction: row;
+        align-items: flex-start; /* Align both columns to the top */
+        padding-top: var(--spacing-4xl); /* Control the exact starting point from the header */
         gap: 2rem;
         margin: 0; /* Removed vertical margin */
     }

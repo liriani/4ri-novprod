@@ -151,7 +151,9 @@
 
     /* Custom class for hero section minimum height */
     .min-h-home {
-      min-height: calc(100vh - 9rem);
+      min-height: 500px;
+      display: flex;
+      align-items: flex-start;
     }
   </style>
 
@@ -249,8 +251,8 @@
   <main id="main-content" role="main">
     <!-- Home Page -->
     <section id="home-page" class="page-content active">
-      <div class="hero flex flex-col md:flex-row items-center md:items-center md:space-x-8 min-h-home">
-        <div class="hero-left text-center md:text-left md:w-2/5 flex flex-col justify-center">
+      <div class="hero flex flex-col md:flex-row min-h-home">
+        <div class="hero-left text-center md:text-left md:w-2/5 flex flex-col">
           <div class="hero-text ">
             <h2 class="hero-title">LIRI. a creative coder & designer</h2>
             <span class="hero-subtitle">Designing and building </span>
