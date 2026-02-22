@@ -212,7 +212,6 @@ img, video {
     color: var(--secondary-text-dark);
 }
 
-/* FIX: Moved hero-subtitle rule to global scope */
 .dark .hero-subtitle {
     color: var(--secondary-text-dark);
 }
@@ -248,7 +247,6 @@ img, video {
     color: var(--secondary-text-light);
 }
 
-/* FIX: Moved hero-subtitle rule to global scope */
 .light .hero-subtitle {
     color: var(--secondary-text-light);
 }
@@ -272,7 +270,6 @@ img, video {
     color: var(--primary-dark);
 }
 
-/* Contact page social icons - light theme fix */
 .light #contact-page a[aria-label] {
     color: var(--primary-dark) !important;
 }
@@ -352,7 +349,7 @@ img, video {
 .hero-title {
     font-size: var(--font-size-3xl);
     line-height: 1.1;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
     text-align: center;
 }
 
@@ -383,7 +380,7 @@ img, video {
 }
 
 .hero-subtitle {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-sm);
 }
 
 .body-text {
@@ -505,7 +502,7 @@ img, video {
     align-items: center;
     justify-content: space-between;
     position: relative;
-    z-index: var(--z-modal);
+    z-index: var(--z-header);
     width: 100%;
     gap: var(--spacing-sm);
 }
@@ -578,7 +575,6 @@ img, video {
     display: none;
 }
 
-/* Mobile nav open state - full screen overlay */
 #main-nav.open {
     display: flex;
     position: fixed;
@@ -630,7 +626,6 @@ img, video {
    7. CUSTOM CURSOR SYSTEM
    ========================================================================= */
 
-/* Ensure native cursor never shows (including text caret / pointer hand) */
 html, body { cursor: none !important; }
 *:hover { cursor: none !important; }
 
@@ -640,13 +635,11 @@ html, body { cursor: none !important; }
     z-index: var(--z-cursor);
     opacity: 0;
 
-    /* Center the cursor element on its left/top point */
     transform: translate(-50%, -50%) scale(1);
     transform-origin: center;
     will-change: left, top, transform, opacity;
 }
 
-/* Keep sizes constant; we grow using transform scale only */
 .cursor-outer {
     width: var(--cursor-size);
     height: var(--cursor-size);
@@ -787,11 +780,9 @@ html, body { cursor: none !important; }
 #hero-svg-container {
     position: relative;
     width: 100%;
-    /* FIX: Restore mobile aspect ratio */
     padding-bottom: var(--hero-svg-aspect-ratio);
 }
 
-/* FIX: Apply 100% height only on desktop */
 @media (min-width: 768px) {
     #hero-svg-container {
         height: 100%;
@@ -1281,17 +1272,17 @@ html, body { cursor: none !important; }
 
 /* Mobile and Base Styles */
 .hero {
-    /* FIX: Removed padding */
-    /* padding-top: var(--spacing-xl); */
-    /* padding-bottom: var(--spacing-xl); */
     gap: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    position: relative;
+    z-index: var(--z-base);
+    overflow: visible;
+    margin-top: 0;
 }
 
 @media (max-width: 767px) {
     .hero {
-        /* FIX: Removed padding */
-        /* padding-top: var(--spacing-lg); */
-        /* padding-bottom: var(--spacing-lg); */
+        padding-top: var(--spacing-sm);
     }
 
     .hero-title {
@@ -1360,19 +1351,7 @@ html, body { cursor: none !important; }
 
     .hero-subtitle {
         font-size: 1rem;
-        /* FIX: Removed color rule, now handled globally */
-        /* color: var(--primary-gray); */
     }
-
-    /* FIX: Removed theme rules from media query */
-    /*
-    .dark .hero-subtitle {
-        color: var(--secondary-text-dark);
-    }
-    .light .hero-subtitle {
-        color: var(--secondary-text-light);
-    }
-    */
 
     .hero-highlight {
         font-size: 1rem;
@@ -1380,13 +1359,13 @@ html, body { cursor: none !important; }
     }
 
     .hero-left {
-        width: 40%; /* Changed from 50% to 40% */
+        width: 40%;
         text-align: left;
-        margin-bottom: 0; /* Removed vertical margin */
+        margin-bottom: 0;
     }
 
     .hero-text {
-        margin-bottom: 0; /* Removed vertical margin */
+        margin-bottom: 0;
     }
 
     .hero-visual {
@@ -1405,8 +1384,8 @@ html, body { cursor: none !important; }
 
     .hero {
         gap: var(--spacing-2xl);
-        margin-top: 0; /* Removed vertical margin */
-        margin-bottom: 0; /* Removed vertical margin */
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
     .hero-left {
@@ -1687,6 +1666,15 @@ html, body { cursor: none !important; }
         margin: 0 auto;
     }
 
+    .hero {
+        padding-top: var(--spacing-xl);
+    }
+
+    .highlight-container {
+        margin-top: 0;
+        margin-bottom: 2rem;
+    }
+
     .hero-title {
         font-size: 4.5rem;
         max-width: 900px;
@@ -1751,7 +1739,6 @@ html, body { cursor: none !important; }
 
     .hero {
         gap: var(--spacing-2xl);
-        /* FIX: Restore vertical margin for very large screens */
         margin: 5rem 0;
     }
 }
@@ -2733,10 +2720,12 @@ html, body { cursor: none !important; }
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 4rem;
-    margin-bottom: 4rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
     min-height: 550px;
     perspective: 1200px;
+    position: relative;
+    z-index: var(--z-elevated);
 }
 
 .highlight-card-game {
@@ -2994,8 +2983,13 @@ html, body { cursor: none !important; }
 
 /* Main section container */
 .home-card-pile-section {
-    margin-top: 3rem;
-    margin-bottom: 2rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: relative;
+    z-index: var(--z-base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Card pile wrapper */
@@ -3003,7 +2997,8 @@ html, body { cursor: none !important; }
     position: relative;
     width: 100%;
     height: 500px;
-    padding: 0 1rem; /* Add padding to prevent edge touching */
+    padding: 0 1rem;
+    overflow: visible;
 }
 
 /* Subtle message hidden under the cards */
@@ -3040,12 +3035,15 @@ html, body { cursor: none !important; }
     max-width: 90vw;
     position: relative;
     margin: 0 auto;
+    z-index: var(--z-base);
 }
+
 .home-pile-card {
-  position: absolute;
-  left: 50%; top: 50%;
-  margin-left: calc(var(--pattern-card-width) / -2);  /* -150px center offset */
-  margin-top: calc(var(--pattern-card-height) / -2);  /* -210px center offset */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: calc(var(--pattern-card-width) / -2);
+    margin-top: calc(var(--pattern-card-height) / -2);
   width: var(--pattern-card-width);   /* 300px - Tarot card */
   height: var(--pattern-card-height); /* 420px - Tarot card ratio 5:7 */
   background: var(--primary-dark);
@@ -4836,7 +4834,6 @@ body.reveal-modal-open {
 
 .sticky-nav {
     position: sticky;
-    /* account for the fixed case top nav + some breathing room */
     top: calc(2rem + 80px);
     height: fit-content;
     max-height: calc(100vh - (2rem + 80px));
