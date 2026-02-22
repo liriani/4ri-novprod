@@ -42,7 +42,7 @@ function createCardPile(config) {
         // Anchor each card to the center of the pile
         el.style.position = 'absolute';
         el.style.left = '50%';
-        el.style.top = '50%';
+        el.style.top = '80%';
         el.style.minHeight = '320px';
         el.style.width = '280px';
         const tx = (Math.random() - 0.5) * 160;
