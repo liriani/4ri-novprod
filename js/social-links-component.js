@@ -4,10 +4,10 @@
  * Single source of truth for all social links across the portfolio
  */
 
-// Social links data - SINGLE SOURCE OF TRUTH
+// Social links data
 const SOCIAL_LINKS = {
     email: 'its.liriani@gmail.com',
-    linkedin: 'https://linkedin.com/in/liriani-saikoski',
+    linkedin: 'https://linkedin.com/in/liriani',
     github: 'https://github.com/liriani'
 };
 
