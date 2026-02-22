@@ -1913,7 +1913,7 @@ html, body { cursor: none !important; }
 }
 
 @media (min-width: 1024px) {
-    .about-main-grid { grid-template-columns: 2fr 1fr; }
+    .about-main-grid { grid-template-columns: 3fr 2fr; }
 }
 
 /* Columns */
@@ -2421,6 +2421,45 @@ html, body { cursor: none !important; }
 
 .about-map-icon {
     color: var(--accent-color);
+}
+
+/* Download CV Button */
+.btn-download-cv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.875rem;
+    background: transparent;
+    color: var(--primary-light);
+    border: 1px dashed var(--border-color-dark);
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-family-mono);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.light .btn-download-cv {
+    color: var(--primary-dark);
+    border-color: var(--border-color-light);
+}
+
+.btn-download-cv:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    background: var(--bg-elevated-dark);
+    transform: translateY(-2px);
+}
+
+.light .btn-download-cv:hover {
+    background: var(--bg-elevated-light);
 }
 
 /* Social Buttons */
