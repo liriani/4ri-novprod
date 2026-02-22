@@ -148,6 +148,11 @@
       .md\:space-x-8 > :not([hidden]) ~ :not([hidden]) { margin-left: 2rem; }
       .md\:hidden { display: none; }
     }
+
+    /* Custom class for hero section minimum height */
+    .min-h-home {
+      min-height: calc(100vh - 9rem);
+    }
   </style>
 
   <!-- Structured Data (JSON-LD) for better SEO -->
@@ -155,7 +160,7 @@
   {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Liriani Saikoski",
+    "name": "Liri Saikoski",
     "url": "https://liri.design",
     "image": "https://liri.design/assets/about.PNG",
     "jobTitle": "Product Designer & Creative Front-End Developer",
@@ -168,8 +173,8 @@
     "knowsAbout": ["UI/UX Design", "Product Design", "Design Systems", "Front-End Development", "React", "Vue", "Angular", "Figma", "Lottie", "CSS", "JavaScript"],
     "alumniOf": "Professional Tennis Player",
     "sameAs": [
-      "https://linkedin.com/in/liriani-saikoski",
-      "https://github.com/liriani-saikoski"
+      "https://linkedin.com/in/liriani",
+      "https://github.com/liriani"
     ]
   }
   </script>
@@ -244,7 +249,7 @@
   <main id="main-content" role="main">
     <!-- Home Page -->
     <section id="home-page" class="page-content active">
-      <div class="hero flex flex-col md:flex-row items-center md:items-stretch md:space-x-8 min-h-[calc(100vh-9rem)]">
+      <div class="hero flex flex-col md:flex-row items-center md:items-center md:space-x-8 min-h-home">
         <div class="hero-left text-center md:text-left md:w-2/5 flex flex-col justify-center">
           <div class="hero-text ">
             <h2 class="hero-title">LIRI. a creative coder & designer</h2>
@@ -256,7 +261,7 @@
             <span class="hero-highlight">high-usage </span>
             <span class="hero-subtitle">products.</span>
           </div>
-          <div class="hero-buttons flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+          <div class="hero-buttons flex flex-col sm:flex-row gap-4 justify-start md:justify-start">
             <a href="#projects" class="btn btn-primary page-link" data-page="projects">
               View My Work
             </a>
@@ -266,7 +271,7 @@
           </div>
         </div>
         <!-- Highlight Card Game Section -->
-        <div class="highlight-container">
+        <div class="highlight-container hero-visual">
           <div class="highlight-card-game">
             <!-- Clickable Card Pile - Navigate to About -->
             <div class="home-card-pile-section">
@@ -471,15 +476,19 @@
                 <div class="tech-bridge-container">
                    <div class="tech-row">
                       <span class="tech-category">DESIGN</span>
-                      <span class="tech-tag">Figma</span>
-                      <span class="tech-tag">Lottie</span>
+                      <div class="tech-tags-group">
+                         <span class="tech-tag">Figma</span>
+                         <span class="tech-tag">Lottie</span>
+                      </div>
                    </div>
                    <div class="tech-row">
                       <span class="tech-category">ENG.</span>
-                      <span class="tech-tag">Adv. CSS</span>
-                      <span class="tech-tag">React</span>
-                      <span class="tech-tag">Vue</span>
-                      <span class="tech-tag">Angular</span>
+                      <div class="tech-tags-group">
+                         <span class="tech-tag">Adv. CSS</span>
+                         <span class="tech-tag">React</span>
+                         <span class="tech-tag">Vue</span>
+                         <span class="tech-tag">Angular</span>
+                      </div>
                    </div>
                 </div>
               </div>
@@ -495,7 +504,8 @@
 
                 <!-- Download CV Button -->
                 <a href="./assets/files/Liri Saikoski - CV.pdf" download="Liri_Saikoski_CV.pdf" class="btn-download-cv">
-                  <i class="fas fa-download"></i> Download CV (.PDF)
+                  <i class="fas fa-download mr-2"></i>
+                  Download CV (.PDF)
                 </a>
 
                 <!-- Social Button Group -->
@@ -768,19 +778,19 @@
               </p>
               <div class="grid grid-cols-2 gap-3">
                 <div class="metric-box">
-                  <div class="metric-number">96</div>
+                  <div class="metric-number">99</div>
                   <div class="metric-label mono-text secondary-text">Lighthouse Performance</div>
                 </div>
                 <div class="metric-box">
-                  <div class="metric-number">100</div>
+                  <div class="metric-number">96</div>
                   <div class="metric-label mono-text secondary-text">Best Practices</div>
                 </div>
                 <div class="metric-box">
-                  <div class="metric-number">90</div>
+                  <div class="metric-number">96</div>
                   <div class="metric-label mono-text secondary-text">Accessibility</div>
                 </div>
                 <div class="metric-box">
-                  <div class="metric-number">100</div>
+                  <div class="metric-number">92</div>
                   <div class="metric-label mono-text secondary-text">SEO</div>
                 </div>
               </div>
@@ -855,11 +865,58 @@
         <div>
           <h3 class="case-study-title">Components</h3>
           <div class="space-y-6">
+            <!-- Button System -->
             <div>
-              <p class="card-subtitle">Buttons</p>
-              <div class="flex items-center gap-4">
-                <button class="btn btn-primary flex items-center">Primary (accent) <i class="fas fa-arrow-right ml-2"></i></button>
-                <button class="btn btn-outline">Outline</button>
+              <p class="card-subtitle">Button System</p>
+              <p class="body-text secondary-text mb-4">Consistent call-to-action styles for interactive elements across the portfolio.</p>
+              
+              <div class="component-preview-box mb-6">
+                <div class="flex flex-wrap items-center gap-6">
+                  <!-- Primary Button -->
+                  <div class="text-center">
+                    <button class="btn btn-primary flex items-center mb-2">Primary (accent) <i class="fas fa-arrow-right ml-2"></i></button>
+                    <p class="text-xs secondary-text">.btn-primary</p>
+                  </div>
+
+                  <!-- Outline Button -->
+                  <div class="text-center">
+                    <button class="btn btn-outline mb-2">Outline</button>
+                    <p class="text-xs secondary-text">.btn-outline</p>
+                  </div>
+
+                  <!-- Focusable Button -->
+                  <div class="text-center">
+                    <button class="btn btn-primary" type="button">Focusable Button</button>
+                    <p class="text-xs secondary-text">Tab to focus</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-6">
+                <!-- Code Example -->
+                <div class="component-preview-box p-4 overflow-auto" style="max-height: 200px;">
+                  <pre class="text-xs font-mono"><code>&lt;!-- Primary Variant --&gt;
+&lt;button class="btn btn-primary"&gt;
+  Primary Button
+  &lt;i class="fas fa-arrow-right ml-2"&gt;&lt;/i&gt;
+&lt;/button&gt;
+
+&lt;!-- Outline Variant --&gt;
+&lt;button class="btn btn-outline"&gt;
+  Outline Button
+&lt;/button&gt;</code></pre>
+                </div>
+
+                <!-- Usage Note -->
+                <div class="p-4 border border-border-color-dark rounded">
+                  <p class="text-sm font-mono secondary-text mb-2">Button States:</p>
+                  <ul class="space-y-1">
+                    <li class="text-xs secondary-text">• <strong>Hover:</strong> Slightly scales up and shifts vertically</li>
+                    <li class="text-xs secondary-text">• <strong>Active:</strong> Subtle scale down for click feedback</li>
+                    <li class="text-xs secondary-text">• <strong>Focus:</strong> Prominent outline for accessibility</li>
+                    <li class="text-xs secondary-text">• <strong>Transitions:</strong> 0.3s duration for all color changes</li>
+                  </ul>
+                </div>
               </div>
             </div>
 
@@ -939,21 +996,79 @@
               </div>
             </div>
 
+            <!-- Tag System -->
             <div>
-              <p class="card-subtitle">Tags & Tokens</p>
-              <div class="tag-list-container">
-                <span class="tech-tag">React</span>
-                <span class="tech-tag light">Design</span>
+              <p class="card-subtitle">Tag System</p>
+              <p class="body-text secondary-text mb-4">Unified tag components for labels, technologies, and categories. Three semantic variants maintain visual consistency.</p>
+
+              <div class="component-preview-box mb-6">
+                <div class="space-y-6">
+                  <!-- Accent Tags -->
+                  <div>
+                    <p class="text-xs font-mono secondary-text mb-3 uppercase">Accent Variant - Primary emphasis</p>
+                    <div class="flex flex-wrap gap-3">
+                      <span class="tag tag-accent">React</span>
+                      <span class="tag tag-accent">TypeScript</span>
+                      <span class="tag tag-accent">Node.js</span>
+                    </div>
+                  </div>
+
+                  <!-- Outline Tags -->
+                  <div>
+                    <p class="text-xs font-mono secondary-text mb-3 uppercase">Outline Variant - Secondary emphasis</p>
+                    <div class="flex flex-wrap gap-3">
+                      <span class="tag tag-outline">Vue.js</span>
+                      <span class="tag tag-outline">MongoDB</span>
+                      <span class="tag tag-outline">Docker</span>
+                    </div>
+                  </div>
+
+                  <!-- Subtle Interactive Tags -->
+                  <div>
+                    <p class="text-xs font-mono secondary-text mb-3 uppercase">Subtle Interactive - Hobbies/Interests</p>
+                    <div class="flex flex-wrap gap-3">
+                      <span class="tag tag-subtle tag-interactive">🎮 Gaming</span>
+                      <span class="tag tag-subtle tag-interactive">🛼 Skating</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-6">
+                <!-- Code Example -->
+                <div class="component-preview-box p-4 overflow-auto" style="max-height: 200px;">
+                  <pre class="text-xs font-mono"><code>&lt;!-- Accent Tag --&gt;
+&lt;span class="tag tag-accent"&gt;React&lt;/span&gt;
+
+&lt;!-- Outline Tag --&gt;
+&lt;span class="tag tag-outline"&gt;Vue.js&lt;/span&gt;
+
+&lt;!-- Subtle Interactive Tag --&gt;
+&lt;span class="tag tag-subtle tag-interactive"&gt;🎮 Gaming&lt;/span&gt;</code></pre>
+                </div>
+
+                <!-- Usage Note -->
+                <div class="p-4 border border-border-color-dark rounded">
+                  <p class="text-sm font-mono secondary-text mb-2">CSS Classes:</p>
+                  <ul class="space-y-1">
+                    <li class="text-xs secondary-text">• <code>.tag</code> - Base tag styles</li>
+                    <li class="text-xs secondary-text">• <code>.tag-accent</code> - Accent background with white text</li>
+                    <li class="text-xs secondary-text">• <code>.tag-outline</code> - Transparent with border</li>
+                    <li class="text-xs secondary-text">• <code>.tag-subtle</code> - Subtle accent tint</li>
+                    <li class="text-xs secondary-text">• <code>.tag-interactive</code> - Adds hover animation</li>
+                  </ul>
+                </div>
               </div>
             </div>
 
           </div>
         </div>
 
-        <!-- Icons -->
+        <!-- Icon System -->
         <div>
-          <h3 class="case-study-title">Icons</h3>
-          <div class="space-y-4">
+          <h3 class="case-study-title">Icon System</h3>
+          <div class="space-y-8">
+            <!-- Font Awesome Section -->
             <div>
               <p class="card-subtitle">Font Awesome Icons</p>
               <p class="body-text secondary-text mb-4">Using Font Awesome 6.4.0 for consistent iconography across the portfolio.</p>
@@ -962,6 +1077,14 @@
                   <div class="text-center">
                     <i class="fas fa-arrow-right text-3xl text-accent-color mb-2"></i>
                     <p class="text-xs secondary-text">fa-arrow-right</p>
+                  </div>
+                  <div class="text-center">
+                    <i class="fas fa-download text-3xl text-accent-color mb-2"></i>
+                    <p class="text-xs secondary-text">fa-download</p>
+                  </div>
+                  <div class="text-center">
+                    <i class="fas fa-envelope text-3xl text-accent-color mb-2"></i>
+                    <p class="text-xs secondary-text">fa-envelope</p>
                   </div>
                   <div class="text-center">
                     <i class="fab fa-github text-3xl text-accent-color mb-2"></i>
@@ -983,8 +1106,12 @@
               </div>
             </div>
 
+            <!-- UI Icons Section -->
+
+
+            <!-- Theme Icons Section -->
             <div>
-              <p class="card-subtitle">SVG Icons</p>
+              <p class="card-subtitle">Theme Icons</p>
               <p class="body-text secondary-text mb-4">Custom SVG icons for theme toggle and unique interactions.</p>
               <div class="component-preview-box">
                 <div class="flex items-center gap-8">
@@ -1047,7 +1174,7 @@
             <div>
               <p class="card-subtitle">Responsive Grid</p>
               <p class="body-text secondary-text mb-4">Flexbox-based grid system with breakpoints for mobile, tablet, and desktop.</p>
-              <div class="component-preview-box p-6">
+              <div class="component-preview-box p-6 mb-4">
                 <div class="grid md:grid-cols-3 gap-4 mb-4">
                   <div class="p-6 border-2 border-accent-color rounded text-center" style="background: rgba(255, 107, 0, 0.1);">
                     <p class="body-text font-mono text-sm mb-2">Column 1</p>
@@ -1181,34 +1308,6 @@
               </div>
             </div>
 
-            <div>
-              <p class="card-subtitle">Text + Link States (Static)</p>
-              <p class="body-text secondary-text mb-4">Use these as a visual reference for default, hover and focus styles. No JavaScript required.</p>
-              <div class="component-preview-box">
-                <div class="space-y-4">
-                  <div>
-                    <p class="text-xs secondary-text mb-2">Default link</p>
-                    <a class="nav-link sections-link">Case link example</a>
-                  </div>
-                  <div>
-                    <p class="text-xs secondary-text mb-2">Primary button</p>
-                    <a class="btn btn-primary">Primary CTA</a>
-                  </div>
-                  <div>
-                    <p class="text-xs secondary-text mb-2">Outline button</p>
-                    <a class="btn btn-outline">Secondary CTA</a>
-                  </div>
-                  <div>
-                    <p class="text-xs secondary-text mb-2">Focus ring check (Tab to focus)</p>
-                    <div class="flex flex-wrap items-center gap-3">
-                      <a class="btn btn-outline">Focusable Link</a>
-                      <button class="btn btn-primary" type="button">Focusable Button</button>
-                    </div>
-                    <p class="text-xs secondary-text mt-2">Tip: press <code>Tab</code> to see focus outlines.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <div>
               <p class="card-subtitle">Card Hover Transform</p>
@@ -1283,6 +1382,8 @@
             </div>
           </div>
         </div>
+
+
 
         <!-- Game Card Components -->
         <div>
