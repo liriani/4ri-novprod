@@ -14,10 +14,6 @@ function initHomeCardPile() {
                 location.hash = '#about';
             }
         },
-        cardClass: 'home-pile-card page-link',
-        contentClass: 'home-pile-card-content',
-        iconClass: 'home-pile-card-icon',
-        textClass: 'home-pile-card-text',
         ariaLabel: 'Navigate to About page'
     });
 }

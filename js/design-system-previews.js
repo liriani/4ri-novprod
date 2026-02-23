@@ -6,18 +6,6 @@
 import { createGameCard } from './card-renderer.js';
 import { initDesignSystemCardAvoidance } from './card-avoidance.js';
 
-// Card game icons reference (from reveal-game.js)
-const revealCardIcons = {
-    approach: 'fa-lightbulb',
-    style: 'fa-palette',
-    build: 'fa-code',
-    learn: 'fa-graduation-cap',
-    work: 'fa-users',
-    impact: 'fa-rocket',
-    skating: 'fa-person-skating',
-    gaming: 'fa-gamepad',
-    diy: 'fa-hammer'
-};
 
 // Sample card data - MUST be defined BEFORE usage
 const revealInitialCardsData = [
@@ -25,7 +13,7 @@ const revealInitialCardsData = [
         id: 1,
         type: "ALIGNMENT",
         nvlCode: "SYS.01",
-        icon: revealCardIcons.approach,
+        icon: 'fa-lightbulb',
         description: "Driven by alignment.\nNot trends.\nIntention matches behavior.",
         titleSize: "lg",
         iconSize: "xl",
@@ -35,7 +23,7 @@ const revealInitialCardsData = [
         id: 2,
         type: "STRUCTURE",
         nvlCode: "SYS.02",
-        icon: revealCardIcons.style,
+        icon: 'fa-palette',
         description: "Observing the chaos.\nReorganizing the flow.\nFixing what feels off.",
         titleSize: "md",
         iconSize: "xl",
@@ -45,7 +33,7 @@ const revealInitialCardsData = [
         id: 3,
         type: "BUILD",
         nvlCode: "SYS.03",
-        icon: revealCardIcons.build,
+        icon: 'fa-code',
         description: "Designing behavior.\nCoding the match.\nBridging the gap.",
         titleSize: "xl",
         iconSize: "xl",
@@ -55,7 +43,7 @@ const revealInitialCardsData = [
         id: 4,
         type: "LEARN",
         nvlCode: "DAT.01",
-        icon: revealCardIcons.learn,
+        icon: 'fa-graduation-cap',
         description: "Curiosity is structural.\nStudying the patterns.\nQuestioning defaults.",
         titleSize: "xl",
         iconSize: "xl",
@@ -65,7 +53,7 @@ const revealInitialCardsData = [
         id: 5,
         type: "SYSTEM",
         nvlCode: "SYS.04",
-        icon: revealCardIcons.work,
+        icon: 'fa-users',
         description: "Logic meets aesthetics.\nDesign meets engineering.",
         titleSize: "lg",
         iconSize: "xl",
@@ -75,7 +63,7 @@ const revealInitialCardsData = [
         id: 6,
         type: "MOVEMENT",
         nvlCode: "LOC.01",
-        icon: revealCardIcons.skating,
+        icon: 'fa-person-skating',
         description: "Clearing the cache.\nIdeas reorganized in motion.\nBarcelona is the grid.",
         titleSize: "md",
         iconSize: "xl",
@@ -151,7 +139,6 @@ function initDesignSystemPreviews() {
             icons: pileIcons,
             topAnchor: '50%', // Center for design system preview
             onClick: () => {},
-            cardClass: 'demo-pile-card',
             ariaLabel: 'Demo card pile card'
         });
     } else if (homeCardPileExample) {

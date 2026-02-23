@@ -104,7 +104,14 @@
     --pattern-card-height: 420px;          /* Tarot card height (5:7 ratio) */
     --pattern-card-radius: var(--border-radius-md);
     --pattern-card-padding: 2rem;          /* 32px - scaled for larger card */
+
+    /* Semantic background helpers */
+    --accent-transparent: rgba(255, 107, 0, 0.1);
+    --accent-transparent-light: rgba(255, 107, 0, 0.05);
 }
+
+.bg-accent-transparent { background-color: var(--accent-transparent); }
+.bg-accent-transparent-light { background-color: var(--accent-transparent-light); }
 
 /* =========================================================================
    2. Base Styles & Global Utilities

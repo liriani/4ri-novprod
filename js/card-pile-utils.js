@@ -7,11 +7,7 @@ function createCardPile(config) {
         labels,
         icons,
         onClick,
-        topAnchor = '80%',
-        cardClass = 'pile-card',
-        contentClass = 'pile-card-content',
-        iconClass = 'pile-card-icon',
-        textClass = 'pile-card-text',
+        topAnchor = '50%',
         ariaLabel = 'Click card'
     } = config;
 
@@ -26,17 +22,12 @@ function createCardPile(config) {
     const cards = [];
     const velocities = new Map();
     let running = true;
-
-    // Responsive spacing adjustments (keep card sizes same, adjust spread only)
-    const isMobile = window.innerWidth < 768;
-    const spreadX = isMobile ? 100 : 160;
-    const spreadY = isMobile ? 80 : 120;
     const maxRotation = 25;
 
     for (let i = 0; i < cardCount; i++) {
         const el = document.createElement('div');
         // Split multiple classes properly
-        const classes = `${cardClass} game-card vertical group`.split(' ').filter(c => c.trim());
+        const classes = `game-card vertical group`.split(' ').filter(c => c.trim());
         el.className = classes.join(' ');
         el.setAttribute('role', 'button');
         el.setAttribute('tabindex', '0');
