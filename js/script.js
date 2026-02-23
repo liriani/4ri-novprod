@@ -217,6 +217,11 @@ document.addEventListener('DOMContentLoaded', () => {
     window.handlePageChange = function(pageId) {
         window.location.hash = pageId;
         showPage(pageId);
+        
+        // Refresh Design System previews if navigating to it
+        if (pageId === 'design-system' && typeof window.refreshDesignSystemPreviews === 'function') {
+            window.refreshDesignSystemPreviews();
+        }
     };
 
     // Expose showPage function for projects controller

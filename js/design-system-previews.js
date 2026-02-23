@@ -89,6 +89,18 @@ const revealInitialCardsData = [
 function initDesignSystemPreviews() {
     console.log('🔍 Initializing Design System card previews...');
 
+    // Clear existing previews to prevent duplication
+    const containersToClear = [
+        'vertical-card-preview',
+        'flip-card-preview',
+        'about-reveal-game-example',
+        'home-card-pile-example'
+    ];
+    containersToClear.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = '';
+    });
+
     // 1. Vertical Card Preview
     const verticalContainer = document.getElementById('vertical-card-preview');
     if (verticalContainer) {
@@ -143,6 +155,7 @@ function initDesignSystemPreviews() {
             cardCount: 6,
             labels: pileLabels,
             icons: pileIcons,
+            topAnchor: '50%', // Center for design system preview
             onClick: () => {
                 console.log('Card pile card clicked (demo)');
             },
@@ -170,6 +183,9 @@ function initDesignSystemPreviews() {
 
 // Export for use in other modules
 export { createGameCard, revealInitialCardsData };
+
+// Expose global refresh function for navigation
+window.refreshDesignSystemPreviews = initDesignSystemPreviews;
 
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {
