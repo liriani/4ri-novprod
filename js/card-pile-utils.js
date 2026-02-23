@@ -7,6 +7,7 @@ function createCardPile(config) {
         labels,
         icons,
         onClick,
+        topAnchor = '80%',
         cardClass = 'pile-card',
         contentClass = 'pile-card-content',
         iconClass = 'pile-card-icon',
@@ -42,7 +43,7 @@ function createCardPile(config) {
         // Anchor each card to the center of the pile
         el.style.position = 'absolute';
         el.style.left = '50%';
-        el.style.top = '80%';
+        el.style.top = topAnchor;
         el.style.minHeight = '320px';
         el.style.width = '280px';
         const tx = (Math.random() - 0.5) * 160;
