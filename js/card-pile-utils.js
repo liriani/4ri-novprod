@@ -21,15 +21,15 @@ function createCardPile(config) {
         pile.style.position = 'relative';
     }
 
-    const FRICTION = 0.92, REPEL_STRENGTH = 40, REPEL_MULTIPLIER = 0.03, MAX_DISTANCE = 120, DEAD_ZONE_RADIUS = 70, MAX_VELOCITY = 10, SPRING_STRENGTH = 0.05;
+    const FRICTION = 0.92, REPEL_STRENGTH = 40, REPEL_MULTIPLIER = 0.03, MAX_DISTANCE = 120, DEAD_ZONE_RADIUS = 70, MAX_VELOCITY = 10;
     const cards = []; const velocities = new Map();
     let running = true; // controls RAF
 
     // Responsive spacing adjustments (keep card sizes same, adjust spread only)
     const isMobile = window.innerWidth < 768;
-    const spreadX = isMobile ? 120 : 160;  
-    const spreadY = isMobile ? 80 : 120;   
-    const maxRotation = 25; 
+    const spreadX = isMobile ? 100 : 160;
+    const spreadY = isMobile ? 80 : 120;
+    const maxRotation = 25;
 
     for (let i = 0; i < cardCount; i++) {
         const el = document.createElement('div');
@@ -42,18 +42,14 @@ function createCardPile(config) {
         // Anchor each card to the center of the pile
         el.style.position = 'absolute';
         el.style.left = '50%';
-        el.style.top = isMobile ? '50%' : '90%';
-        el.style.minHeight = 'var(--pattern-card-height)';
-        el.style.width = 'var(--pattern-card-width)';
-        
-        const tx = (Math.random() - 0.5) * spreadX;
-        const ty = (Math.random() - 0.5) * spreadY;
-        const rot = (Math.random() - 0.5) * maxRotation;
-        
+        el.style.top = '80%';
+        el.style.minHeight = '320px';
+        el.style.width = '280px';
+        const tx = (Math.random() - 0.5) * 160;
+        const ty = (Math.random() - 0.5) * 120;
+        const rot = (Math.random() - 0.5) * 25;
         el.dataset.tx = tx;
         el.dataset.ty = ty;
-        el.dataset.origTx = tx;
-        el.dataset.origTy = ty;
         el.dataset.rot = rot;
         el.style.zIndex = `${i}`;
         // Apply centering transform first, then add random offset
@@ -99,23 +95,9 @@ function createCardPile(config) {
     function updatePhysics() {
         if (!running) { requestAnimationFrame(updatePhysics); return; }
         cards.forEach(card => {
-            const vel = velocities.get(card); 
-            
-            const origTx = parseFloat(card.dataset.origTx);
-            const origTy = parseFloat(card.dataset.origTy);
-            const currTx = parseFloat(card.dataset.tx);
-            const currTy = parseFloat(card.dataset.ty);
-            
-            const springX = (origTx - currTx) * SPRING_STRENGTH;
-            const springY = (origTy - currTy) * SPRING_STRENGTH;
-            
-            vel.vx += springX;
-            vel.vy += springY;
-            
-            vel.vx *= FRICTION; vel.vy *= FRICTION;
+            const vel = velocities.get(card); vel.vx *= FRICTION; vel.vy *= FRICTION;
             vel.vx = Math.max(-MAX_VELOCITY, Math.min(MAX_VELOCITY, vel.vx));
             vel.vy = Math.max(-MAX_VELOCITY, Math.min(MAX_VELOCITY, vel.vy));
-            
             let tx = parseFloat(card.dataset.tx);
             let ty = parseFloat(card.dataset.ty);
             tx += vel.vx; ty += vel.vy;
@@ -179,7 +161,7 @@ function createCardPile(config) {
 
     // Pause when pile not visible
     const io = new IntersectionObserver(entries => {
-      entries.forEach(entry => { running = entry.isIntersecting; });
+        entries.forEach(entry => { running = entry.isIntersecting; });
     }, { threshold: 0 });
     io.observe(pile);
 
