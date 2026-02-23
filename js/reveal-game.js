@@ -190,13 +190,13 @@ function renderRevealGameCard(cardState, index) {
         flipInner.classList.add('is-flipped');
     }
 
-    // Click Handler - PRESERVED
+    // Click Handler
     flipInner.addEventListener('click', (e) => {
         e.stopPropagation();
         handleRevealCardClick(index);
     });
 
-    // Touch support - PRESERVED
+    // Touch support
     flipInner.addEventListener('touchend', (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -277,7 +277,7 @@ function renderRevealGameCard(cardState, index) {
     const iconSize = card.iconSize || 'xl';
     revealedIcon.className = `fa-solid ${card.icon} card-icon card-icon-${iconSize}`;
 
-    // Animation on first flip - PRESERVED
+    // Animation on first flip
     if (isFlipped && !hasAnimated) {
         revealedIcon.style.animation = 'reveal-icon-spin 0.6s ease-out';
     }
@@ -332,7 +332,7 @@ function renderRevealGameCard(cardState, index) {
     contentFace.appendChild(mainContent);
     contentFace.appendChild(footerMeta);
 
-    // Assemble flip (content first, then cover)
+    // Assemble flip
     flipInner.appendChild(contentFace);
     flipInner.appendChild(coverFace);
     flipWrapper.appendChild(flipInner);

@@ -79,6 +79,5 @@ export function initSocialLinks() {
     // Contact page - Social links
     replaceSocialLinksPlaceholder('#contact-social-links-placeholder', { centered: false });
 
-    console.log('✅ Social links initialized on About and Contact pages');
 }
 

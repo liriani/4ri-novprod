@@ -87,8 +87,6 @@ const revealInitialCardsData = [
  * Initialize all Design System card previews
  */
 function initDesignSystemPreviews() {
-    console.log('🔍 Initializing Design System card previews...');
-
     // Clear existing previews to prevent duplication
     const containersToClear = [
         'vertical-card-preview',
@@ -106,18 +104,15 @@ function initDesignSystemPreviews() {
     if (verticalContainer) {
         const verticalCard = createGameCard(revealInitialCardsData[0], 'vertical');
         verticalContainer.appendChild(verticalCard);
-        console.log('✅ Vertical card preview created');
     }
 
     // 2. Flip Card Preview
     const flipContainer = document.getElementById('flip-card-preview');
     if (flipContainer) {
         const flipCard = createGameCard(revealInitialCardsData[2], 'flip', {
-            isFlipped: false,
-            onFlip: (flipped) => console.log('Flip card toggled:', flipped)
+            isFlipped: false
         });
         flipContainer.appendChild(flipCard);
-        console.log('✅ Flip card preview created');
     }
 
     // 3. About Page Reveal Game Example (2 flip cards only)
@@ -141,7 +136,6 @@ function initDesignSystemPreviews() {
 
             aboutGameContainer.appendChild(card);
         });
-        console.log('✅ About reveal game example created (2 flip cards)');
     }
 
     // 4. Home Card Pile Example (animated pile with avoidance physics)
@@ -156,14 +150,10 @@ function initDesignSystemPreviews() {
             labels: pileLabels,
             icons: pileIcons,
             topAnchor: '50%', // Center for design system preview
-            onClick: () => {
-                console.log('Card pile card clicked (demo)');
-            },
+            onClick: () => {},
             cardClass: 'demo-pile-card',
             ariaLabel: 'Demo card pile card'
         });
-
-        console.log('✅ Home card pile example created (animated pile with physics)');
     } else if (homeCardPileExample) {
         console.warn('⚠️ createCardPile function not available, showing static cards');
         // Fallback: show 3 static cards
@@ -173,7 +163,6 @@ function initDesignSystemPreviews() {
         });
     }
 
-    console.log('🎉 Design System previews initialization complete');
 
     // Initialize avoidance effect after all cards are rendered
     setTimeout(() => {

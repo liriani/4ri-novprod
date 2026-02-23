@@ -3352,7 +3352,7 @@ html, body { cursor: none !important; }
     }
 }
 
-/* Flip Wrapper (Perspective Container) - Tarot Card Size */
+/* Flip Wrapper (Perspective Container) */
 .flip-wrapper {
     perspective: 1000px;
     width: var(--pattern-card-width);
@@ -3398,8 +3398,7 @@ html, body { cursor: none !important; }
     overflow: hidden;                     /* Prevent content overflow */
 }
 
-/* Cover Face (LOCKED/CLASSIFIED) */
-/* Cover Face (Solid Orange Background - Design Pattern) */
+/* Cover Face (Solid Orange Background) */
 .flip-face.cover {
     background: var(--accent-color);      /* Orange #FF6B00 */
     border: 2px solid var(--accent-color);
@@ -3876,7 +3875,8 @@ html, body { cursor: none !important; }
 
 /* =========================================================================
    Reveal Game Modal & CTA Styles
-   ========================================================================= *//* Keyframe for icon pop animation */
+   ========================================================================= */
+/* Keyframe for icon pop animation */
 @keyframes reveal-icon-pop {
     0% {
         transform: scale(0) rotate(-180deg);

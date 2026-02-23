@@ -23,8 +23,9 @@ function createCardPile(config) {
     }
 
     const FRICTION = 0.92, REPEL_STRENGTH = 40, REPEL_MULTIPLIER = 0.03, MAX_DISTANCE = 120, DEAD_ZONE_RADIUS = 70, MAX_VELOCITY = 10;
-    const cards = []; const velocities = new Map();
-    let running = true; // controls RAF
+    const cards = [];
+    const velocities = new Map();
+    let running = true;
 
     // Responsive spacing adjustments (keep card sizes same, adjust spread only)
     const isMobile = window.innerWidth < 768;
@@ -94,16 +95,24 @@ function createCardPile(config) {
     }
 
     function updatePhysics() {
-        if (!running) { requestAnimationFrame(updatePhysics); return; }
+        if (!running) {
+            requestAnimationFrame(updatePhysics);
+            return;
+        }
         cards.forEach(card => {
-            const vel = velocities.get(card); vel.vx *= FRICTION; vel.vy *= FRICTION;
+            const vel = velocities.get(card);
+            vel.vx *= FRICTION;
+            vel.vy *= FRICTION;
             vel.vx = Math.max(-MAX_VELOCITY, Math.min(MAX_VELOCITY, vel.vx));
             vel.vy = Math.max(-MAX_VELOCITY, Math.min(MAX_VELOCITY, vel.vy));
             let tx = parseFloat(card.dataset.tx);
             let ty = parseFloat(card.dataset.ty);
-            tx += vel.vx; ty += vel.vy;
-            if (Math.abs(vel.vx) < 0.005) vel.vx = 0; if (Math.abs(vel.vy) < 0.005) vel.vy = 0;
-            card.dataset.tx = tx; card.dataset.ty = ty;
+            tx += vel.vx;
+            ty += vel.vy;
+            if (Math.abs(vel.vx) < 0.005) vel.vx = 0;
+            if (Math.abs(vel.vy) < 0.005) vel.vy = 0;
+            card.dataset.tx = tx;
+            card.dataset.ty = ty;
             const rot = card.dataset.rot;
             card.style.transform = `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) rotate(${rot}deg)`;
         });
@@ -158,7 +167,15 @@ function createCardPile(config) {
         }
     }, { passive: true });
 
-    requestAnimationFrame(()=>{ cards.forEach((card,i)=>{ card.style.opacity='0'; setTimeout(()=>{ card.style.transition='opacity 300ms ease'; card.style.opacity='1'; }, 60*i); }); });
+    requestAnimationFrame(() => {
+        cards.forEach((card, i) => {
+            card.style.opacity = '0';
+            setTimeout(() => {
+                card.style.transition = 'opacity 300ms ease';
+                card.style.opacity = '1';
+            }, 60 * i);
+        });
+    });
 
     // Pause when pile not visible
     const io = new IntersectionObserver(entries => {
@@ -166,7 +183,11 @@ function createCardPile(config) {
     }, { threshold: 0 });
     io.observe(pile);
 
-    return { stop: ()=>{ running=false; }, start: ()=>{ running=true; }, element: pile };
+    return {
+        stop: () => { running = false; },
+        start: () => { running = true; },
+        element: pile
+    };
 }
 
 window.createCardPile = createCardPile;

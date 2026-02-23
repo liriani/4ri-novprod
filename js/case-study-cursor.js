@@ -11,7 +11,6 @@
                      /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
     if (isMobile) {
-        console.log('📱 Mobile device detected - custom cursor disabled');
         return; // Exit completely on mobile
     }
 

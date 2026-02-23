@@ -5,7 +5,6 @@ import { replaceSocialLinksPlaceholder } from './social-links-component.js';
 
 // Custom Cursor
 function initializeCursor() {
-    // ...existing code...
     if (window.__cursorInitialized) return;
     window.__cursorInitialized = true;
 
